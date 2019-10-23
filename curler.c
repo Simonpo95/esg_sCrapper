@@ -27,6 +27,8 @@ int curlit(char * filepath, char * url){
     curl_easy_cleanup(curl);
 }
 
+
+
 char * typecheck(char * url){
     CURL * curl;
     char * content_type;
@@ -34,11 +36,15 @@ char * typecheck(char * url){
     FILE * f;
     curl = curl_easy_init();
     if(curl){
+        f = fopen("trash.txt", "w+");
         curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
         response = curl_easy_perform(curl);
         if(!response){
+            remove("trash.txt");
             response = curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &content_type);
-            printf("contenu : %s\n", content_type);
+            return content_type;
         }
     }
     return "dada";
