@@ -9,7 +9,6 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 int curlit(char * filepath, char * url){
     CURL * curl;
     FILE * f;
-    char * dick;
     CURLcode res;
     int size = 0;
     curl = curl_easy_init();
@@ -22,8 +21,6 @@ int curlit(char * filepath, char * url){
         /* always cleanup */
         fclose(f);
     }
-    res = curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &dick);
-    printf("\nContent-type : %s\n", dick);
     curl_easy_cleanup(curl);
 }
 
