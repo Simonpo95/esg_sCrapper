@@ -10,5 +10,6 @@
 
 #include "curler.h"
 #include "generic_parser.h"
+#include "task_parser.h"
 
 #endif
