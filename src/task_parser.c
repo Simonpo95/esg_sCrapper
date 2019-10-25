@@ -12,8 +12,10 @@ int fill_actions(){
     if(f == NULL){ return 3;}
 
     while ((read = getline(&line, &line_len, f)) != -1) {
-        if(!strcmp("=", parsed_line(line))){
+        if(!strcmp("=", special_character_remover(line))){
             fetch_action();
+        } else if(!strcmp("==", special_character_remover(line))){
+            
         }
     }
 
@@ -34,7 +36,3 @@ void fetch_action(){
 
 }
 
-char * parsed_line(char * line){
-    printf("\n%d", strlen(line));
-    return line;
-}

@@ -11,5 +11,6 @@
 #include "curler.h"
 #include "generic_parser.h"
 #include "task_parser.h"
+#include "string_helper.h"
 
 #endif
