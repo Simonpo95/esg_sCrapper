@@ -18,7 +18,6 @@ int curlit(char * filepath, char * url){
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
         res = curl_easy_perform(curl);
-        /* always cleanup */
         fclose(f);
     }
     curl_easy_cleanup(curl);

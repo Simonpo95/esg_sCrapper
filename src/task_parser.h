@@ -21,4 +21,5 @@ int fill_actions();
 int get_file_char_amount(FILE * f);
 void fetch_action();
 char * parsed_line(char * line);
+void fetch_task();
 #endif

@@ -11,8 +11,10 @@ int is_it(char * characters_list, int list_size, char character_checked){
 char * special_character_remover(char * string){
     int index = 0;
     char special_characters[4] = {' ', '\n', '\t', '\r'};
-    char * result = malloc(sizeof(strlen(string)) + 1);
+    printf("string = %d", strlen(string));
+    char * result = malloc(strlen(string) + 1);
     while(*string != '\0'){
+        printf("%c ", *string);
         if(!is_it(special_characters, 4, *string)){
             result[index] = *string;
             index++;
