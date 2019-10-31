@@ -1,5 +1,5 @@
-#ifndef GENERICPARSER
-#define GENERICPARSER
+#ifndef GENERICSTRINGPARSER
+#define GENERICSTRINGPARSER
 
 #include "supervisor.h"
 
