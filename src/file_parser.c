@@ -21,26 +21,28 @@ int* seek_start_Tag(Tag* tabTag, char* file_name)
     while (letter != EOF)
     {
         int counter = 0;
-        while (letter == tabTag[0].start[counter])
+        for(int j = 0; j < 2; j++)
         {
-            if (counter == strlen(tabTag[0].start) - 1)
+            while (letter == tabTag[j].start[counter])
             {
-                cursor = ftell(f);
-                tabCursor[counter2] = cursor;
-                if(tab_size <= counter2)
+                if (counter == strlen(tabTag[j].start) - 1)
                 {
-                    tab_size *= 2;
-                    tabCursor = (int*) realloc(tabCursor, sizeof(int) * tab_size);
+                    cursor = ftell(f) + 1;
+                    tabCursor[counter2] = cursor;
+                    if(tab_size <= counter2)
+                    {
+                        tab_size *= 2;
+                        tabCursor = (int*) realloc(tabCursor, sizeof(int) * tab_size);
+                    }
+                    counter2++;
                 }
-                counter2++;
+                counter++;
+                letter = fgetc(f);
             }
-            counter++;
-            letter = fgetc(f);
         }
         letter = fgetc(f);
     }
 
-    cursor = ftell(f);
     tabCursor = (int*) realloc(tabCursor, sizeof(int) *counter2);
     return tabCursor;
 }
