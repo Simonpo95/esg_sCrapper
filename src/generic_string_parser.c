@@ -4,7 +4,7 @@
 // otherwise, return the string at its end. Precise if word found with error_code
 
 //char * seak_word(char * word, char * file_string, int * error_code){
-char *seak_word(char *start, char *end, char *file_string) {
+char *seak_word_in_string(char *start, char *end, char *file_string) {
 
     char *res = malloc(sizeof(char) * 1000);
     int counter2 = 0;

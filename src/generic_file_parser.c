@@ -4,7 +4,7 @@
 // otherwise, return the string at its end. Precise if word found with error_code
 
 //char * seak_word(char * word, char * file_string, int * error_code){
-char* seak_word(char *start, char *end, char* file) {
+char* seak_word_in_file(char *start, char *end, char* file) {
 
     char *res = malloc(sizeof(char) * 1000);
     char lettre;
@@ -17,7 +17,7 @@ char* seak_word(char *start, char *end, char* file) {
         while (lettre == start[counter]) {
             if (counter == strlen(start) - 1) {
 //                printf("%d\n", counter);
-//                *error_code = 1;
+//                *error_code = 1;l
                 while (lettre != '\0') {
                     int counter = 0;
                     while (lettre == end[counter]) {
