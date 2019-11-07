@@ -43,6 +43,9 @@ int* seek_start_Tag(Tag* tabTag, char* file_name)
         letter = fgetc(f);
     }
 
-    tabCursor = (int*) realloc(tabCursor, sizeof(int) *counter2);
+    fclose(f);
+//    tabCursor = (int*) realloc(tabCursor, sizeof(int) * (counter2));
+    tabCursor = (int*) realloc(tabCursor, sizeof(int) * (counter2 + 1));
+//    tabCursor[counter2 + 1] =
     return tabCursor;
 }

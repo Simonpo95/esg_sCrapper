@@ -1,16 +1,16 @@
 <a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
-<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
-<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
-<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
-<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
-<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
+<img src="../mes_images/nom_images.png " alt="mon_image"/>
 <a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
 <img src="../mes_images/nom_images.png " alt="mon_image"/>
+<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
 <img src="../mes_images/nom_images.png " alt="mon_image"/>
+<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
 <img src="../mes_images/nom_images.png " alt="mon_image"/>
+<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
 <img src="../mes_images/nom_images.png " alt="mon_image"/>
+<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
 <img src="../mes_images/nom_images.png " alt="mon_image"/>
-<img src="../mes_images/nom_images.png " alt="mon_image"/>
+<a href="mailto:votrenom@bidule.com">Envoyez-moi un e-mail !</a>
 
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad m  inim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
