@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-int* seek_start_Tag(Tag*, char*);
+IntTab* seek_start_Tag(Tag*, char*);
 
-int* seek_start_Tag(Tag* tabTag, char* file_name)
+IntTab* seek_start_Tag(Tag* tabTag, char* file_name)
 {
     int cursor;
     int tab_size = 1;
@@ -14,6 +14,7 @@ int* seek_start_Tag(Tag* tabTag, char* file_name)
     int counter2 = 0;
     char letter;
     int* tabCursor = malloc(sizeof(int) * tab_size);
+    IntTab* tab1 = create_IntTab(tabCursor);
 
     FILE* f = fopen(file_name, "r");
     letter = fgetc(f);
@@ -28,11 +29,11 @@ int* seek_start_Tag(Tag* tabTag, char* file_name)
                 if (counter == strlen(tabTag[j].start) - 1)
                 {
                     cursor = ftell(f) + 1;
-                    tabCursor[counter2] = cursor;
-                    if(tab_size <= counter2)
+                    tab1->content_tab[counter2] = cursor;
+                    if(tab1->size <= counter2)
                     {
-                        tab_size *= 2;
-                        tabCursor = (int*) realloc(tabCursor, sizeof(int) * tab_size);
+                        tab1->size *= 2;
+                        tab1->content_tab = (int*) realloc(tab1->content_tab, sizeof(int) * tab1->size);
                     }
                     counter2++;
                 }
@@ -44,8 +45,7 @@ int* seek_start_Tag(Tag* tabTag, char* file_name)
     }
 
     fclose(f);
-//    tabCursor = (int*) realloc(tabCursor, sizeof(int) * (counter2));
-    tabCursor = (int*) realloc(tabCursor, sizeof(int) * (counter2 + 1));
-//    tabCursor[counter2 + 1] =
-    return tabCursor;
+    tab1->size = counter2;
+    tab1->content_tab = (int*) realloc(tab1->content_tab, sizeof(int) * (tab1->size));
+    return tab1;
 }

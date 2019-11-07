@@ -36,6 +36,6 @@ void prIntTabIntTab(IntTab* tabintTab){
     for(i; i<2; i++)
     {
 //        printIntTab(tabintTab[i]);
-        printf("yoyo\n");
+        printf("%d\n", tabintTab->size);
     }
 }

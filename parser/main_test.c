@@ -23,24 +23,24 @@ int main(int argc, char ** argv){
 
 //    printTabTag(tabTag);
 
-//    int* pr = seek_start_Tag(tabTag, "file_content.txt");
-    int* pr = seek_start_Tag(tabTag, "test_file.txt");
+    IntTab* pr = seek_start_Tag(tabTag, "file_content.txt");
+//    IntTab* pr = seek_start_Tag(tabTag, "test_file.txt");
     int i = 0;
 
-    IntTab* tab1 = create_IntTab(pr);
-    IntTab* tab2 = create_IntTab(pr);
+//    IntTab* tab1 = create_IntTab(pr);
+//    IntTab* tab2 = create_IntTab(pr);
 
-    tabIntTab[0] = *tab1;
-    tabIntTab[1] = *tab2;
+    tabIntTab[0] = *pr;
+    tabIntTab[1] = *pr;
 
-//    prIntTabIntTab(tabIntTab);
+    prIntTabIntTab(tabIntTab);
 
-    while(i < 11)
-    {
-        int p = pr[i];
-        printf("%d \n", p);
-        i++;
-    }
+//    while(i < 11)
+//    {
+//        int p = pr[i];
+//        printf("%d \n", p);
+//        i++;
+//    }
 
     return 0;
 }
