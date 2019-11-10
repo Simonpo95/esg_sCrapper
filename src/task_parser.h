@@ -3,23 +3,13 @@
 
 #include "supervisor.h"
 
-typedef struct Action action;
-struct Action{
-    char ** keys;
-    char ** values;
-    char ** properties_name;
-    char ** properties_value;
-};
 
-typedef struct ConfigContainer config_container;
-struct ConfigContainer{
-    int actions_amount;
-    action * actions;
-};
-
-int fill_actions();
+int fill_actions(param_container  * params);
 int get_file_char_amount(FILE * f);
-void fetch_action();
+void fetch_action_parameters(param_container * params, FILE *f, char *line, size_t line_len);
 char * parsed_line(char * line);
 void fetch_task();
+void fill_action_option();
+void fill_action_with_line_parameter(char * line, action * action);
+
 #endif

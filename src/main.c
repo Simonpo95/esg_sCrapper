@@ -1,21 +1,18 @@
 #include "./supervisor.h"
 
+int main(int argc, char **argv)
+{
+    char *filename = "file.html";
+    char *url = "https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c";
+    
+    int err = 0;
 
-int main(int argc, char ** argv){
-    char * filename = "file.html";
-    char * url = "https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c";
+    scutted * scut = string_cutter(&err, "le chat est con", " ");
+    read_scutted(scut);
+    printf("%d", is_not_cutter("a bcva", "a bcv"));
+    // param_container *params = malloc(sizeof(param_container));
 
-
-//    char* res = seak_word("il", "qui", "il es est es beau le qu chat qui cours");
-//    printf("%s \n", res);
-
-//    int err = fill_actions();
-
-char* l = seak_word_in_file("<a", "</a>", "file_content.txt");
-printf("%s \n", l);
-char* t = seak
+    // int err = fill_actions(params);
 
     return 0;
 }
-
-//test push benoit
