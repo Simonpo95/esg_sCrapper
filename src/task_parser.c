@@ -59,7 +59,8 @@ void fetch_action_parameters(param_container * params, FILE *f, char *line, size
         char *fully_trimmed_parsed_line = special_character_remover(line);
         printf("inside function : %s\n", fully_trimmed_parsed_line);
         if (!strcmp("=", fully_trimmed_parsed_line) || !strcmp("==", fully_trimmed_parsed_line))
-        {
+        {   
+            printf("\nwesh");
             return;
         }
 
@@ -72,8 +73,10 @@ void fetch_action_parameters(param_container * params, FILE *f, char *line, size
         free(fully_trimmed_parsed_line);
 
         char * option_trimmed_before_after = trim_before_after(line);
-        if(check_first_last_character('{', '}', line)){
-            fill_action_with_line_parameter(line, action_to_add);
+        printf("a%sa\n", option_trimmed_before_after);
+        if(check_first_last_character('{', '}', option_trimmed_before_after)){
+            printf("on file les actions!\n");
+            fill_action_with_line_parameter(remove_first_last_character(line), action_to_add);
         }
     }
 }
@@ -90,10 +93,12 @@ void fill_action_option(){
 
 void fill_action_with_line_parameter(char * line, action * action){
     int err = 0;
+    printf("%s\n", line);
     scutted * cutted_line = string_cutter(&err, line, "->");
-    if(err == 1){
+    if(err == 2 || cutted_line->size != 2){
         easy_error_with_message(WRONG_PARAMETER_ERROR_MESSAGE);
         return;
     }
+    
     return;
 }

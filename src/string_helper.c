@@ -50,7 +50,7 @@ char *trim_before(char *string)
 char *trim_after(char *string)
 {
     int to_remove = 0;
-    for (int i = strlen(string) - 1; i >= 0 && string[i] == ' '; i--)
+    for (int i = strlen(string) - 1; i >= 0 && (string[i] == ' ' || string[i] == '\n'); i--)
     {
         to_remove++;
     }
@@ -80,8 +80,8 @@ int check_first_last_character(char first, char last, char *string)
 
 scutted *string_cutter(int *error, char *string, char *cutter)
 {
-    fprintf(stderr, "%s &%s&\n", string, cutter);
-    scutted * string_cutted = malloc(sizeof(scutted));
+    scutted *string_cutted = malloc(sizeof(scutted));
+    string_cutted->strings = NULL;
     string_cutted->size = 0;
 
     while (*string != '\0')
@@ -92,12 +92,11 @@ scutted *string_cutter(int *error, char *string, char *cutter)
             word_size++;
             string++;
         }
-        printf("string actuel : %s %d\n", string, word_size);
-        char * new_word = calloc(word_size + 1, 1);
+        char *new_word = calloc(word_size + 1, 1);
         string -= word_size;
-        printf("string replacé : %s\n", string);
         int cword_size = word_size;
-        while(cword_size != 0){
+        while (cword_size != 0)
+        {
             *new_word = *string;
             cword_size--;
             new_word++;
@@ -105,23 +104,30 @@ scutted *string_cutter(int *error, char *string, char *cutter)
         }
 
         *new_word = '\0';
-        new_word-= word_size;
-        fprintf(stderr , "%s\n", new_word);
+        new_word -= word_size;
 
-        add_to_scutted(new_word, string_cutted);
+        fprintf(stderr, "%s\n", new_word);
+        if (strcmp(new_word, ""))
+        {
+            add_to_scutted(new_word, string_cutted);
+        }
+
         if (*string != '\0')
         {
-            string++;
+            string += strlen(cutter);
         }
     }
 
-    if (string_cutted->size == 0)
+    if (string_cutted->size == 1)
     {
+        free(string_cutted->strings[0]);
+        free(string_cutted->strings);
         free(string_cutted);
-        *error = 1;
+        *error = 2;
         return NULL;
     }
 
+    *error = 1;
     return string_cutted;
 }
 
@@ -139,21 +145,32 @@ int is_not_cutter(char *string, char *cutter)
     return 0;
 }
 
-void add_to_scutted(char * string, scutted * scut){
-    char ** strings = malloc(sizeof(char *) * (scut->size + 1));
-    for(int i = 0; i < scut->size; i++){
-        strings[i] = scut->strings[i]; 
+void add_to_scutted(char *string, scutted *scut)
+{
+    char **strings = malloc(sizeof(char *) * (scut->size + 1));
+    for (int i = 0; i < scut->size; i++)
+    {
+        strings[i] = scut->strings[i];
     }
-    strings[scut->size] = string;
+    strings[scut->size] = trim_before_after(string);
     scut->size++;
-    if(scut->strings != NULL){
+    if (scut->strings != NULL)
+    {
         free(scut->strings);
     }
     scut->strings = strings;
 }
 
-void read_scutted(scutted * scut){
-    for(int i = 0; i < scut->size; i++){
+void read_scutted(scutted *scut)
+{
+    for (int i = 0; i < scut->size; i++)
+    {
         printf("%d : %s\n", i, scut->strings[i]);
     }
+}
+
+char *remove_first_last_character(char *string)
+{
+    string[strlen(string) - 2] = '\0';
+    return ++string;
 }
