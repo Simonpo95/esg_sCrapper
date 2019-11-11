@@ -74,7 +74,7 @@ void fetch_action_parameters(param_container *params, FILE *f, char *line, size_
         char *option_trimmed_before_after = trim_before_after(line);
         if (check_first_last_character('{', '}', option_trimmed_before_after))
         {
-            fill_action_with_line_parameter(remove_first_last_character(line), action_to_add, 1);
+            fill_action_with_line_parameter(remove_first_last_character(option_trimmed_before_after), action_to_add, 1);
         }
     }
     add_action_to_params(params, action_to_add);
@@ -97,7 +97,7 @@ void fill_action_option(action *act, FILE *f, char *line, size_t line_len)
         char *option_trimmed_before_after = trim_before_after(line);
         if (check_first_last_character('{', '}', option_trimmed_before_after))
         {
-            fill_action_with_line_parameter(remove_first_last_character(line), act, 0);
+            fill_action_with_line_parameter(remove_first_last_character(option_trimmed_before_after), act, 0);
         }
     }
 }
@@ -173,7 +173,6 @@ void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
     while ((read = getline(&line, &line_len, f)) != -1)
     {
         char *fully_trimmed_parsed_line = special_character_remover(line);
-        printf("%s\n", fully_trimmed_parsed_line);
         if (!strcmp("=", fully_trimmed_parsed_line) || !strcmp("==", fully_trimmed_parsed_line))
         {
             return;
@@ -181,7 +180,7 @@ void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
 
         if (!strcmp("+", fully_trimmed_parsed_line))
         {
-            // fill_action_option(task_to_add, f, line, line_len);
+            fill_task_option(task_to_add, f, line, line_len);
             add_task_to_params(params, task_to_add);
             return;
         }
@@ -191,7 +190,7 @@ void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
         char *option_trimmed_before_after = trim_before_after(line);
         if (check_first_last_character('{', '}', option_trimmed_before_after))
         {
-            fill_task_with_line_parameter(remove_first_last_character(line), task_to_add);
+            fill_task_with_line_parameter(remove_first_last_character(option_trimmed_before_after), task_to_add);
         }
     }
     add_task_to_params(params, task_to_add);
@@ -219,7 +218,6 @@ void fill_task_with_line_parameter(char *string, task *ta)
 
 void add_parameter_to_task(task *ta, scutted *scut)
 {
-    read_scutted(scut);
     keyvalue **keyvalue_array = ta->properties;
     int amount = ta->properties_amount;
 
@@ -242,7 +240,64 @@ void add_parameter_to_task(task *ta, scutted *scut)
 
     ta->properties = new_keyvalues;
     ta->properties_amount++;
-
-    print_task(ta);
 }
 
+void fill_task_option(task *ta, FILE *f, char *line, size_t line_len)
+{
+    ssize_t read;
+    while ((read = getline(&line, &line_len, f)) != -1)
+    {
+        char *fully_trimmed_parsed_line = special_character_remover(line);
+        if (!strcmp("=", fully_trimmed_parsed_line) || !strcmp("==", fully_trimmed_parsed_line))
+        {
+            fseek(f, 0 - strlen(line), SEEK_CUR);
+            return;
+        }
+
+        free(fully_trimmed_parsed_line);
+
+        char *option_trimmed_before_after = trim_before_after(line);
+        if (check_first_last_character('{', '}', option_trimmed_before_after))
+        {
+            fill_task_with_line_option(remove_first_last_character(option_trimmed_before_after), ta);
+        }
+    }
+}
+
+void fill_task_with_line_option(char *string, task *ta)
+{
+    int err = 0;
+    scutted *cutted_line = string_cutter(&err, string, ",");
+
+    add_option_to_task(cutted_line, ta);
+
+    if (cutted_line != NULL)
+    {
+        free(cutted_line);
+    }
+
+    return;
+}
+
+void add_option_to_task(scutted *scut, task *ta)
+{
+    int size = ta->action_amount;
+    char **new_options = malloc(sizeof(char *) * (size + scut->size));
+
+    for (int i = 0; i < size; i++)
+    {
+        new_options[i] = ta->actions_name[i];
+    }
+
+    for (int i = 0; i < scut->size; i++)
+    {
+        new_options[size + i] = scut->strings[i];
+    }
+
+    if(ta->actions_name != NULL){
+        free(ta->actions_name);
+    }
+
+    ta->actions_name = new_options;
+    ta->action_amount+= scut->size;
+}

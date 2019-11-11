@@ -114,15 +114,6 @@ scutted *string_cutter(int *error, char *string, char *cutter)
         }
     }
 
-    if (string_cutted->size == 1)
-    {
-        free(string_cutted->strings[0]);
-        free(string_cutted->strings);
-        free(string_cutted);
-        *error = 2;
-        return NULL;
-    }
-
     *error = 1;
     return string_cutted;
 }
@@ -167,6 +158,13 @@ void read_scutted(scutted *scut)
 
 char *remove_first_last_character(char *string)
 {
-    string[strlen(string) - 2] = '\0';
+    if (string[strlen(string) - 1] == '\n')
+    {
+        string[strlen(string) - 2] = '\0';
+    }
+    else
+    {
+        string[strlen(string) - 1] = '\0';
+    }
     return ++string;
 }

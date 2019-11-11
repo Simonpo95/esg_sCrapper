@@ -36,6 +36,8 @@ void print_full_params(param_container *params)
         print_action(params->actions[i]);
     }
 
+    printf("\n");
+
     if (params->task_amount == 0)
     {
         printf("\nPas de task présente.\n");
@@ -43,7 +45,7 @@ void print_full_params(param_container *params)
 
     for (int i = 0; i < params->task_amount; i++)
     {
-        printf("\nTask %d :", i);
+        printf("\nTask %d :\n", i);
         print_task(params->tasks[i]);
     }
 }
@@ -96,7 +98,7 @@ void print_task(task *ta)
     }
 
     for(int i = 0; i < ta->properties_amount; i++){
-        printf("\nPropriete %d : %s -> %s", i, ta->properties[i]->name, ta->properties[i]->value);
+        printf("Propriete %d : %s -> %s\n", i, ta->properties[i]->name, ta->properties[i]->value);
     }
 
     if(ta->action_amount == 0){
@@ -104,6 +106,6 @@ void print_task(task *ta)
     }
 
     for(int i = 0; i < ta->action_amount; i++){
-        printf("Action %d : %s", i, ta->actions_name[i]);
+        printf("Action %d : %s\n", i, ta->actions_name[i]);
     }
 }

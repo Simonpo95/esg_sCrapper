@@ -14,5 +14,6 @@ int main(int argc, char **argv)
     int err = fill_actions(params);
 
     print_full_params(params);
+
     return 0;
 }

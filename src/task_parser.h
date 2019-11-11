@@ -13,4 +13,9 @@ void fill_action_option(action * act, FILE * f, char * line, size_t line_len);
 void fill_action_with_line_parameter(char *line, action *action, int isProperties);
 void fill_task_with_line_parameter(char * string, task * ta);
 void add_parameter_to_task(task *ta, scutted *scut);
+
+void fill_task_option(task *ta, FILE *f, char *line, size_t line_len);
+void fill_task_with_line_option(char *string, task *ta);
+void add_option_to_task(scutted *scut, task *ta);
+
 #endif
