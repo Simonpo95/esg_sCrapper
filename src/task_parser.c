@@ -57,6 +57,7 @@ void fetch_action_parameters(param_container *params, FILE *f, char *line, size_
     while ((read = getline(&line, &line_len, f)) != -1)
     {
         char *fully_trimmed_parsed_line = special_character_remover(line);
+        fully_trimmed_parsed_line = remove_all_after_character(fully_trimmed_parsed_line, '#');
         if (!strcmp("=", fully_trimmed_parsed_line) || !strcmp("==", fully_trimmed_parsed_line))
         {
             return;
@@ -71,10 +72,11 @@ void fetch_action_parameters(param_container *params, FILE *f, char *line, size_
 
         free(fully_trimmed_parsed_line);
 
-        char *option_trimmed_before_after = trim_before_after(line);
-        if (check_first_last_character('{', '}', option_trimmed_before_after))
+        char *option_without_comment = remove_all_after_character(line, '#');
+        option_without_comment = trim_before_after(option_without_comment);
+        if (check_first_last_character('{', '}', option_without_comment))
         {
-            fill_action_with_line_parameter(remove_first_last_character(option_trimmed_before_after), action_to_add, 1);
+            fill_action_with_line_parameter(remove_first_last_character(option_without_comment), action_to_add, 1);
         }
     }
     add_action_to_params(params, action_to_add);
@@ -173,6 +175,7 @@ void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
     while ((read = getline(&line, &line_len, f)) != -1)
     {
         char *fully_trimmed_parsed_line = special_character_remover(line);
+        fully_trimmed_parsed_line = remove_all_after_character(fully_trimmed_parsed_line, '#');
         if (!strcmp("=", fully_trimmed_parsed_line) || !strcmp("==", fully_trimmed_parsed_line))
         {
             return;
@@ -187,10 +190,11 @@ void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
 
         free(fully_trimmed_parsed_line);
 
-        char *option_trimmed_before_after = trim_before_after(line);
-        if (check_first_last_character('{', '}', option_trimmed_before_after))
+        char *option_without_comment = remove_all_after_character(line, '#');
+        option_without_comment = trim_before_after(option_without_comment);
+        if (check_first_last_character('{', '}', option_without_comment))
         {
-            fill_task_with_line_parameter(remove_first_last_character(option_trimmed_before_after), task_to_add);
+            fill_task_with_line_parameter(remove_first_last_character(option_without_comment), task_to_add);
         }
     }
     add_task_to_params(params, task_to_add);
@@ -248,6 +252,7 @@ void fill_task_option(task *ta, FILE *f, char *line, size_t line_len)
     while ((read = getline(&line, &line_len, f)) != -1)
     {
         char *fully_trimmed_parsed_line = special_character_remover(line);
+        fully_trimmed_parsed_line = remove_all_after_character(fully_trimmed_parsed_line, '#');
         if (!strcmp("=", fully_trimmed_parsed_line) || !strcmp("==", fully_trimmed_parsed_line))
         {
             fseek(f, 0 - strlen(line), SEEK_CUR);
@@ -256,10 +261,11 @@ void fill_task_option(task *ta, FILE *f, char *line, size_t line_len)
 
         free(fully_trimmed_parsed_line);
 
-        char *option_trimmed_before_after = trim_before_after(line);
-        if (check_first_last_character('{', '}', option_trimmed_before_after))
+        char *option_without_comment = remove_all_after_character(line, '#');
+        option_without_comment = trim_before_after(option_without_comment);
+        if (check_first_last_character('{', '}', option_without_comment))
         {
-            fill_task_with_line_option(remove_first_last_character(option_trimmed_before_after), ta);
+            fill_task_with_line_option(remove_first_last_character(option_without_comment), ta);
         }
     }
 }
@@ -294,10 +300,11 @@ void add_option_to_task(scutted *scut, task *ta)
         new_options[size + i] = scut->strings[i];
     }
 
-    if(ta->actions_name != NULL){
+    if (ta->actions_name != NULL)
+    {
         free(ta->actions_name);
     }
 
     ta->actions_name = new_options;
-    ta->action_amount+= scut->size;
+    ta->action_amount += scut->size;
 }

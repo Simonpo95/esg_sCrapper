@@ -177,17 +177,15 @@ char *remove_all_after_character(char *string, char delimitor)
     while (*string != '\0' && *string != delimitor)
     {
         cut_index++;
-        printf("%c", *string);
         string++;
     }
 
     if (cut_index > 0)
     {
-        char * cutted_string = malloc(cut_index + 1);
+        char * cutted_string = calloc(cut_index + 1, 1);
         for(int i = 0; i < cut_index; i++){
             cutted_string[i] = string_copy[i];
-        }
-        cutted_string[cut_index] = '\0';        
+        }    
 
         return cutted_string;
     }
