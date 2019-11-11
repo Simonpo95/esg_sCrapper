@@ -1,8 +1,15 @@
 #include "string_helper.h"
 
-int is_it(char *characters, size_t size, char c)
+int is_it(char *characters_list, int list_size, char character_checked)
 {
-    return strnstr(characters, (char[]){c, '\0'}, size) != NULL;
+    for (int i = 0; i < list_size; i++)
+    {
+        if (character_checked == characters_list[i])
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
 char *special_character_remover(char *string)
 {
