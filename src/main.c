@@ -15,5 +15,7 @@ int main(int argc, char **argv)
 
     print_full_params(params);
 
+    printf("%s\n", remove_all_after_character("salut les gens #coucou les quilles", '#'));
+
     return 0;
 }
