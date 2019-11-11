@@ -8,14 +8,18 @@
 #include <stdlib.h>
 #include <math.h>
 
+typedef struct StringCutted scutted;
 typedef struct KeyValue keyvalue;
+typedef struct Action action;
+typedef struct Task task;
+typedef struct Param_container param_container;
+
 
 struct KeyValue{
-    char * property_name;
-    char * property_value;
+    char * name;
+    char * value;
 };
 
-typedef struct Action action;
 struct Action{
     int properties_amount;
     keyvalue ** properties;
@@ -23,7 +27,6 @@ struct Action{
     keyvalue ** options;
 };
 
-typedef struct Task task;
 
 struct Task{
     int keys_amount;
@@ -33,7 +36,6 @@ struct Task{
     char ** actions_name;
 };
 
-typedef struct Param_container param_container;
 
 struct Param_container {
     int action_amount;
@@ -42,13 +44,14 @@ struct Param_container {
     task ** tasks;
 };
 
+#include "params_helper.h"
+#include "string_helper.h"
 #include "curler.h"
 #include "generic_parser.h"
 #include "generic_string_parser.h"
 #include "generic_file_parser.h"
 #include "struct_tag.h"
 #include "task_parser.h"
-#include "string_helper.h"
 #include "error_file.h"
 
 

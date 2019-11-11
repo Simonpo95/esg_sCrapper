@@ -3,9 +3,8 @@
 
 #include "supervisor.h"
 
-typedef struct String_cutted scutted;
 
-struct String_cutted{
+struct StringCutted{
     int size;
     char ** strings;
 };
