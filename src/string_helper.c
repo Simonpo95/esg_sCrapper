@@ -127,7 +127,14 @@ int is_not_cutter(char *string, char *cutter)
 
 void add_to_scutted(char *string, scutted *scut)
 {
-    scut->strings = realloc(scut->strings, scut->size + 1);
+    if (scut->strings == NULL)
+    {
+        scut->strings = malloc(sizeof(char *) * scut->size);
+    } else
+    {
+        scut->strings = realloc(scut->strings, (scut->size + 1) * sizeof(char *));
+    }
+
     scut->strings[scut->size++] = trim_before_after(string);
 }
 
