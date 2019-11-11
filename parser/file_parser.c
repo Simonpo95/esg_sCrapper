@@ -58,21 +58,21 @@ StrTab* write_till_end(IntTab* intTab, Tag* tabTag, char* file_name)
     char ** str_tab = malloc(sizeof(char*) * 100);
     for(int o = 0; o > 100; o++)
     {
-        str_tab[o] = malloc(sizeof(char*) * 100);
+        str_tab[o] = calloc(1000, 1);
     }
     StrTab* strTab = create_StrTab(str_tab);
 
-    char* tag_content = malloc(sizeof(char*) * 1000);
     char letter;
     int counter;
-    int counter2 = 0;
 
     for(int i = 0; i < intTab->size; i++)
     {
+        char* tag_content = malloc(sizeof(char*) * 1000);
         fseek(f, intTab->content_tab[i] - 1, SEEK_SET);
         letter = fgetc(f);
         for(int j = 0; j < 1; j++)
         {
+            int counter2 = 0;
 //            printf("%d --- %d --- %s\n", i,j,tabTag[j].end);
             while (strTab->content_tab[i] != tag_content)
             {
@@ -91,12 +91,6 @@ StrTab* write_till_end(IntTab* intTab, Tag* tabTag, char* file_name)
                     counter++;
                     letter = fgetc(f);
                 }
-//                if(strTab->content_tab[i] == tag_content)
-//                {
-//                    printf("hello\n");
-//                    printf(" ~~ ~~tab content = %s\n", strTab->content_tab[i]);
-//                    break;
-//                }
                 tag_content[counter2] = letter;
                 counter2++;
                 letter = fgetc(f);
