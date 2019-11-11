@@ -22,3 +22,7 @@ while(*string != '>'){
     a. Nombre de bons illimité
     b. Nombre de bons limité
     c. Contrôle du type de retour de la requête - Selon le type, mettre la bonne extension au fichier
+
+
+
+#AU TRIM DES FICHIER, PENSER AVANT TOUTE MANIPULATION A RETIRER ENTIEREMENT LES COMMENTAIRES (string précédé de #) pour un traitement facile des commentaires

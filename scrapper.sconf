@@ -1,13 +1,27 @@
 =
-{name -> bonjour}
-{url -> https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c}
+{Mon petit garcon -> Mon super site  }
+{url -> https://stackoverflow.com/questions/1636333/download-file-using-libcurl-in-c-c} #C'est vraiment de la merde !
 +
-{depth -> 15}
-{type -> jpg}
+{depth -> 15} 
+{type -> jpg}   
 
 =
 {name -> chat}
-{url -> https://libcurl.com}
+{url -> https://libcurl.com}   
 +
 {depth -> 20}
-{type -> text/html}
+{type -> text/html  }
+
+==
+{name -> bonjour  }  
+{second -> 33}
+{minute -> 12}
++
+{bonjour, chat} 
+
+==
+{task -> taskboy}
+{hour -> 12} 
++
+{noaction}
+
