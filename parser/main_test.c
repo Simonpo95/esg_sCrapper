@@ -50,7 +50,7 @@ int main(int argc, char ** argv){
 //
     StrTab* d = write_till_end(pr, tabTag,"file_content.txt");
 //    printf("\n\n\n\n");
-//    printStrTab(*d);
+    printStrTab(*d);
 
 
 //    int y = 0;
