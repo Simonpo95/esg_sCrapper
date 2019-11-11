@@ -69,9 +69,8 @@ StrTab* write_till_end(IntTab* intTab, Tag* tabTag, char* file_name)
 
     for(int i = 0; i < intTab->size; i++)
     {
-        fseek(f, intTab->content_tab[i] - 1, SEEK_SET);
+        fseek(f, intTab->content_tab[i] - 1, SEEK_END);
         letter = fgetc(f);
-
         for(int j = 0; j < 1; j++)
         {
 //            printf("%d --- %d --- %s\n", i,j,tabTag[j].end);
