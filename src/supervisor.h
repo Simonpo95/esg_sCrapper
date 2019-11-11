@@ -29,9 +29,8 @@ struct Action{
 
 
 struct Task{
-    int keys_amount;
-    char ** keys;
-    char ** values;
+    int properties_amount;
+    keyvalue ** properties;
     int action_amount;
     char ** actions_name;
 };
