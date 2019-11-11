@@ -1,22 +1,5 @@
-#include <stdio.h>
-#include <string.h>
-#include <curl/curl.h>
-#include <stdlib.h>
-#include <math.h>
-
-struct Tag
-{
-    char *start;
-    char *end;
-};
-
-typedef struct Tag Tag;
-
+#include "struct_Tag.h"
 //separation
-
-Tag *create_Tag(char *, char *);
-void printTag(Tag);
-void printTabTag(Tag *);
 
 //separation
 
