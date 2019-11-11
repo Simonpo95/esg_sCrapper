@@ -72,7 +72,6 @@ void add_action_to_params(param_container *params, action *act)
 
 void add_task_to_params(param_container *params, task *ta)
 {
-    print_task(ta);
     int size = params->task_amount;
     task **new_task_list = malloc(sizeof(task *) * (size + 1));
     for (int i = 0; i < size; i++)

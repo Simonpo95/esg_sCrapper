@@ -60,7 +60,7 @@ StrTab* write_till_end(IntTab* intTab, Tag* tabTag, char* file_name)
     {
         str_tab[o] = calloc(1000, 1);
     }
-    StrTab* strTab = create_StrTab(str_tab);
+    StrTab* strTab = create_StrTab(str_tab, 1000);
 
     char letter;
     int counter;
