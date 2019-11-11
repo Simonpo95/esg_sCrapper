@@ -60,11 +60,10 @@ StrTab *write_till_end(IntTab *intTab, Tag *tabTag, char *file_name)
 
     for (int i = 0; i < intTab->size; i++)
     {
-        char *tag_content = calloc(1000, 1);
-
-        fseek(f, intTab->content_tab[i] - 1, SEEK_CUR);
+        char * tag_content = calloc(1000, 1);
+        fseek(f, intTab->content_tab[i] - 1, SEEK_SET);
         letter = fgetc(f);
-        for (int j = 0; j < 1; j++)
+        for(int j = 0; j < 1; j++)
         {
             printf("\n");
             int counter2 = 0;
