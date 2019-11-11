@@ -99,6 +99,12 @@ void fill_action_with_line_parameter(char * line, action * action){
         easy_error_with_message(WRONG_PARAMETER_ERROR_MESSAGE);
         return;
     }
+
+
     
     return;
+}
+
+void add_parameter_to_action(action * action, scutted * scut, int isPoperty){
+    // if()
 }

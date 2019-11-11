@@ -8,15 +8,19 @@
 #include <stdlib.h>
 #include <math.h>
 
+typedef struct KeyValue keyvalue;
+
+struct KeyValue{
+    char * property_name;
+    char * property_value;
+};
 
 typedef struct Action action;
 struct Action{
-    int keys_amount;
-    char ** keys;
-    char ** values;
     int properties_amount;
-    char ** properties_name;
-    char ** properties_value;
+    keyvalue ** properties;
+    int option_amount;
+    keyvalue ** options;
 };
 
 typedef struct Task task;

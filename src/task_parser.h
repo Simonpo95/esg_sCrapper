@@ -11,5 +11,6 @@ char * parsed_line(char * line);
 void fetch_task();
 void fill_action_option();
 void fill_action_with_line_parameter(char * line, action * action);
+void add_parameter_to_action(action * action, scutted * scut, int isPoperty);
 
 #endif

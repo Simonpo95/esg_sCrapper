@@ -31,19 +31,16 @@ char *special_character_remover(char *string)
 
 char *trim_before_after(char *string)
 {
-    fprintf(stderr, "salut%ssalut\n", string);
     return trim_after(trim_before(string));
 }
 
 char *trim_before(char *string)
 {
-    fprintf(stderr, "salut%ssalut\n", string);
 
     while (*string == ' ')
     {
         string++;
     }
-    fprintf(stderr, "salut%ssalut\n", string);
     return string;
 }
 
@@ -106,7 +103,6 @@ scutted *string_cutter(int *error, char *string, char *cutter)
         *new_word = '\0';
         new_word -= word_size;
 
-        fprintf(stderr, "%s\n", new_word);
         if (strcmp(new_word, ""))
         {
             add_to_scutted(new_word, string_cutted);
