@@ -1,23 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#include <curl/curl.h>
-#include <stdlib.h>
-#include <math.h>
+#include "struct_IntTab.h"
 
-struct IntTab{
-    int* content_tab;
-    int size;
-};
 
-typedef struct IntTab IntTab;
-
-//separation
-
-IntTab* create_IntTab(int*);
-//void printIntTab(IntTab);
-void prIntTabIntTab(IntTab*);
-
-//separation
 
 IntTab* create_IntTab(int* content_tab)
 {

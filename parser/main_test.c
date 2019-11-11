@@ -1,35 +1,27 @@
-#include <stdio.h>
-#include <string.h>
-#include <curl/curl.h>
-#include <stdlib.h>
-#include <math.h>
+#include "supervisor.h"
 
-#include "struct_Tag.c"
-#include "struct_IntTab.c"
-#include "struct_StrTab.c"
-#include "file_parser.c"
+int main(int argc, char **argv)
+{
 
-int main(int argc, char ** argv){
+    //    char **str_tab = malloc(sizeof(char *) * 100);
+    //
+    //    for (int o = 0; o > 100; o++) {
+    //        str_tab[o] = malloc(sizeof(char *) * 100);
+    //    }
+    //
+    //    StrTab* strTab = create_StrTab(str_tab);
+    //    for(int i = 0; i < 42; i++)
+    //    {
+    //        addToStrTab(strTab, "test");
+    //    }
 
-//    char **str_tab = malloc(sizeof(char *) * 100);
-//
-//    for (int o = 0; o > 100; o++) {
-//        str_tab[o] = malloc(sizeof(char *) * 100);
-//    }
-//
-//    StrTab* strTab = create_StrTab(str_tab);
-//    for(int i = 0; i < 42; i++)
-//    {
-//        addToStrTab(strTab, "test");
-//    }
-
-//    printStrTab(*strTab);
+    //    printStrTab(*strTab);
 
     Tag tabTag[2];
-//    IntTab tabIntTab[2];
+    //    IntTab tabIntTab[2];
 
-    Tag* link = create_Tag("<a", "</a>");
-    Tag* pict = create_Tag("<img", ">");
+    Tag *link = create_Tag("<a", "</a>");
+    Tag *pict = create_Tag("<img", ">");
 
     tabTag[0] = *link;
     tabTag[1] = *pict;

@@ -1,51 +1,35 @@
-#include <stdio.h>
-#include <string.h>
-#include <curl/curl.h>
-#include <stdlib.h>
-#include <math.h>
-
-struct StrTab{
-    char** content_tab;
-    int size;
-    int capacity;
-};
-
-typedef struct StrTab StrTab;
+#include "struct_StrTab.h"
 
 //separation
 
-StrTab* create_StrTab(char**);
-void printStrTab(StrTab);
-void addToStrTab(StrTab*, char*);
-
-//separation
-
-StrTab* create_StrTab(char** content_tab)
+StrTab *create_StrTab(char **content_tab, int capacity)
 {
-    struct StrTab* strTab = (struct StrTab*)malloc(sizeof(struct StrTab));
+    struct StrTab *strTab = (struct StrTab *)malloc(sizeof(struct StrTab));
     strTab->content_tab = content_tab;
     strTab->size = 0;
-    strTab->capacity = 4;
+    strTab->capacity = capacity;
+    printf("on est passé");
     return strTab;
 }
 
-void printStrTab(StrTab strTab){
+void printStrTab(StrTab strTab)
+{
     printf("\n");
-    for(int i = 0; i < strTab.size; i++)
+    for (int i = 0; i < strTab.size; i++)
     {
-        printf("print of content_tab = %d \n content = %s\n",i, strTab.content_tab[i]);
+        printf("print of content_tab = %d \n content = %s\n", i, strTab.content_tab[i]);
         printf("\n");
     }
-    printf("fin printf\n");
+    printf("fin printf strTab\n");
     printf("\n");
 }
 
-void addToStrTab(StrTab* strTab, char* string)
+void addToStrTab(StrTab *strTab, char *string)
 {
     strTab->content_tab[strTab->size] = string;
-//    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
-    strTab->size ++;
-    if(strTab->size >= strTab->capacity)
+    //    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
+    strTab->size++;
+    if (strTab->size >= strTab->capacity)
     {
         strTab->capacity *= 1.5;
     }
