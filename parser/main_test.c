@@ -21,11 +21,11 @@ int main(int argc, char **argv) {
 
 //    prIntTagTab(*tagTab);
 
-    IntTab *pr = seek_start_Tag(tagTab, "file_content.txt");
+//    IntTab *pr = seek_start_Tag(tagTab, "file_content.txt");
 
 //    printIntTab(*pr);
 
-    StrTab *d = write_till_end(pr, tagTab, "file_content.txt");
-    printStrTab(*d);
+//    StrTab *d = write_till_end(pr, tagTab, "file_content.txt");
+//    printStrTab(*d);
 
 }

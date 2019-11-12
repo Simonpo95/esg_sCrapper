@@ -9,7 +9,7 @@ IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
     int counter;
     int counter2 = 0;
     char letter;
-    int *tabCursor;
+    IntWTagType *tabCursor;
 
     IntTab *tab1 = create_IntTab(tabCursor);
 
@@ -22,8 +22,9 @@ IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
             while (letter == tabTag->content_tab[j].start[counter]) {
                 if (counter == strlen(tabTag->content_tab[j].start) - 1) {
                     cursor = ftell(f) + 1;
-                    printf("cursor === %d\n", cursor);
-                    addToIntTab(tab1, cursor);
+                    IntWTagType *tagType = create_IntWTagType(cursor, tabTag->content_tab[j]);
+//                    printf("cursor === %d\n", cursor);
+                    addToIntTab(tab1, tagType);
                     counter2++;
                 }
                 counter++;
@@ -52,7 +53,7 @@ StrTab *write_till_end(IntTab *intTab, TagTab *tagTab, char *file_name) {
 
     for (int i = 0; i < intTab->size; i++) {
         char *tag_content = malloc(sizeof(char *) * 1000);
-        fseek(f, intTab->content_tab[i] - 1, SEEK_SET);
+        fseek(f, intTab->content_tab[i].cursor - 1, SEEK_SET);
         letter = fgetc(f);
         for (int j = 0; j < 1; j++) {
 //            printf("j = %d\n", tagTab->size);

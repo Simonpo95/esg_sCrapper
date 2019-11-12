@@ -4,15 +4,15 @@
 #include "supervisor.h"
 
 struct IntTab {
-    int *content_tab;
+    IntWTagType *content_tab;
     int size;
     int capacity;
 };
 
-IntTab *create_IntTab(int *);
+IntTab *create_IntTab(IntWTagType *);
 
 void prIntTabIntTab(IntTab *);
 
-void addToIntTab(IntTab *, int );
+void addToIntTab(IntTab *, IntWTagType *);
 
 #endif
