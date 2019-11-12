@@ -24,7 +24,8 @@ void addToTagTab(TagTab *tagTab, Tag *tag) {
     //    printf("ité = %d - content = %d | act size = %d | capa = %d\n",tagTab->size, intTab->content_tab[intTab->size], intTab->size, intTab->capacity);
     tagTab->size++;
     if (tagTab->size >= tagTab->capacity) {
-        tagTab->capacity *= 1.5;
+        tagTab->capacity *= 2;
+        tagTab->content_tab = realloc(tagTab->content_tab, sizeof(TagTab) * tagTab->capacity);
     }
     printf("\n-- fin add in TagTab\n");
 }

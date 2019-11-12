@@ -2,30 +2,37 @@
 
 int main(int argc, char **argv) {
 
+    Tag *link = create_Tag("<a", "</a>");
+    Tag *pict = create_Tag("<img", ">");
+    Tag *href = create_Tag("href=\"", "\"");
+
     Tag* tab_of_tag;
     TagTab *tagTab = create_TagTab(tab_of_tag);
 
-//    Tag *link = create_Tag("<a", "</a>");
-//    Tag *pict = create_Tag("<img", ">");
-    Tag *test = create_Tag("href=\"", "\"");
+    addToTagTab(tagTab, link);
+    addToTagTab(tagTab, pict);
+    addToTagTab(tagTab, href);
 
+//    for(int i = 0; i < 2002; i++)
+//    {
+//        addToTagTab(tagTab, href);
+//        printf("size = %d\ncapacity = %d\n", tagTab->size, tagTab->capacity);
+//    }
 
+    IntTab *pr = seek_start_Tag(tagTab, "file_content.txt");
 
-    IntWTagType* allo = create_IntWTagType(12211, *test);
-    printIntWTagType(*allo);
-
+//    IntWTagType* allo = create_IntWTagType(12211, *test);
+//    printIntWTagType(*allo);
 
 //    addToTagTab(tagTab, link);
 //    addToTagTab(tagTab, pict);
-    addToTagTab(tagTab, test);
 
 //    prIntTagTab(*tagTab);
 
-//    IntTab *pr = seek_start_Tag(tagTab, "file_content.txt");
 
 //    printIntTab(*pr);
 
-//    StrTab *d = write_till_end(pr, tagTab, "file_content.txt");
-//    printStrTab(*d);
+    StrTab *d = write_till_end(pr, tagTab, "file_content.txt");
+    printStrTab(*d);
 
 }

@@ -22,8 +22,9 @@ IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
             while (letter == tabTag->content_tab[j].start[counter]) {
                 if (counter == strlen(tabTag->content_tab[j].start) - 1) {
                     cursor = ftell(f) + 1;
-                    IntWTagType *tagType = create_IntWTagType(cursor, tabTag->content_tab[j]);
 //                    printf("cursor === %d\n", cursor);
+                    IntWTagType *tagType = create_IntWTagType(cursor, tabTag->content_tab[j]);
+//                    printIntWTagType(*tagType);
                     addToIntTab(tab1, tagType);
                     counter2++;
                 }
@@ -55,26 +56,25 @@ StrTab *write_till_end(IntTab *intTab, TagTab *tagTab, char *file_name) {
         char *tag_content = malloc(sizeof(char *) * 1000);
         fseek(f, intTab->content_tab[i].cursor - 1, SEEK_SET);
         letter = fgetc(f);
-        for (int j = 0; j < 1; j++) {
 //            printf("j = %d\n", tagTab->size);
-            int counter2 = 0;
-            while (strTab->content_tab[i] != tag_content) {
-                counter = 0;
-                while (letter == tagTab->content_tab[j].end[counter]) {
-                    if (counter == strlen(tagTab->content_tab[j].end) - 1) {
-                        addToStrTab(strTab, tag_content);
+        int counter2 = 0;
+        while (strTab->content_tab[i] != tag_content) {
+            counter = 0;
+//            while (letter == tagTab->content_tab[j].end[counter]) {
+            while (letter == intTab->content_tab->tag.end[counter]) {
+                if (counter == strlen(intTab->content_tab[i].tag.end) - 1) {
+                    addToStrTab(strTab, tag_content);
 //                        printf("%d content tab -- %s\n\n", i, strTab->content_tab[i]);
-                        break;
-                    }
-                    tag_content[counter2] = letter;
-                    counter2++;
-                    counter++;
-                    letter = fgetc(f);
+                    break;
                 }
                 tag_content[counter2] = letter;
                 counter2++;
+                counter++;
                 letter = fgetc(f);
             }
+            tag_content[counter2] = letter;
+            counter2++;
+            letter = fgetc(f);
         }
     }
     fclose(f);
