@@ -3,14 +3,13 @@
 
 #include "supervisor.h"
 
-
 struct StringCutted{
     int size;
     char ** strings;
 };
 
 char * special_character_remover(char * string);
-int is_it(char * characters_list, int list_size, char character_checked);
+int is_it(char *characters_list, int list_size, char character_checked);
 int check_first_last_character(char first, char last, char * string);
 char * trim_before_after(char * string);
 char * trim_before(char * string);

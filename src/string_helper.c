@@ -134,18 +134,8 @@ int is_not_cutter(char *string, char *cutter)
 
 void add_to_scutted(char *string, scutted *scut)
 {
-    char **strings = malloc(sizeof(char *) * (scut->size + 1));
-    for (int i = 0; i < scut->size; i++)
-    {
-        strings[i] = scut->strings[i];
-    }
-    strings[scut->size] = trim_before_after(string);
-    scut->size++;
-    if (scut->strings != NULL)
-    {
-        free(scut->strings);
-    }
-    scut->strings = strings;
+    scut->strings = realloc(scut->strings, (scut->size + 1) * sizeof(char *));
+    scut->strings[scut->size++] = trim_before_after(string);
 }
 
 void read_scutted(scutted *scut)
@@ -182,10 +172,11 @@ char *remove_all_after_character(char *string, char delimitor)
 
     if (cut_index > 0)
     {
-        char * cutted_string = calloc(cut_index + 1, 1);
-        for(int i = 0; i < cut_index; i++){
+        char *cutted_string = calloc(cut_index + 1, 1);
+        for (int i = 0; i < cut_index; i++)
+        {
             cutted_string[i] = string_copy[i];
-        }    
+        }
 
         return cutted_string;
     }
