@@ -8,8 +8,6 @@ struct Tag {
     char *end;
 };
 
-typedef struct Tag Tag;
-
 Tag *create_Tag(char *, char *);
 
 void printTag(Tag);
