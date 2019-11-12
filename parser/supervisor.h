@@ -8,10 +8,16 @@
 #include <math.h>
 
 typedef struct Tag Tag;
+
+typedef struct TagTab TagTab;
+
 typedef struct IntTab IntTab;
 
-#include "struct_IntTab.c"
+typedef struct StrTab StrTab;
+
 #include "struct_Tag.c"
+#include "struct_TagTab.c"
+#include "struct_IntTab.c"
 #include "struct_StrTab.c"
 #include "file_parser.c"
 

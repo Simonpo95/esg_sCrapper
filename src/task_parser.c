@@ -6,7 +6,7 @@ int fill_actions(param_container *params)
     size_t line_len = 0;
     ssize_t read;
     char *line = NULL;
-    FILE *f = fopen("../scrapper.sconf", "r");
+    FILE *f = fopen("../a.sconf", "r");
 
     if (f == NULL)
     {
@@ -114,6 +114,7 @@ void fill_action_with_line_parameter(char *line, action *action, int isPropertie
         return;
     }
 
+    read_scutted(cutted_line);
     add_parameter_to_action(action, cutted_line, isProperties);
 
     return;

@@ -10,7 +10,6 @@ int main(int argc, char **argv)
     params->actions = NULL;
     params->task_amount = 0;
     params->tasks = NULL;
-
     int err = fill_actions(params);
 
     if(err == 3){
