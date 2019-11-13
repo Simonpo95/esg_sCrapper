@@ -1,6 +1,7 @@
 #ifndef STRTAB
 #define STRTAB
 
+#include "supervisor.h"
 
 struct StrTab {
     char **content_tab;

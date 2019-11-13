@@ -1,6 +1,8 @@
 #ifndef TAGTAB
 #define TAGTAB
 
+#include "supervisor.h"
+
 struct TagTab {
     Tag *content_tab;
     int size;

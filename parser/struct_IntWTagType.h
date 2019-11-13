@@ -8,7 +8,7 @@ struct IntWTagType {
     Tag tag;
 };
 
-IntWTagType *create_IntWTagType(int, Tag);
+IntWTagType *create_IntWTagType(int,  Tag);
 
 void printIntWTagType(IntWTagType);
 

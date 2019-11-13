@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <curl/curl.h>
-#include <stdlib.h>
-#include <math.h>
+#include "file_parser.h"
 
 IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
     int cursor;

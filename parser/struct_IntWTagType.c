@@ -1,8 +1,8 @@
 #include "struct_IntWTagType.h"
 
 
-IntWTagType *create_IntWTagType(int cursor, Tag tag) {
-    struct IntWTagType *intWTagType = (struct IntWTagType *) malloc(sizeof(struct IntWTagType));
+IntWTagType *create_IntWTagType(int cursor, struct Tag tag) {
+    IntWTagType *intWTagType = (IntWTagType *) malloc(sizeof(IntWTagType));
     intWTagType->cursor = cursor;
     intWTagType->tag = tag;
     return intWTagType;
