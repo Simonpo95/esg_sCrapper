@@ -60,6 +60,8 @@ typedef struct StrTab StrTab;
 #include "file_parser.h"
 #include "struct_IntWTagType.h"
 
+#include "curlStrTab.h"
+
 #include "params_helper.h"
 #include "string_helper.h"
 #include "curler.h"

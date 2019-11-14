@@ -5,6 +5,6 @@
 
 IntTab *seek_start_Tag(TagTab *, char *);
 
-StrTab *write_till_end(IntTab *, TagTab *, char *);
+StrTab *write_till_end(IntTab *, char *);
 
 #endif

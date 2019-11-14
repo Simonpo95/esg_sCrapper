@@ -9,7 +9,7 @@ struct StrTab {
     int capacity;
 };
 
-void prIntTabStrTab(StrTab *);
+void printTabStrTab(StrTab *);
 
 StrTab *create_StrTab(char **);
 
