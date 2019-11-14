@@ -166,11 +166,7 @@ void add_parameter_to_action(action *act, scutted *scut, int isProperty)
 
 void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
 {
-    task *task_to_add = malloc(sizeof(task));
-    task_to_add->action_amount = 0;
-    task_to_add->actions_name = NULL;
-    task_to_add->properties = NULL;
-    task_to_add->properties_amount = 0;
+    task *task_to_add = create_empty_task();
 
     ssize_t read;
     while ((read = getline(&line, &line_len, f)) != -1)

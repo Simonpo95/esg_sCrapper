@@ -131,3 +131,12 @@ action *create_empty_action()
     action_to_create->properties = NULL;
     action_to_create->options = NULL;
 }
+
+task *create_empty_task()
+{
+    task * task_to_create = malloc(sizeof(task));
+    task_to_create->properties_amount= 0;
+    task_to_create->action_amount = 0;
+    task_to_create->actions_name = NULL;
+    task_to_create->properties = NULL;
+}
