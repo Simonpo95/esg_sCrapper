@@ -100,7 +100,25 @@ void ask_user_if_needed_details(param_container *params)
     print_full_params(params);
 }
 
-void ask_launch_tasks(param_container *params)
+void ask_user_if_needed_bug_reported(param_container *params)
 {
-    
+    int yesno = get_user_proper_answer("Souhaitez-vous un retour sur les éventuels erreurs présentent dans la configuration?");
+
+    if (!yesno)
+    {
+        return;
+    }
+
+    print_errors(params);
+}
+
+int ask_launch_tasks(param_container * params)
+{
+    int yesno = get_user_proper_answer("Souhaitez-vous lancer les taches en attente ?");
+    if(!yesno){
+        return yesno;
+    }
+
+    launch_tasker(params);
+
 }

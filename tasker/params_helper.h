@@ -11,4 +11,5 @@ void add_task_to_params(param_container *params, task *ta);
 param_container *create_empty_params();
 task * create_empty_task();
 action * create_empty_action();
+void print_errors(param_container *params);
 #endif

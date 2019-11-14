@@ -113,6 +113,11 @@ void print_task(task *ta)
     }
 }
 
+void print_errors(param_container *params)
+{
+    
+}
+
 param_container *create_empty_params()
 {
     param_container *params = malloc(sizeof(param_container));
@@ -125,7 +130,7 @@ param_container *create_empty_params()
 
 action *create_empty_action()
 {
-    action * action_to_create = malloc(sizeof(action));
+    action *action_to_create = malloc(sizeof(action));
     action_to_create->option_amount = 0;
     action_to_create->properties_amount = 0;
     action_to_create->properties = NULL;
@@ -134,8 +139,8 @@ action *create_empty_action()
 
 task *create_empty_task()
 {
-    task * task_to_create = malloc(sizeof(task));
-    task_to_create->properties_amount= 0;
+    task *task_to_create = malloc(sizeof(task));
+    task_to_create->properties_amount = 0;
     task_to_create->action_amount = 0;
     task_to_create->actions_name = NULL;
     task_to_create->properties = NULL;
