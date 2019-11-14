@@ -11,6 +11,7 @@ int main()
     {
         inform_user_about_loaded_params(params);
         ask_user_if_needed_details(params);
+        ask_launch_tasks(params);
     }
     return 0;
 }

@@ -32,7 +32,7 @@ void print_full_params(param_container *params)
 
     for (int i = 0; i < params->action_amount; i++)
     {
-        printf("\n\nAction %d", i);
+        printf("\n\nAction %d", i + 1);
         print_action(params->actions[i]);
     }
 
@@ -45,7 +45,7 @@ void print_full_params(param_container *params)
 
     for (int i = 0; i < params->task_amount; i++)
     {
-        printf("\nTask %d :\n", i);
+        printf("\nTask %d :\n", i + 1);
         print_task(params->tasks[i]);
     }
 }
