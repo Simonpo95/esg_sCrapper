@@ -114,7 +114,6 @@ void fill_action_with_line_parameter(char *line, action *action, int isPropertie
         return;
     }
 
-    read_scutted(cutted_line);
     add_parameter_to_action(action, cutted_line, isProperties);
 
     return;
