@@ -19,7 +19,8 @@ int curlit(char * filepath, char * url){
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
         res = curl_easy_perform(curl);
         fclose(f);
-    }
+    } else
+        return 1;
     curl_easy_cleanup(curl);
 }
 

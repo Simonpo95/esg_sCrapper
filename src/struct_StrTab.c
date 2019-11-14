@@ -21,12 +21,10 @@ void printStrTab(StrTab strTab) {
     printf("\n");
 }
 
-void prIntTabStrTab(StrTab *tabstrTab) {
+void printTabStrTab(StrTab *tabstrTab) {
     int i = 0;
-    for (i; i < 2; i++) {
-//        printStrTab(tabstrTab[i]);
-        printf("%d\n", tabstrTab->size);
-    }
+    printStrTab(tabstrTab[i]);
+    printf("fin printf TabstrTab\n");
 }
 
 void addToStrTab(StrTab *strTab, char *string) {
