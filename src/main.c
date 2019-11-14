@@ -13,12 +13,10 @@ int main(int argc, char **argv)
     int err = fill_actions(params);
 
     if(err == 3){
-        
+        easy_error_with_message("Le fichier que vous tentez de parser n'existe pas.");
     }
 
     print_full_params(params);
-
-    printf("%s\n", remove_all_after_character("salut les gens #coucou les quilles", '#'));
 
     return 0;
 }

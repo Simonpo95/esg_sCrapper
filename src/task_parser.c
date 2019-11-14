@@ -6,7 +6,7 @@ int fill_actions(param_container *params)
     size_t line_len = 0;
     ssize_t read;
     char *line = NULL;
-    FILE *f = fopen("../a.sconf", "r");
+    FILE *f = fopen("../b.sconf", "r");
 
     if (f == NULL)
     {
