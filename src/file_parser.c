@@ -14,7 +14,6 @@ int is_inside(char* content_tag, StrTab* strTab){
     return 0;
 }
 
-
 IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
     int cursor;
     int counter; // this counter will help us to track the start string

@@ -5,8 +5,10 @@
 StrTab *create_StrTab(char **content_tab) {
     struct StrTab *strTab = (struct StrTab *) malloc(sizeof(struct StrTab));
     int capacity = 1;
+    int last_curl = 0;
     strTab->size = 0;
     strTab->capacity = capacity;
+    strTab->last_curl = last_curl;
     strTab->content_tab = content_tab;
     return strTab;
 }
@@ -43,15 +45,4 @@ int addToStrTab(StrTab *strTab, char *string) {
         printf("-- fin add in StrTab\n\n");
         return 0;
     }
-
-//    is_inside(string, strTab);
-//
-//    strTab->content_tab[strTab->size] = string;
-//    //    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
-//    strTab->size++;
-//    if (strTab->size >= strTab->capacity) {
-//        strTab->capacity *= 2;
-//    }
-//    printf("-- fin add in StrTab\n\n");
-
 }

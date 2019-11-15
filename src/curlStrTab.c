@@ -2,10 +2,176 @@
 
 void curlStrTab(struct StrTab * strTab)
 {
-    for(int i = 0; i < strTab->size; i++)
+    char* possible_content_type[] = {
+            "audio/aac",
+            "application/x-abiword",
+            "application/octet-stream",
+            "video/x-msvideo",
+            "application/vnd.amazon.ebook",
+            "application/octet-stream",
+            "application/x-bzip",
+            "application/x-bzip2",
+            "application/x-csh",
+            "text/css",
+            "text/csv",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.ms-fontobject",
+            "application/epub+zip",
+            "image/gif",
+            "text/html",
+            "image/x-icon",
+            "text/calendar",
+            "application/java-archive",
+            "image/jpeg",
+            "application/javascript",
+            "application/json",
+            "audio/midi",
+            "video/mpeg",
+            "application/vnd.apple.installer+xml",
+            "application/vnd.oasis.opendocument.presentation",
+            "application/vnd.oasis.opendocument.spreadsheet",
+            "application/vnd.oasis.opendocument.text",
+            "audio/ogg",
+            "video/ogg",
+            "application/ogg",
+            "font/otf",
+            "image/png",
+            "application/pdf",
+            "application/vnd.ms-powerpoint",
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            "application/x-rar-compressed",
+            "application/rtf",
+            "application/x-sh",
+            "image/svg+xml",
+            "application/x-shockwave-flash",
+            "application/x-tar",
+            "image/tiff",
+            "application/typescript",
+            "font/ttf",
+            "application/vnd.visio",
+            "audio/x-wav",
+            "audio/webm",
+            "video/webm",
+            "image/webp",
+            "font/woff",
+            "font/woff2",
+            "application/xhtml+xml",
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/xml",
+            "application/vnd.mozilla.xul+xml",
+            "application/zip",
+            "video/3gpp",
+            "audio/3gpp",
+            "video/3gpp2",
+            "audio/3gpp2",
+            "application/x-7z-compressed"};
+
+    char* possible_extension[] = {
+            ".aac",
+            ".abw",
+            ".arc",
+            ".avi",
+            ".azw",
+            ".bin",
+            ".bz",
+            ".bz2",
+            ".csh",
+            ".css",
+            ".csv",
+            ".doc",
+            ".docx",
+            ".eot",
+            ".epub",
+            ".gif",
+            ".html",
+            ".ico",
+            ".ics",
+            ".jar",
+            ".jpeg",
+            ".js",
+            ".json",
+            ".midi",
+            ".mpeg",
+            ".mpkg",
+            ".odp",
+            ".ods",
+            ".odt",
+            ".oga",
+            ".ogv",
+            ".ogx",
+            ".otf",
+            ".png",
+            ".pdf",
+            ".ppt",
+            ".pptx",
+            ".rar",
+            ".rtf",
+            ".sh",
+            ".svg",
+            ".swf",
+            ".tar",
+            ".tiff",
+            ".ts",
+            ".ttf",
+            ".vsd",
+            ".wav",
+            ".weba",
+            ".webm",
+            ".webp",
+            ".woff",
+            ".woff2",
+            ".xhtml",
+            ".xls",
+            ".xlsx",
+            ".xml",
+            ".xul",
+            ".zip",
+            ".3gp",
+            ".3gp",
+            ".3g2",
+            ".3g2",
+            ".7z"};
+
+    char* dada_str = "dada";
+    char* null_str = "(null)";
+
+    for(int i = strTab->last_curl; i < strTab->size; i++)
     {
         char* final_path = malloc(sizeof(char) * 245); // creation d'un char pour nom fichier ou dossier
         char* cpy_destination = malloc(sizeof(char) * 245); // creation d'un char pour copier d->content_tab[i]
+        char* result = malloc(sizeof(char) * 245); // creation d'un char pour get le type
+        char* extension;
+
+        result = typecheck(strTab->content_tab[i]);
+
+        result = remove_all_after_character(result, 59);
+
+        if(strcmp(dada_str, result) == 0)
+        {
+            extension = ".unknown";
+        }
+        else
+        {
+            for(int i = 0; i < 63; i++)
+            {
+                if(strcmp(possible_content_type[i], result) == 0)
+                {
+                    extension = possible_extension[i];
+                    break;
+                }
+                else
+                {
+                    extension = ".unknown";
+                }
+            }
+        }
+
+//        if(strcmp(null_str, extension) == 0)
+//        {
+//            extension = ".unknown_null";
+//        }
 
         strcpy(cpy_destination, strTab->content_tab[i]);
 
@@ -19,12 +185,13 @@ void curlStrTab(struct StrTab * strTab)
             y++;
         }
 
-        char* extension  = ".txt";
         sprintf(final_path, "file/site_files/%s%s", cpy_destination, extension );
-
         curlit(final_path, strTab->content_tab[i]);
 
-        printf("%d -/- %s\n", i, final_path);
+        printf("%d -/- %s \n", i, strTab->content_tab[i]);
+        printf("\n");
+        printf("%d -/- %s -/- %s\n", i, extension, result);
         printf(" ---\n");
     }
+    strTab->last_curl = strTab->size;
 }

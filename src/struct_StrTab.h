@@ -7,6 +7,7 @@ struct StrTab {
     char **content_tab;
     int size;
     int capacity;
+    int last_curl;
 };
 
 void printTabStrTab(StrTab *);

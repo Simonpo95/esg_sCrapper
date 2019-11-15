@@ -33,5 +33,7 @@ int main(int argc, char **argv)
 
     curlStrTab(url_tab);
 
+    printf("last_curl = %d\n",url_tab->last_curl);
+
     return 0;
 }

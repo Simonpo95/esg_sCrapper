@@ -53,12 +53,15 @@ typedef struct IntTab IntTab;
 
 typedef struct StrTab StrTab;
 
+typedef struct ContentType ContentType;
+
 #include "struct_Tag.h"
 #include "struct_TagTab.h"
 #include "struct_IntTab.h"
 #include "struct_StrTab.h"
 #include "file_parser.h"
 #include "struct_IntWTagType.h"
+#include "struct_ContentType.h"
 
 #include "curlStrTab.h"
 

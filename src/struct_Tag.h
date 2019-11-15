@@ -17,6 +17,6 @@ Tag *create_Tag(char *, char *);
 
 void printTag(Tag);
 
-void printTabTag(Tag *);
+//void printTabTag(Tag *);
 
 #endif
