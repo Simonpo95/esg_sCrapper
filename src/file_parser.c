@@ -1,5 +1,20 @@
 #include "file_parser.h"
 
+int is_inside(char* content_tag, StrTab* strTab){
+
+    for(int i = 0; i < strTab->size; i++)
+    {
+        if(strcmp(content_tag, strTab->content_tab[i]) == 0)
+        {
+            printf("~~ chaine deja présente dans le tableau\n\n");
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+
 IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
     int cursor;
     int counter; // this counter will help us to track the start string
@@ -40,6 +55,7 @@ StrTab *write_till_end(IntTab *intTab, char *file_name) {
     char letter;
     int counter;
     for (int i = 0; i < intTab->size; i++) { // processing for all IntWTagType in the intTab given by the first parameter
+        int should_break = 0;
         char *tag_content = malloc(sizeof(char *) * 3000); // creation and memory allocation of string
         char *tag_content_without_end_tag = malloc(sizeof(char *) * 3000); // creation and memory allocation of string
         fseek(f, intTab->content_tab[i].cursor - 1, SEEK_SET); // placing the cursor at the the i'th int of the intTab (the beginning of the tag content)
@@ -50,12 +66,16 @@ StrTab *write_till_end(IntTab *intTab, char *file_name) {
             while (letter == intTab->content_tab->tag.end[counter]) { // search for the end of the j'th tag contained in the intTab thanks to the IntTagType
                 if (counter == strlen(intTab->content_tab[i].tag.end) - 1) { // if the end is found (-1 because counter start at 0)
                     tag_content_without_end_tag = remove_all_after_character(tag_content, intTab->content_tab[i].tag.end[0]); // remove the end tag from the tag content string
-                    addToStrTab(strTab, tag_content_without_end_tag); // insertion of the tag content string in the strTab
+                    should_break = addToStrTab(strTab, tag_content_without_end_tag); // insertion of the tag content string in the strTab
                 }
                 tag_content[counter2] = letter;
                 counter2++;
                 counter++;
                 letter = fgetc(f);
+            }
+            if(should_break == 1)
+            {
+                break;
             }
             tag_content[counter2] = letter;
             counter2++;

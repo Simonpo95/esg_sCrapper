@@ -15,6 +15,6 @@ StrTab *create_StrTab(char **);
 
 void printStrTab(StrTab);
 
-void addToStrTab(StrTab *, char *);
+int addToStrTab(StrTab *, char *);
 
 #endif

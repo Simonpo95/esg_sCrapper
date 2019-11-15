@@ -27,12 +27,31 @@ void printTabStrTab(StrTab *tabstrTab) {
     printf("fin printf TabstrTab\n");
 }
 
-void addToStrTab(StrTab *strTab, char *string) {
-    strTab->content_tab[strTab->size] = string;
-    //    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
-    strTab->size++;
-    if (strTab->size >= strTab->capacity) {
-        strTab->capacity *= 2;
+int addToStrTab(StrTab *strTab, char *string) {
+    if(is_inside(string, strTab))
+    {
+        return 1;
     }
-    printf("-- fin add in StrTab\n\n");
+    else
+    {
+        strTab->content_tab[strTab->size] = string;
+        //    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
+        strTab->size++;
+        if (strTab->size >= strTab->capacity) {
+            strTab->capacity *= 2;
+        }
+        printf("-- fin add in StrTab\n\n");
+        return 0;
+    }
+
+//    is_inside(string, strTab);
+//
+//    strTab->content_tab[strTab->size] = string;
+//    //    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
+//    strTab->size++;
+//    if (strTab->size >= strTab->capacity) {
+//        strTab->capacity *= 2;
+//    }
+//    printf("-- fin add in StrTab\n\n");
+
 }

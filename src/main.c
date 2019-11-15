@@ -26,12 +26,12 @@ int main(int argc, char **argv)
 //    addToTagTab(tagTab, pict);
 
     IntTab *cursor_tab = seek_start_Tag(tagTab, file_name);
-    prIntTabIntTab(cursor_tab); // result check
+//    prIntTabIntTab(cursor_tab); // result check
     StrTab *url_tab = write_till_end(cursor_tab, file_name);
     printTabStrTab(url_tab); // result check
 //////    needed to work
 
-//    curlStrTab(url_tab);
+    curlStrTab(url_tab);
 
     return 0;
 }
