@@ -44,12 +44,12 @@ struct Param_container {
     task ** tasks;
 };
 
-#include "tasker.h"
 
 #include "params_helper.h"
 #include "string_helper.h"
 #include "task_parser.h"
 #include "error_file.h"
 #include "user_talker.h"
+#include "tasker.h"
 
 #endif
