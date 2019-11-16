@@ -66,7 +66,8 @@ void curlStrTab(struct StrTab * strTab)
             "audio/3gpp",
             "video/3gpp2",
             "audio/3gpp2",
-            "application/x-7z-compressed"};
+            "application/x-7z-compressed",
+            "application/rss+xml"};
 
     char* possible_extension[] = {
             ".aac",
@@ -132,10 +133,16 @@ void curlStrTab(struct StrTab * strTab)
             ".3gp",
             ".3g2",
             ".3g2",
-            ".7z"};
+            ".7z",
+            "xml"};
+
+    if(sizeof(possible_content_type) != sizeof(possible_extension))
+    {
+        printf("size ne sont pas de la même taille");
+    }
 
     char* dada_str = "dada";
-    char* null_str = "(null)";
+//    char* null_str = "(null)";
 
     for(int i = strTab->last_curl; i < strTab->size; i++)
     {
@@ -150,11 +157,11 @@ void curlStrTab(struct StrTab * strTab)
 
         if(strcmp(dada_str, result) == 0)
         {
-            extension = ".unknown";
+            extension = ".txt";
         }
         else
         {
-            for(int i = 0; i < 63; i++)
+            for(int i = 0; i < sizeof(possible_content_type) / 8; i++)
             {
                 if(strcmp(possible_content_type[i], result) == 0)
                 {
@@ -185,10 +192,14 @@ void curlStrTab(struct StrTab * strTab)
             y++;
         }
 
+//        char * path = "make_director";
+        char * path = make_director("hello", "../web_site/");
+
+        sprintf(final_path, "%s/%s%s",path , cpy_destination, extension );
 
 
-        sprintf(final_path, "file/site_files/%s%s", cpy_destination, extension );
         curlit(final_path, strTab->content_tab[i]);
+
 
         printf("%d -/- %s \n", i, strTab->content_tab[i]);
         printf("\n");

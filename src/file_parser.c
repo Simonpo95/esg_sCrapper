@@ -48,7 +48,7 @@ StrTab *write_till_end(IntTab *intTab, char *file_name) {
     FILE *f = fopen(file_name, "r"); // opening of a file using the string given by the third parameter of this function, in read mode
     char **str_tab = malloc(sizeof(char *) * intTab->size); // creation and memory allocation of string type array, it will contain all tag content
     for (int o = 0; o > intTab->size; o++) {
-        str_tab[o] = calloc(3000, 1);
+        str_tab[o] = calloc(3000, sizeof(char));
     }
     StrTab *strTab = create_StrTab(str_tab); // creation of an StrTab type array named strTab that contain str_tab
     char letter;
@@ -65,7 +65,14 @@ StrTab *write_till_end(IntTab *intTab, char *file_name) {
             while (letter == intTab->content_tab->tag.end[counter]) { // search for the end of the j'th tag contained in the intTab thanks to the IntTagType
                 if (counter == strlen(intTab->content_tab[i].tag.end) - 1) { // if the end is found (-1 because counter start at 0)
                     tag_content_without_end_tag = remove_all_after_character(tag_content, intTab->content_tab[i].tag.end[0]); // remove the end tag from the tag content string
-                    should_break = addToStrTab(strTab, tag_content_without_end_tag); // insertion of the tag content string in the strTab
+                    tag_content_without_end_tag = remove_all_after_character(tag_content, '#');
+                    if(tag_content_without_end_tag != "")
+                    {
+                        should_break = addToStrTab(strTab, tag_content_without_end_tag); // insertion of the tag content string in the strTab
+                    }
+                    else {
+                        should_break = 1;
+                    }
                 }
                 tag_content[counter2] = letter;
                 counter2++;
