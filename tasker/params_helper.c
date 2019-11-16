@@ -234,7 +234,7 @@ void check_action_parameter_validity(task *task, int index, action **actions, in
         int is_in_actions_pool = 0;
         for (int j = 0; j < action_amount; j++)
         {
-            char *action_name = get_action_name(actions[j]);
+            char *action_name = get_action_property(actions[j], "name");
             if (action_name != NULL)
             {
                 if (!strcmp(task->actions_name[i], action_name))
@@ -252,14 +252,178 @@ void check_action_parameter_validity(task *task, int index, action **actions, in
     }
 }
 
-char *get_action_name(action *act)
+char *get_action_property(action *act, char *property_name)
 {
     for (int i = 0; i < act->properties_amount; i++)
     {
-        if (!strcmp(act->properties[i]->name, "name"))
+        if (!strcmp(act->properties[i]->name, property_name))
         {
             return act->properties[i]->value;
         }
     }
     return NULL;
+}
+
+char *get_action_option(action *act, char *option_name)
+{
+    for (int i = 0; i < act->option_amount; i++)
+    {
+        if (!strcmp(act->options[i]->name, option_name))
+        {
+            return act->options[i]->value;
+        }
+    }
+    return NULL;
+}
+
+true_parameters *generate_true_params(param_container *params)
+{
+    int action_amount = 0;
+    true_parameters *true_params = malloc(sizeof(true_parameters));
+    true_params->timer = 0;
+    true_params->true_tasks = NULL;
+    true_action **true_actions = generate_true_actions(params, &action_amount);
+    return true_params;
+}
+
+true_action **generate_true_actions(param_container *params, int *amount)
+{
+
+    action **actions = params->actions;
+    int action_amount = params->action_amount;
+
+    true_action **true_actions = malloc(sizeof(true_action *) * params->action_amount);
+
+    for (int i = 0; i < action_amount; i++)
+    {
+        true_action *new_true_action = fill_true_action(actions[i]);
+
+        if (new_true_action != NULL)
+        {
+            true_actions[*amount] = new_true_action;
+            (*amount)++;
+        }
+    }
+
+    print_true_actions(true_actions, *amount);
+    return true_actions;
+}
+
+true_action *fill_true_action(action *action)
+{
+    true_action *new_true_action = malloc(sizeof(true_action));
+    new_true_action->types_amount = 0;
+    char *action_url = get_action_property(action, "url");
+    if (action_url == NULL)
+    {
+        free(new_true_action);
+        return NULL;
+    }
+    else
+    {
+        new_true_action->url = action_url;
+    }
+
+    char *action_name = get_action_property(action, "name");
+    if (action_name == NULL)
+    {
+        free(new_true_action);
+        return NULL;
+    }
+    else
+    {
+        new_true_action->name = action_name;
+    }
+
+    char *max_depth = get_action_option(action, "max-depth");
+    if (max_depth == NULL)
+    {
+        new_true_action->maximum_depth = 5;
+    }
+    else
+    {
+        new_true_action->maximum_depth = atoi(max_depth);
+    }
+
+
+    char *versioning = get_action_option(action, "versioning");
+    if (versioning == NULL)
+    {
+        new_true_action->versioning = 0;
+    }
+    else
+    {
+        if (!strcmp(versioning, "true"))
+        {
+            new_true_action->versioning = 1;
+        }
+    }
+
+
+    fill_types(new_true_action, action);
+
+    return new_true_action;
+}
+
+void fill_types(true_action *true_act, action *act)
+{
+    char *types = get_action_option(act, "type");
+    if (types == NULL)
+    {
+        true_act->types = NULL;
+        true_act->types_amount = 0;
+    }
+    else
+    {
+        int error = 0;
+        scutted *scut = string_cutter(&error, types, ",");
+        if (error)
+        {
+            true_act->types = get_types(scut, &true_act->types_amount);
+        }
+    }
+}
+
+char **get_types(scutted *scut, int *size)
+{
+    char **extension_name_types = malloc(scut->size * sizeof(char *));
+    for (int i = 0; i < scut->size; i++)
+    {
+        char *extension_name = get_extensions_from_types(scut->strings[i]);
+        if (extension_name != NULL)
+        {
+            extension_name_types[*size] = extension_name;
+            (*size)++;
+        }
+    }
+
+    if ((*size) == 0)
+    {
+        free(extension_name_types);
+        return NULL;
+    }
+
+    return extension_name_types;
+}
+
+void print_true_actions(true_action **true_actions, int amount)
+{
+    for (int i = 0; i < amount; i++)
+    {
+        printf("True action %d :\n");
+        print_taction(true_actions[i]);
+    }
+}
+
+void print_taction(true_action *taction)
+{
+    printf("nom : %s\n", taction->name);
+    printf("url : %s\n", taction->url);
+    printf("profondeur maximum : %d\n", taction->maximum_depth);
+    printf("versioning %s\n", taction->versioning == 1 ? "active" : "desactive");
+    printf("Type visé : %s\n", taction->types_amount == 0 ? "non" : "oui");
+    for (int i = 0; i < taction->types_amount; i++)
+    {
+        printf("type %d : %s\n", i, taction->types[i]);
+    }
 }

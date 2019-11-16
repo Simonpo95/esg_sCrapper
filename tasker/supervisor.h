@@ -8,42 +8,66 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 typedef struct StringCutted scutted;
 typedef struct KeyValue keyvalue;
 typedef struct Action action;
 typedef struct Task task;
 typedef struct Param_container param_container;
+typedef struct TrueTask true_task;
+typedef struct TrueAction true_action;
+typedef struct TrueParameters true_parameters;
 
-
-struct KeyValue{
-    char * name;
-    char * value;
+struct KeyValue
+{
+    char *name;
+    char *value;
 };
 
-struct Action{
+struct Action
+{
     int properties_amount;
-    keyvalue ** properties;
+    keyvalue **properties;
     int option_amount;
-    keyvalue ** options;
+    keyvalue **options;
 };
 
-
-struct Task{
+struct Task
+{
     int properties_amount;
-    keyvalue ** properties;
+    keyvalue **properties;
     int action_amount;
-    char ** actions_name;
+    char **actions_name;
 };
 
-
-struct Param_container {
+struct Param_container
+{
     int action_amount;
-    action ** actions;
+    action **actions;
     int task_amount;
-    task ** tasks;
+    task **tasks;
 };
 
+struct TrueAction
+{
+    char *name;
+    char *url;
+    int maximum_depth;
+    int versioning;
+    int types_amount;
+    char **types;
+};
+
+struct TrueTask
+{
+    long long respawn_time;
+    action ** actions;
+};
+
+struct TrueParameters
+{
+    long long timer;
+    true_task ** true_tasks;
+};
 
 #include "params_helper.h"
 #include "string_helper.h"
