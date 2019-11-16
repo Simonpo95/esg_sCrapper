@@ -5,7 +5,8 @@ void smash_hand()
     puts("Merci de répondre en suivant les consignes de réponses");
 }
 
-int get_user_proper_answer(char * question){
+int get_user_proper_answer(char *question)
+{
     int yesno = 0;
     char *answer = malloc(sizeof(char) * 500);
     int failed = 0;
@@ -58,7 +59,6 @@ int interprete_answer(char *answer)
     return 2;
 }
 
-
 void parsed_conf_file_successful(int error)
 {
 
@@ -87,7 +87,6 @@ void inform_user_about_loaded_params(param_container *params)
     printf("Le fichier de configuration contient %d actions, et %d taches parametrees.\n", params->action_amount, params->task_amount);
 }
 
-
 void ask_user_if_needed_details(param_container *params)
 {
     int yesno = get_user_proper_answer("Souhaitez-vous en savoir plus sur le contenu du fichier de configuration?");
@@ -112,13 +111,7 @@ void ask_user_if_needed_bug_reported(param_container *params)
     report_errors(params);
 }
 
-int ask_launch_tasks(param_container * params)
+int ask_launch_tasks(param_container *params)
 {
-    int yesno = get_user_proper_answer("Souhaitez-vous lancer les taches en attente ?");
-    if(!yesno){
-        return yesno;
-    }
-
-    launch_tasker(params);
-
+    return get_user_proper_answer("Souhaitez-vous lancer les taches ?");
 }
