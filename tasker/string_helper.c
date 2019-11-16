@@ -183,3 +183,15 @@ char *remove_all_after_character(char *string, char delimitor)
 
     return string_copy;
 }
+
+int is_string_in_string_array(char *string, char **string_array, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (!strcmp(string, string_array[i]))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}

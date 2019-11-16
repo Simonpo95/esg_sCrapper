@@ -109,7 +109,7 @@ void ask_user_if_needed_bug_reported(param_container *params)
         return;
     }
 
-    print_errors(params);
+    report_errors(params);
 }
 
 int ask_launch_tasks(param_container * params)

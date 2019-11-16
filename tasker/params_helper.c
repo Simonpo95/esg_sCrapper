@@ -115,7 +115,6 @@ void print_task(task *ta)
 
 void print_errors(param_container *params)
 {
-    
 }
 
 param_container *create_empty_params()
@@ -144,4 +143,123 @@ task *create_empty_task()
     task_to_create->action_amount = 0;
     task_to_create->actions_name = NULL;
     task_to_create->properties = NULL;
+}
+
+void report_errors(param_container *params)
+{
+
+    char *tasks_authorized_properties[] = {"name", "second", "minute", "hour"};
+
+    for (int i = 0; i < params->action_amount; i++)
+    {
+        report_action_errors(params->actions[i], i);
+    }
+
+    for (int i = 0; i < params->task_amount; i++)
+    {
+        report_tasks_errors(params->tasks[i], i, params->actions, params->action_amount);
+    }
+}
+
+void report_action_errors(action *act, int index)
+{
+    char *actions_autorized_options[] = {"max-depth", "versioning", "type"};
+    char *actions_autorized_properties[] = {"name", "url"};
+
+    for (int i = 0; i < act->option_amount; i++)
+    {
+        if (!is_string_in_string_array(act->options[i]->name, actions_autorized_options, 3))
+        {
+            printf("Dans l'action %d :", index);
+            printf("\nErreur : %s n'est pas une option valide", act->options[i]->name);
+        }
+    }
+
+    for (int i = 0; i < act->properties_amount; i++)
+    {
+        if (!is_string_in_string_array(act->properties[i]->name, actions_autorized_properties, 3))
+        {
+            printf("\nDans l'action %d :", index);
+            printf("\nErreur : %s n'est pas une propriete valide", act->properties[i]->name);
+        }
+    }
+
+    check_if_action_is_named(act, index);
+}
+
+void check_if_action_is_named(action *act, int index)
+{
+    int has_name = 0;
+    for (int i = 0; i < act->properties_amount; i++)
+    {
+        if (!strcmp(act->properties[i]->name, "name"))
+        {
+            has_name = 1;
+        }
+    }
+    if (has_name)
+    {
+        return;
+    }
+    printf("\nDans l'action %d", index);
+    printf("\nCette action ne possède pas de propriete 'name' et ne pourra pas etre appelee.\n");
+}
+
+void report_tasks_errors(task *task, int index, action **actions, int action_amount)
+{
+    char *tasks_authorized_properties[] = {"name", "second", "minute", "hour"};
+
+    for (int i = 0; i < task->properties_amount; i++)
+    {
+        if (!is_string_in_string_array(task->properties[i]->name, tasks_authorized_properties, 4))
+        {
+            printf("Dans la tache %d :", index);
+            printf("\nErreur : %s n'est pas une proriete valide", task->properties[i]->name);
+        }
+    }
+
+    check_action_parameter_validity(task, index, actions, action_amount);
+}
+
+void check_action_parameter_validity(task *task, int index, action **actions, int action_amount)
+{
+    if (task->action_amount < 0)
+    {
+        printf("Dans la tache %d :", index);
+        printf("\nErreur : Aucun tache n'a ete trouvee\n");
+    }
+
+    for (int i = 0; i < task->action_amount; i++)
+    {
+        int is_in_actions_pool = 0;
+        for (int j = 0; j < action_amount; j++)
+        {
+            char *action_name = get_action_name(actions[j]);
+            if (action_name != NULL)
+            {
+                if (!strcmp(task->actions_name[i], action_name))
+                {
+                    is_in_actions_pool = 1;
+                    break;
+                }
+            }
+        }
+        if (!is_in_actions_pool)
+        {
+            printf("\nDans la tache %d :", index);
+            printf("\nErreur : Aucun action du nom de %s n'a ete trouvee\n", task->actions_name[i]);
+        }
+    }
+}
+
+char *get_action_name(action *act)
+{
+    for (int i = 0; i < act->properties_amount; i++)
+    {
+        if (!strcmp(act->properties[i]->name, "name"))
+        {
+            return act->properties[i]->value;
+        }
+    }
+    return NULL;
 }
