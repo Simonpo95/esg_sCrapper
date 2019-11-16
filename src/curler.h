@@ -7,4 +7,7 @@
 int curlit(char * filepath, char * url);
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream);
 char * typecheck(char * url);
+
+void first_curl(char* file_path, char* url);
+
 #endif

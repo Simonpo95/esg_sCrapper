@@ -7,6 +7,9 @@
 #include <curl/curl.h>
 #include <stdlib.h>
 #include <math.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 typedef struct StringCutted scutted;
 typedef struct KeyValue keyvalue;
@@ -64,6 +67,7 @@ typedef struct ContentType ContentType;
 #include "struct_ContentType.h"
 
 #include "curlStrTab.h"
+#include "dir_maker.h"
 
 #include "params_helper.h"
 #include "string_helper.h"

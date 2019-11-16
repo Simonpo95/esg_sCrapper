@@ -12,19 +12,16 @@ int curlit(char * filepath, char * url){
     CURLcode res;
     int size = 0;
     curl = curl_easy_init();
-    if(curl){
-        f = fopen(filepath,"w+");
+    if(curl) {
+        f = fopen(filepath, "w+");
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
         res = curl_easy_perform(curl);
         fclose(f);
-    } else
-        return 1;
+    }
     curl_easy_cleanup(curl);
 }
-
-
 
 char * typecheck(char * url){
     CURL * curl;
@@ -46,3 +43,8 @@ char * typecheck(char * url){
     }
     return "dada";
 }
+
+//void first_curl(char* file_path, char* url)
+//{
+//
+//}

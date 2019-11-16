@@ -185,6 +185,8 @@ void curlStrTab(struct StrTab * strTab)
             y++;
         }
 
+
+
         sprintf(final_path, "file/site_files/%s%s", cpy_destination, extension );
         curlit(final_path, strTab->content_tab[i]);
 
