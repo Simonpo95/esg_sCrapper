@@ -4,7 +4,7 @@ int main(int argc, char **argv)
 {
 
 ////    curler part
-    int error = curlit("file/test_curler.txt", "http://alexandre-mesle.com/");
+    int error = curlit("../web_site/test_curler.txt", "http://alexandre-mesle.com/");
 ////    curler part
 
 ////    needed to work
@@ -32,16 +32,15 @@ int main(int argc, char **argv)
 //////    needed to work
 
     curlStrTab(url_tab);
-
     printf("last_curl = %d\n",url_tab->last_curl);
 
-    char* rouge = make_director("hello", "../web_site/");
-
-    char * tableau[] = {"hello", "bo", "coucou"};
-    char * tableau1[] = {"hello", "bo", "cacaaa"};
-
-    printf("size of tab = %ld\n", sizeof(tableau) / 8);
-    printf("size of tab = %ld\n", sizeof(tableau1) / 8);
+//    char* rouge = make_director("hello", "../web_site/");
+//
+//    char * tableau[] = {"hello", "bo", "coucou"};
+//    char * tableau1[] = {"hello", "bo", "cacaaa"};
+//
+//    printf("size of tab = %ld\n", sizeof(tableau) / 8);
+//    printf("size of tab = %ld\n", sizeof(tableau1) / 8);
 
     return 0;
 }

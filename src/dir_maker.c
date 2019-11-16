@@ -42,16 +42,16 @@ char* make_director(char * path, char * root)
 //        printf("temp path 1 = %s\n", temp_path);
 //        printf("final path 1 = %s\n", final_path);
 
-//        if(nb_path == scu->size)
-//        {
+        if(nb_path == scu->size)
+        {
 //            printf("temp path 1 = %s\n", temp_path);
 //            printf("final path 1 = %s\n", final_path);
-//            strcpy(final_path, temp_path);
+            strcpy(final_path, temp_path);
 //            printf("temp path 2 = %s\n", temp_path);
 //            printf("final path 2 = %s\n", final_path);
-//        }
+        }
 
         free(temp_path);
     }
-    return "final_path";
+    return final_path;
 }
