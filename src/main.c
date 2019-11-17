@@ -18,23 +18,70 @@ int main(int argc, char **argv)
 ////    start part
 
     char * first_url = "http://alexandre-mesle.com/";
-    int max_generation = 5;
+    int max_generation = 1;
+//    int max_generation = 5;
+    char * start_path = "../web_site/";
 
     Controler *controler = create_Controler(max_generation, first_url);
 
-//    printControler(*controler);
-
+//
+////    printControler(*controler);
+//
 ////    start part
 
 //
 //
-//    Tag *href = create_Tag("href=\"", "\"");
+    Tag *href = create_Tag("href=\"", "\"");
+
+    Tag* tab_of_tag;
+    TagTab *tagTab = create_TagTab(tab_of_tag);
+
+    addToTagTab(tagTab, href);
+
+    char* first_file_name;
+
+//    for(int i = 0, i < controler->max_generation; i++){
+//        for(int j = 0; j < urlTab[i]; j++){
 //
-//    Tag* tab_of_tag;
-//    TagTab *tagTab = create_TagTab(tab_of_tag);
+//        }
+//    }
+    for(int i = 0; i < controler->max_generation; i++)
+    {
+        for(int j = 0; j < controler->url_strTab_controler[i]->size; j++)
+        {
+//            printf("avant -> i = %d - j = %d --\n", i,j);
+//            printf("start path = %s\n", start_path);
+//            printf("content tab = %s\n", controler->url_strTab_controler[i]->content_tab[j]);
+            char ** dual_url_filename = url_to_filable(start_path, controler->url_strTab_controler[i]->content_tab[j]);
+//            printf("après -> i = %d - j = %d --\n", i,j);
+            printf("path = %s\n", dual_url_filename[0]);
+            printf("url = %s\n", dual_url_filename[1]);
+            controler->file_name_strTab_controler[i] = create_StrTab(controler->url_strTab_controler[i]->size);
+            addToStrTab(controler->file_name_strTab_controler[i] ,dual_url_filename[0]);
+
+            curlStrTab()
+
+//            printf("file_name = %s\n", controler->file_name_strTab_controler[i]->content_tab[j]);
+        }
+    }
+
+//    printStrTab(*(controler->url_strTab_controler[0]));
+
+    printControler(*controler);
+
+
+
+//    controler->file_name_strTab_controler[i][j] = dual_url_filename[0];
 //
-//    addToTagTab(tagTab, href);
+//    for( tout les url )
+//    {
+//        curl de ( path , url);
+//        creation du fichier
+//    }
 //
+//    mettre le nom dans le tab file name de generation suivante
+
+
 //    for(int i = 0; i < controler->file_name_strTab_controler[0]->size; i++)
 //    {
 //        printf("i == %d\n", i);
@@ -48,26 +95,15 @@ int main(int argc, char **argv)
 //        printStrTab(* file_name);
 //    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    char* url_to_dir(char * url)
-//    {
+//    char * str = "http://alexandre-mesle.com/";
 //
+//    char ** heo = url_to_filable("../web_site/", str);
+//
+//    for (int t = 0; t < 2; t++)
+//    {
+//        printf(" %s \n", heo[t]);
 //    }
+
 
 
 

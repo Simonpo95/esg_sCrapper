@@ -20,4 +20,5 @@ void add_to_scutted(char * string, scutted * scut);
 void read_scutted(scutted * scut);
 char *remove_first_last_character(char *string);
 char *remove_all_after_character(char *string, char delimitor);
+char *get_extensions_from_types(char *type);
 #endif

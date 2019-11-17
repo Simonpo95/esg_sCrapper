@@ -19,9 +19,11 @@ Controler *create_Controler(int max_generation, char* first_url) {
     StrTab ** file_name_strTab_controler = (StrTab**) malloc(sizeof(StrTab*) * controler->max_generation);
 //    StrTab * first_gen_filename_strTab = create_StrTab(0);
 
-//    StrTab * first_gen_filename_strTab = curlStrTab(controler->url_strTab_controler[0]);
 
+//    StrTab * first_gen_filename_strTab = curlStrTab(controler->url_strTab_controler[0]);
 //    file_name_strTab_controler[0] = first_gen_filename_strTab;
+
+
     controler->file_name_strTab_controler = file_name_strTab_controler;
     return controler;
 }
