@@ -1,10 +1,12 @@
 #include "curlStrTab.h"
 
-StrTab* curlStrTab(StrTab * url_strTab, char * source_filename)
+//StrTab* curlStrTab(StrTab * url_strTab, char * source_filename)
+StrTab* curlStrTab(StrTab * url_strTab)
 {
     StrTab *filename_strTab = create_StrTab(url_strTab->size);
 
-    char * path = make_director(source_filename, "../web_site/");
+//    char * path = make_director(source_filename, "../web_site/");
+    char * path = make_director("source_filename", "../web_site/");
 
     char* possible_content_type[] = {
             "audio/aac",
