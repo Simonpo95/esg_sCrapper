@@ -16,6 +16,7 @@ int main()
         if (answer)
         {
             true_parameters * true_params = generate_true_params(params);
+            tasker_launcher(true_params);
         }
         else
         {

@@ -1,9 +1,8 @@
 ==
 {name -> bonjour  }  
-{second -> 33}
-{minute -> 12}
+{second -> 5}
 +
-{bonjour, chat} 
+(bonjour, chat)
 
 =
 {Mon petit garcon -> Mon super site  }
@@ -24,5 +23,5 @@
 {task -> taskboy}
 {hour -> 12} 
 +
-{noaction}
+(noaction)
 

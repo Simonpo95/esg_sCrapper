@@ -7,6 +7,9 @@
 #include <curl/curl.h>
 #include <stdlib.h>
 #include <math.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <sys/stat.h>
 
 typedef struct StringCutted scutted;
 typedef struct KeyValue keyvalue;

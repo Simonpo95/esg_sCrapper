@@ -28,25 +28,25 @@ int main(int argc, char **argv)
 
 //
 //
-//    Tag *href = create_Tag("href=\"", "\"");
-//
-//    Tag* tab_of_tag;
-//    TagTab *tagTab = create_TagTab(tab_of_tag);
-//
-//    addToTagTab(tagTab, href);
-//
-//    for(int i = 0; i < controler->file_name_strTab_controler[0]->size; i++)
-//    {
-//        printf("i == %d\n", i);
-//        printf("char = %s\n",controler->file_name_strTab_controler[0]->content_tab[i]);
-//        IntTab *cursor_tab = seek_start_Tag(tagTab, controler->file_name_strTab_controler[0]->content_tab[i]);
-////        printIntTab(*cursor_tab); // result check
-//        StrTab *url_tab = write_till_end(cursor_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
-//        printStrTab(*url_tab);
-////        StrTab * file_name = curlStrTab(url_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
-//        StrTab * file_name = curlStrTab(url_tab);
-//        printStrTab(* file_name);
-//    }
+   Tag *href = create_Tag("href=\"", "\"");
+
+   Tag* tab_of_tag;
+   TagTab *tagTab = create_TagTab(tab_of_tag);
+
+   addToTagTab(tagTab, href);
+
+   for(int i = 0; i < controler->file_name_strTab_controler[0]->size; i++)
+   {
+       printf("i == %d\n", i);
+       printf("char = %s\n",controler->file_name_strTab_controler[0]->content_tab[i]);
+       IntTab *cursor_tab = seek_start_Tag(tagTab, controler->file_name_strTab_controler[0]->content_tab[i]);
+//        printIntTab(*cursor_tab); // result check
+       StrTab *url_tab = write_till_end(cursor_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
+       printStrTab(*url_tab);
+//        StrTab * file_name = curlStrTab(url_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
+       StrTab * file_name = curlStrTab(url_tab);
+       printStrTab(* file_name);
+   }
 
 
 

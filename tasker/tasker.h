@@ -3,6 +3,7 @@
 
 #include "./supervisor.h"
 
-void launch_tasker(param_container *params);
+void tasker_launcher(true_parameters *params);
+void task_waiter(true_task *ttask);
 
 #endif
