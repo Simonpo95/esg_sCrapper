@@ -59,13 +59,16 @@ struct TrueAction
 
 struct TrueTask
 {
+    char * name;
     long long respawn_time;
-    action ** actions;
+    int action_amount;
+    true_action ** actions;
 };
 
 struct TrueParameters
 {
     long long timer;
+    int task_amount;
     true_task ** true_tasks;
 };
 

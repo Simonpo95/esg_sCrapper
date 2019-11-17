@@ -281,8 +281,11 @@ true_parameters *generate_true_params(param_container *params)
     int action_amount = 0;
     true_parameters *true_params = malloc(sizeof(true_parameters));
     true_params->timer = 0;
+    true_params->task_amount = 0;
     true_params->true_tasks = NULL;
     true_action **true_actions = generate_true_actions(params, &action_amount);
+    true_task **true_tasks = generate_true_tasks(params, true_actions, action_amount, &(true_params->task_amount));
+    print_true_tasks(true_tasks, true_params->task_amount);
     return true_params;
 }
 
@@ -305,7 +308,6 @@ true_action **generate_true_actions(param_container *params, int *amount)
         }
     }
 
-    print_true_actions(true_actions, *amount);
     return true_actions;
 }
 
@@ -345,7 +347,6 @@ true_action *fill_true_action(action *action)
         new_true_action->maximum_depth = atoi(max_depth);
     }
 
-
     char *versioning = get_action_option(action, "versioning");
     if (versioning == NULL)
     {
@@ -358,7 +359,6 @@ true_action *fill_true_action(action *action)
             new_true_action->versioning = 1;
         }
     }
-
 
     fill_types(new_true_action, action);
 
@@ -426,4 +426,146 @@ void print_taction(true_action *taction)
     {
         printf("type %d : %s\n", i, taction->types[i]);
     }
+}
+
+true_task **generate_true_tasks(param_container *params, true_action **actions, int action_amount, int *tasks_amount)
+{
+    task **tasks = params->tasks;
+    int amount = params->task_amount;
+    true_task **true_tasks = malloc(sizeof(true_task *) * params->task_amount);
+    for (int i = 0; i < amount; i++)
+    {
+        true_task *new_true_task = fill_true_task(tasks[i], actions, action_amount);
+        if (new_true_task != NULL)
+        {
+            true_tasks[*tasks_amount] = new_true_task;
+            (*tasks_amount)++;
+        }
+    }
+
+    if (*tasks_amount == 0)
+    {
+        if (true_tasks != NULL)
+        {
+            free(true_tasks);
+            return NULL;
+        }
+    }
+
+    return true_tasks;
+}
+
+char *get_task_property(task *tas, char *property_name)
+{
+    for (int i = 0; i < tas->properties_amount; i++)
+    {
+        if (!strcmp(tas->properties[i]->name, property_name))
+        {
+            return tas->properties[i]->value;
+        }
+    }
+    return NULL;
+}
+
+true_task *fill_true_task(task *tas, true_action **true_actions, int action_amount)
+{
+    true_task *new_true_task = malloc(sizeof(true_task));
+    new_true_task->action_amount = 0;
+    char *task_name = get_task_property(tas, "name");
+    if (task_name == NULL)
+    {
+        task_name = "DefaultTaskName";
+    }
+    new_true_task->name = task_name;
+
+    long long task_timer = get_task_timer(tas);
+    new_true_task->respawn_time = task_timer;
+
+    fill_task_with_actions(tas, new_true_task, true_actions, action_amount);
+
+    if (new_true_task->action_amount == 0)
+    {
+        if (new_true_task != NULL)
+        {
+            free(new_true_task);
+            return NULL;
+        }
+    }
+
+    return new_true_task;
+}
+
+long long get_task_timer(task *tas)
+{
+    long long timer = 0;
+    char *hour = get_task_property(tas, "hour");
+    if (hour != NULL)
+    {
+        timer += (atoi(hour) * 3600000);
+    }
+
+    char *minute = get_task_property(tas, "minute");
+    if (minute != NULL)
+    {
+        timer += (atoi(minute) * 60000);
+    }
+
+    char *second = get_task_property(tas, "second");
+    if (second != NULL)
+    {
+        timer += (atoi(second) * 1000);
+    }
+
+    return timer;
+}
+
+void fill_task_with_actions(task *tas, true_task *true_tas, true_action **true_actions, int action_amount)
+{
+    true_tas->actions = malloc(sizeof(true_action *) * tas->action_amount);
+    for (int i = 0; i < tas->action_amount; i++)
+    {
+        true_action *new_taction = get_action_by_action_name(tas->actions_name[i], true_actions, action_amount);
+        if (new_taction != NULL)
+        {
+            true_tas->actions[true_tas->action_amount] = new_taction;
+            true_tas->action_amount++;
+        }
+    }
+
+    if (action_amount == 0)
+    {
+        if (true_tas->actions != NULL)
+        {
+            free(true_tas->actions);
+        }
+    }
+}
+
+true_action *get_action_by_action_name(char *action_name, true_action **true_actions, int action_amount)
+{
+    for (int i = 0; i < action_amount; i++)
+    {
+        if (!strcmp(action_name, true_actions[i]->name))
+        {
+            return true_actions[i];
+        }
+    }
+    return NULL;
+}
+
+void print_true_tasks(true_task **true_tasks, int tasks_amount)
+{
+    for (int i = 0; i < tasks_amount; i++)
+    {
+        printf("True_task %d : \n", i);
+        print_ttask(true_tasks[i]);
+    }
+}
+
+void print_ttask(true_task *ttask)
+{
+    printf("name : %s\n", ttask->name);
+    printf("time : %ld\n", ttask->respawn_time);
+    printf("action_amount : %d\n\n", ttask->action_amount);
+    print_true_actions(ttask->actions, ttask->action_amount);
 }

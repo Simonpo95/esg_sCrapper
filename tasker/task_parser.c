@@ -259,7 +259,7 @@ void fill_task_option(task *ta, FILE *f, char *line, size_t line_len)
 
         char *option_without_comment = remove_all_after_character(line, '#');
         option_without_comment = trim_before_after(option_without_comment);
-        if (check_first_last_character('{', '}', option_without_comment))
+        if (check_first_last_character('(', ')', option_without_comment))
         {
             fill_task_with_line_option(remove_first_last_character(option_without_comment), ta);
         }
