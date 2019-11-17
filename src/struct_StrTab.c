@@ -2,14 +2,18 @@
 
 //separation
 
-StrTab *create_StrTab(char **content_tab) {
+StrTab *create_StrTab(int capacity) {
     struct StrTab *strTab = (struct StrTab *) malloc(sizeof(struct StrTab));
-    int capacity = 1;
-    int last_curl = 0;
+//    int capacity = 5;
     strTab->size = 0;
     strTab->capacity = capacity;
-    strTab->last_curl = last_curl;
-    strTab->content_tab = content_tab;
+
+    char **str_tab = malloc(sizeof(char *) * strTab->capacity);
+    for (int o = 0; o < strTab->capacity; o++) {
+        str_tab[o] = calloc(3000, sizeof(char));
+    }
+
+    strTab->content_tab = str_tab;
     return strTab;
 }
 
@@ -41,6 +45,7 @@ int addToStrTab(StrTab *strTab, char *string) {
         strTab->size++;
         if (strTab->size >= strTab->capacity) {
             strTab->capacity *= 2;
+            strTab->content_tab = realloc(strTab->content_tab, sizeof(char**) * strTab->capacity);
         }
         printf("-- fin add in StrTab\n\n");
         return 0;

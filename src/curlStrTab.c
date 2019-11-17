@@ -1,9 +1,10 @@
 #include "curlStrTab.h"
 
-void curlStrTab(struct StrTab * strTab)
+StrTab* curlStrTab(StrTab * url_strTab, char * source_filename)
 {
+    StrTab *filename_strTab = create_StrTab(url_strTab->size);
 
-    char * path = make_director("hello", "../web_site/");
+    char * path = make_director(source_filename, "../web_site/");
 
     char* possible_content_type[] = {
             "audio/aac",
@@ -147,20 +148,18 @@ void curlStrTab(struct StrTab * strTab)
     char* dada_str = "dada";
 //    char* null_str = "(null)";
 
-    for(int i = strTab->last_curl; i < strTab->size; i++)
+    for(int i = 0; i < url_strTab->size; i++)
     {
-//        char* final_path = malloc(sizeof(char) * 245); // creation d'un char pour nom fichier ou dossier
-//        char* cpy_destination = malloc(sizeof(char) * 245); // creation d'un char pour copier d->content_tab[i]
-//        char* result = malloc(sizeof(char) * 245); // creation d'un char pour get le type
+        int inside = 0;
 
-        char* final_path = calloc(sizeof(char) * (strlen(strTab->content_tab[i])), sizeof(char));
-        char* cpy_destination = calloc(sizeof(char) * (strlen(strTab->content_tab[i])), sizeof(char));
-        char* result = calloc(sizeof(char) * 5000, sizeof(char));
+        char* final_path = calloc(sizeof(char) * (strlen(url_strTab->content_tab[i])), sizeof(char)); // creation d'un char pour nom fichier ou dossier
+        char* cpy_destination = calloc(sizeof(char) * (strlen(url_strTab->content_tab[i])), sizeof(char)); // creation d'un char pour copier d->content_tab[i]
+        char* result = calloc(sizeof(char) * 5000, sizeof(char)); // creation d'un char pour get le type
 
 
         char* extension = calloc(sizeof(char) * 50, sizeof(char));
 
-        result = typecheck(strTab->content_tab[i]);
+        result = typecheck(url_strTab->content_tab[i]);
 
         result = remove_all_after_character(result, 59);
 
@@ -189,7 +188,7 @@ void curlStrTab(struct StrTab * strTab)
 //            extension = ".unknown_null";
 //        }
 
-        strcpy(cpy_destination, strTab->content_tab[i]);
+        strcpy(cpy_destination, url_strTab->content_tab[i]);
 
         int y = 0;
         while(cpy_destination[y] != 0) {
@@ -205,14 +204,18 @@ void curlStrTab(struct StrTab * strTab)
 
         sprintf(final_path, "%s%s%s",path , cpy_destination, extension );
 
+        inside = addToStrTab(filename_strTab, final_path);
 
-        curlit(final_path, strTab->content_tab[i]);
+        if(inside == 0)
+        {
+            curlit(final_path, url_strTab->content_tab[i]);
+        }
 
-
-        printf("%d -/- %s \n", i, strTab->content_tab[i]);
+        printf("%d -/- %s \n", i, url_strTab->content_tab[i]);
         printf("\n");
         printf(" _ %s -/- %s\n", extension, result);
         printf(" ---\n");
     }
-    strTab->last_curl = strTab->size;
+
+    return filename_strTab;
 }

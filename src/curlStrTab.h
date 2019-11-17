@@ -3,6 +3,6 @@
 
 #include "supervisor.h"
 
-void curlStrTab(struct StrTab *);
+StrTab* curlStrTab(StrTab * url_strTab, char * source_filename);
 
 #endif

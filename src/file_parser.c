@@ -14,7 +14,7 @@ int is_inside(char* content_tag, StrTab* strTab){
     return 0;
 }
 
-IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
+IntTab *seek_start_Tag(TagTab *tagTab, char *file_name) {
     int cursor;
     int counter; // this counter will help us to track the start string
     char letter;
@@ -26,11 +26,11 @@ IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
 
     while (letter != EOF) { // browsing through untill the End Of File thanks to fgetc() function
         int counter = 0;
-        for (int j = 0; j < tabTag->size; j++) { // processing for all Tag in the tabTag given by the first parameter
-            while (letter == tabTag->content_tab[j].start[counter]) { // search for the start of the j'th tag contained in the TabTag
-                if (counter == strlen(tabTag->content_tab[j].start) - 1) { // if the start is found (-1 because counter start at 0)
+        for (int j = 0; j < tagTab->size; j++) { // processing for all Tag in the tagTab given by the first parameter
+            while (letter == tagTab->content_tab[j].start[counter]) { // search for the start of the j'th tag contained in the TabTag
+                if (counter == strlen(tagTab->content_tab[j].start) - 1) { // if the start is found (-1 because counter start at 0)
                     cursor = ftell(f) + 1; // the current cursor position is given to cursor thanks to the ftell() function (+1 to avoide the last char of the start)
-                    IntWTagType *tagType = create_IntWTagType(cursor, tabTag->content_tab[j]); // creation of an IntTagType names tagType with the cursor and the j'th tag
+                    IntWTagType *tagType = create_IntWTagType(cursor, tagTab->content_tab[j]); // creation of an IntTagType names tagType with the cursor and the j'th tag
                     addToIntTab(intTab, tagType); // insertion of the tagType in the intTab
                 }
                 counter++;
@@ -46,11 +46,7 @@ IntTab *seek_start_Tag(TagTab *tabTag, char *file_name) {
 
 StrTab *write_till_end(IntTab *intTab, char *file_name) {
     FILE *f = fopen(file_name, "r"); // opening of a file using the string given by the third parameter of this function, in read mode
-    char **str_tab = malloc(sizeof(char *) * intTab->size); // creation and memory allocation of string type array, it will contain all tag content
-    for (int o = 0; o > intTab->size; o++) {
-        str_tab[o] = calloc(3000, sizeof(char));
-    }
-    StrTab *strTab = create_StrTab(str_tab); // creation of an StrTab type array named strTab that contain str_tab
+    StrTab *strTab = create_StrTab(intTab->size); // creation of an StrTab type array named strTab that contain str_tab
     char letter;
     int counter;
     for (int i = 0; i < intTab->size; i++) { // processing for all IntWTagType in the intTab given by the first parameter

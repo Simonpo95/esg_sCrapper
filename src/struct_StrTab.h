@@ -7,12 +7,11 @@ struct StrTab {
     char **content_tab;
     int size;
     int capacity;
-    int last_curl;
 };
 
 // void printTabStrTab(StrTab *);
 
-StrTab *create_StrTab(char **);
+StrTab *create_StrTab(int size);
 
 void printStrTab(StrTab);
 

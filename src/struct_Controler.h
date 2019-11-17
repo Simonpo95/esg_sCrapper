@@ -4,13 +4,13 @@
 #include "supervisor.h"
 
 struct Controler {
-    TabStrTab* strTab_controler;
+    StrTab** url_strTab_controler;
+    StrTab** file_name_strTab_controler;
     int generation;
-    int size;
-    int capacity;
+    int max_generation;
 };
 
-Controler *create_Controler(StrTab * strTab_controler);
+Controler *create_Controler(int max_generation, char* first_url);
 
 void printControler(Controler controler);
 

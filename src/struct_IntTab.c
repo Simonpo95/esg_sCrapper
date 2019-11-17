@@ -12,20 +12,21 @@ IntTab *create_IntTab(IntWTagType * content_tab) {
 void printIntTab(IntTab intTab) {
     printf("\n");
     for (int i = 0; i < intTab.size; i++) {
-//        printf("print of content_tab = %d \n content = %d\n", i, intTab.content_tab[i]);
-        printf("\n");
+        printf("%d = ", i);
+        printIntWTagType(intTab.content_tab[i]);
+//        printf("print of content_tab = %d \n content = %d\n", i, intTab->content_tab[i]);
+//        printf("\n");
     }
     printf("fin printf intTab\n");
     printf("\n");
 }
 
-void prIntTabIntTab(IntTab *tabintTab) {
-    int i = 0;
-    for (i; i < 2; i++) {
+//void printTabIntTab(IntTab *tabintTab) {
+//    for (int i = 0; i < tabintTab->size; i++) {
 //        printIntTab(tabintTab[i]);
-        printf("%d\n", tabintTab->size);
-    }
-}
+////        printf("%d\n", tabintTab->size);
+//    }
+//}
 
 void addToIntTab(IntTab *intTab, IntWTagType *intWTagType) {
     intTab->content_tab[intTab->size] = *intWTagType;

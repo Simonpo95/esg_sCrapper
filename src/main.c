@@ -18,30 +18,39 @@ int main(int argc, char **argv)
 ////    start part
 
     char * first_url = "http://alexandre-mesle.com/";
+    int max_generation = 5;
 
-    char **str_tab = malloc(sizeof(char *) * 1);
-    for (int o = 0; o > 1; o++) {
-        str_tab[o] = calloc(3000, sizeof(char));
-    }
+    Controler *controler = create_Controler(max_generation, first_url);
 
-//    StrTab *strTab = create_StrTab(str_tab);
-//
-//    addToStrTab(strTab, first_url);
-//
-//    TabStrTab* tabStrtab = create_TabStrTab(strTab);
-//
-//    Controler *controler = create_Controler(tabStrtab);
-//
 //    printControler(*controler);
 
 ////    start part
 
 
 
+    Tag *href = create_Tag("href=\"", "\"");
+
+    Tag* tab_of_tag;
+    TagTab *tagTab = create_TagTab(tab_of_tag);
+
+    addToTagTab(tagTab, href);
+
+    for(int i = 0; i < controler->file_name_strTab_controler[0]->size; i++)
+    {
+        printf("i == %d\n", i);
+        printf("char = %s\n",controler->file_name_strTab_controler[0]->content_tab[i]);
+        IntTab *cursor_tab = seek_start_Tag(tagTab, controler->file_name_strTab_controler[0]->content_tab[i]);
+//        printIntTab(*cursor_tab); // result check
+        StrTab *url_tab = write_till_end(cursor_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
+        printStrTab(*url_tab);
+        curlStrTab(url_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
+    }
 
 
+    char* url_to_dir(char * url)
+    {
 
-
+    }
 
 
 
