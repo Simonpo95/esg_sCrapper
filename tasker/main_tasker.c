@@ -5,7 +5,7 @@ int main()
     //interface utilisateur pour charger un fichier selon le choix du user
 
     param_container *params = create_empty_params();
-    int error = fill_actions(params, "../a.sconf");
+    int error = fill_actions(params, "../scrapper_configurations/a.sconf");
     parsed_conf_file_successful(error);
     if (!error)
     {
