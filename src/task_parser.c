@@ -1,12 +1,12 @@
 #include "task_parser.h"
 
-int fill_actions(param_container *params)
+int fill_actions(param_container *params, char * file_name)
 {
     int code_error = 0;
     size_t line_len = 0;
     ssize_t read;
     char *line = NULL;
-    FILE *f = fopen("../b.sconf", "r");
+    FILE *f = fopen(file_name, "r");
 
     if (f == NULL)
     {
@@ -51,7 +51,7 @@ int get_file_char_amount(FILE *f)
 
 void fetch_action_parameters(param_container *params, FILE *f, char *line, size_t line_len)
 {
-    action *action_to_add = malloc(sizeof(action));
+    action *action_to_add = create_empty_action();
 
     ssize_t read;
     while ((read = getline(&line, &line_len, f)) != -1)
@@ -114,7 +114,6 @@ void fill_action_with_line_parameter(char *line, action *action, int isPropertie
         return;
     }
 
-    read_scutted(cutted_line);
     add_parameter_to_action(action, cutted_line, isProperties);
 
     return;
@@ -166,11 +165,7 @@ void add_parameter_to_action(action *act, scutted *scut, int isProperty)
 
 void fetch_task(param_container *params, FILE *f, char *line, size_t line_len)
 {
-    task *task_to_add = malloc(sizeof(task));
-    task_to_add->action_amount = 0;
-    task_to_add->actions_name = NULL;
-    task_to_add->properties = NULL;
-    task_to_add->properties_amount = 0;
+    task *task_to_add = create_empty_task();
 
     ssize_t read;
     while ((read = getline(&line, &line_len, f)) != -1)
@@ -264,7 +259,7 @@ void fill_task_option(task *ta, FILE *f, char *line, size_t line_len)
 
         char *option_without_comment = remove_all_after_character(line, '#');
         option_without_comment = trim_before_after(option_without_comment);
-        if (check_first_last_character('{', '}', option_without_comment))
+        if (check_first_last_character('(', ')', option_without_comment))
         {
             fill_task_with_line_option(remove_first_last_character(option_without_comment), ta);
         }

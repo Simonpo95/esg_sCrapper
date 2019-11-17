@@ -4,7 +4,7 @@
 #include "./supervisor.h"
 
 void add_parameter_to_action(action * action, scutted * scut, int isProperty);
-int fill_actions(param_container  * params);
+int fill_actions(param_container *params, char * file_name);
 int get_file_char_amount(FILE * f);
 void fetch_action_parameters(param_container * params, FILE *f, char *line, size_t line_len);
 char * parsed_line(char * line);

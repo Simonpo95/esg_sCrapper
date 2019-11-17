@@ -91,28 +91,26 @@ StrTab *curlStrTab(StrTab *url_strTab, char *source_url)
         char *final_path = calloc(sizeof(char) * (strlen(url_strTab->content_tab[i])), sizeof(char));      // creation d'un char pour nom fichier ou dossier
         char *cpy_destination = calloc(sizeof(char) * (strlen(url_strTab->content_tab[i])), sizeof(char)); // creation d'un char pour copier d->content_tab[i]
         char *result = calloc(sizeof(char) * 5000, sizeof(char));                                          // creation d'un char pour get le type
-        char *fp = calloc(sizeof(char) * 5000, sizeof(char));                                              // creation d'un char pour get le type
+        char *fp = calloc(sizeof(char) * 5000, sizeof(char));     
 
-        fprintf(stderr, "on urltamere");
+        fprintf(stderr, "on fillable");
 
         char **tab = url_to_filable(path, url_strTab->content_tab[i]);
-
-        fprintf(stderr, "on check le content de final path");
+        fprintf(stderr, "on regarde une valeur pétée");
 
         final_path = tab[0];
 
-        fprintf(stderr, "c'est la que ca déconne %s %s\n", tab[0], tab[1]);
+
+        fprintf(stderr, "on add");
+
         inside = addToStrTab(filename_strTab, final_path);
 
-        fprintf(stderr, "oui\n");
-
         sprintf(root, "%s%s", root, final_path);
-
-        fprintf(stderr, "%s %s\n", root, path);
 
         if (inside == 0)
         {
             fprintf(stderr, "before curl\n");
+            fprintf(stderr, "root :%s content_tab : %s\n",root, url_strTab->content_tab[i]);
             curlit(root, url_strTab->content_tab[i]);
             fprintf(stderr, "after curl\n");
         }

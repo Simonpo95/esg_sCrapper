@@ -7,15 +7,21 @@
 #include <curl/curl.h>
 #include <stdlib.h>
 #include <math.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <pthread.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <sys/types.h>
 
 typedef struct StringCutted scutted;
 typedef struct KeyValue keyvalue;
 typedef struct Action action;
 typedef struct Task task;
 typedef struct Param_container param_container;
+typedef struct TrueTask true_task;
+typedef struct TrueAction true_action;
+typedef struct TrueParameters true_parameters;
+
 
 
 struct KeyValue{
@@ -44,6 +50,31 @@ struct Param_container {
     action ** actions;
     int task_amount;
     task ** tasks;
+};
+
+struct TrueAction
+{
+    char *name;
+    char *url;
+    int maximum_depth;
+    int versioning;
+    int types_amount;
+    char **types;
+};
+
+struct TrueTask
+{
+    char *name;
+    long long respawn_time;
+    int action_amount;
+    true_action **actions;
+};
+
+struct TrueParameters
+{
+    long long timer;
+    int task_amount;
+    true_task **true_tasks;
 };
 
 typedef struct Tag Tag;
@@ -80,6 +111,7 @@ typedef struct ContentType ContentType;
 #include "curler.h"
 #include "task_parser.h"
 #include "error_file.h"
-
+#include "user_talker.h"
+#include "tasker.h"
 
 #endif

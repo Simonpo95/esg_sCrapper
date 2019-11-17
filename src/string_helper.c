@@ -184,9 +184,21 @@ char *remove_all_after_character(char *string, char delimitor)
     return string_copy;
 }
 
+int is_string_in_string_array(char *string, char **string_array, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (!strcmp(string, string_array[i]))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 char *get_extensions_from_types(char *type)
 {
-    fprintf(stderr, "arrays");
+
     char *possible_content_type[] = {
         "audio/aac",
         "application/x-abiword",
@@ -253,7 +265,6 @@ char *get_extensions_from_types(char *type)
         "audio/3gpp2",
         "application/x-7z-compressed",
         "application/rss+xml"};
-    fprintf(stderr, "arrays");
 
     char *possible_extension[] = {
         ".aac",
@@ -320,23 +331,17 @@ char *get_extensions_from_types(char *type)
         ".3g2",
         ".3g2",
         ".7z",
-        ".xml"};
+        "xml"};
 
-    fprintf(stderr, "arrays");
-    char *returned = calloc(30, sizeof(char));
-
-    for (int i = 0; i < sizeof(possible_content_type) / 8; i++)
+    for (int i = 0; i < 64; i++)
     {
         if (!strcmp(type, possible_content_type[i]))
         {
-            fprintf(stderr, "do");
-            char *returned = calloc(30, sizeof(char));
+            char * returned = malloc(sizeof(char) * 30);
             strcpy(returned, possible_extension[i]);
             return returned;
         }
     }
 
-    strcpy(returned, ".txt");
-    fprintf(stderr, "%s", returned);
-    return returned;
+    return NULL;
 }
