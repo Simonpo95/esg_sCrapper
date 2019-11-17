@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 
 //
 //
+<<<<<<< HEAD
     Tag *href = create_Tag("href=\"", "\"");
 
     Tag* tab_of_tag;
