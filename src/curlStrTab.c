@@ -36,7 +36,7 @@ char** url_to_filable(char *path, char * url)
         y++;
     }
 
-    sprintf(final_path, "%s%s%s",path , cpy_destination, extension);
+    sprintf(final_path, "%s%s", cpy_destination, extension);
 
     char** tab = calloc(sizeof(char*) * 2, sizeof(char*));
     for (int o = 0; o < 2; o++) {
@@ -59,42 +59,39 @@ char** url_to_filable(char *path, char * url)
     return tab;
 }
 
-//StrTab* curlStrTab(StrTab * url_strTab, char * source_filename)
-StrTab* curlStrTab(StrTab * url_strTab)
+
+
+StrTab* curlStrTab(StrTab * url_strTab, char * source_filename)
 {
+
     StrTab *filename_strTab = create_StrTab(url_strTab->size);
 
 //    char * path = make_director(source_filename, "../web_site/");
-    char * path = make_director("source_filename", "../web_site/");
+    char * path = make_director(source_filename, "../web_site/");
 
-//    char* null_str = "(null)";
+    char* null_str = "(null)";
 
     for(int i = 0; i < url_strTab->size; i++)
     {
         int inside = 0;
-//        char* dada_str = "dada";
-//
+
         char* final_path = calloc(sizeof(char) * (strlen(url_strTab->content_tab[i])), sizeof(char)); // creation d'un char pour nom fichier ou dossier
         char* cpy_destination = calloc(sizeof(char) * (strlen(url_strTab->content_tab[i])), sizeof(char)); // creation d'un char pour copier d->content_tab[i]
         char* result = calloc(sizeof(char) * 5000, sizeof(char)); // creation d'un char pour get le type
+        char* fp = calloc(sizeof(char) * 5000, sizeof(char)); // creation d'un char pour get le type
 
         char ** tab = url_to_filable(path, url_strTab->content_tab[i]);
 
         final_path = tab[0];
 
-//        sprintf(final_path, "%s%s%s",path , cpy_destination, extension);
-
         inside = addToStrTab(filename_strTab, final_path);
+
+        sprintf(path, "%s%s",path, final_path);
 
         if(inside == 0)
         {
-            curlit(final_path, url_strTab->content_tab[i]);
+            curlit(path, url_strTab->content_tab[i]);
         }
-
-//        printf("%d -/- %s \n", i, url_strTab->content_tab[i]);
-//        printf("\n");
-//        printf(" _ %s -/- %s\n", extension, result);
-//        printf(" ---\n");
     }
 
     return filename_strTab;

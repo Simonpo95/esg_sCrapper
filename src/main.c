@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 ////    start part
 
     char * first_url = "http://alexandre-mesle.com/";
-    int max_generation = 1;
+    int max_generation = 2;
 //    int max_generation = 5;
     char * start_path = "../web_site/";
 
@@ -31,7 +31,6 @@ int main(int argc, char **argv)
 
 //
 //
-<<<<<<< HEAD
     Tag *href = create_Tag("href=\"", "\"");
 
     Tag* tab_of_tag;
@@ -39,36 +38,68 @@ int main(int argc, char **argv)
 
     addToTagTab(tagTab, href);
 
-    char* first_file_name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    for(int i = 0, i < controler->max_generation; i++){
 //        for(int j = 0; j < urlTab[i]; j++){
 //
 //        }
 //    }
-    for(int i = 0; i < controler->max_generation; i++)
-    {
-        for(int j = 0; j < controler->url_strTab_controler[i]->size; j++)
-        {
-//            printf("avant -> i = %d - j = %d --\n", i,j);
-//            printf("start path = %s\n", start_path);
-//            printf("content tab = %s\n", controler->url_strTab_controler[i]->content_tab[j]);
-            char ** dual_url_filename = url_to_filable(start_path, controler->url_strTab_controler[i]->content_tab[j]);
-//            printf("après -> i = %d - j = %d --\n", i,j);
-            printf("path = %s\n", dual_url_filename[0]);
-            printf("url = %s\n", dual_url_filename[1]);
-            controler->file_name_strTab_controler[i] = create_StrTab(controler->url_strTab_controler[i]->size);
-            addToStrTab(controler->file_name_strTab_controler[i] ,dual_url_filename[0]);
-
-            curlStrTab()
-
-//            printf("file_name = %s\n", controler->file_name_strTab_controler[i]->content_tab[j]);
-        }
-    }
+//    for(int i = 0; i < controler->max_generation; i++)
+//    {
+//        for(int j = 0; j < controler->url_strTab_controler[i]->size; j++) // pour chaque url dans la url tab
+//        {
+//            char ** dual_url_filename = url_to_filable(start_path, controler->url_strTab_controler[i]->content_tab[j]); // recuperation du file_name du first url
+//
+////            controler->file_name_strTab_controler[i] = create_StrTab(controler->url_strTab_controler[i]->size); // création du tab file_name, taille = url tab
+////
+////            addToStrTab(controler->file_name_strTab_controler[i] ,dual_url_filename[0]); // ajout du file name dans le tableau du controler
+//
+//            fprintf(stderr,"path = \n");
+//            StrTab * next_gen_file_name = curlStrTab(controler->url_strTab_controler[i], controler->file_name_strTab_controler[i]->content_tab[0]); // curl des url et recuperation des file name
+//
+//            controler->file_name_strTab_controler[i] = next_gen_file_name;
+//        }
+//
+//        if(i+1 > controler->max_generation)
+//        {
+//            StrTab * next_gen_url_tab = create_StrTab(controler->file_name_strTab_controler[i]->size);
+//            for (int z = 0; z < controler->file_name_strTab_controler[i]->size; ++z) {
+//                IntTab *cursor_tab = seek_start_Tag(tagTab, controler->file_name_strTab_controler[0]->content_tab[i]);
+//                StrTab *url_tab = write_till_end(cursor_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
+//                for(int j = 0; j < url_tab->size; j++)
+//                {
+//                    addToStrTab(next_gen_url_tab, url_tab->content_tab[j]);
+//                }
+//            }
+//            controler->url_strTab_controler[i+1] = next_gen_url_tab;
+//            printStrTab(controler->url_strTab_controler[i+1][0]);
+//        }
+//        else
+//        {
+//            continue;
+//        }
+//
+//    }
 
 //    printStrTab(*(controler->url_strTab_controler[0]));
 
-    printControler(*controler);
+//    printControler(*controler);
 
 
 
@@ -94,7 +125,7 @@ int main(int argc, char **argv)
 ////        StrTab * file_name = curlStrTab(url_tab, controler->file_name_strTab_controler[0]->content_tab[i]);
 //        StrTab * file_name = curlStrTab(url_tab);
 //        printStrTab(* file_name);
-//    }
+//    }s
 
 //    char * str = "http://alexandre-mesle.com/";
 //

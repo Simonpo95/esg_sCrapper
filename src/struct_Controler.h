@@ -14,5 +14,7 @@ Controler *create_Controler(int max_generation, char* first_url);
 
 void printControler(Controler controler);
 
+void addGenerationtoControler(Controler * controler);
+
 
 #endif

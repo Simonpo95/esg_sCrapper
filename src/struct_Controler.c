@@ -49,3 +49,21 @@ void printControler(Controler controler){
     }
     printf("\nfin printf Controler\n");
 }
+
+
+//void addGenerationtoControler(Controler * controler, url_size)
+//{
+//    controler->generation ++;
+//
+//}
+//
+//void addToIntTab(IntTab *intTab, IntWTagType *intWTagType) {
+//    intTab->content_tab[intTab->size] = *intWTagType;
+////    printf("ité = %d - content = %d\n",intTab->size, intTab->content_tab[intTab->size]);
+//    intTab->size++;
+//    if (intTab->size >= intTab->capacity) {
+//        intTab->capacity *= 2;
+//        intTab->content_tab = realloc(intTab->content_tab, sizeof(IntWTagType) * intTab->capacity);
+//    }
+//    printf("-- fin add in IntTab\n\n");
+//}
