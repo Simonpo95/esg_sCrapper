@@ -1,4 +1,4 @@
-#include "supervisor.h"
+#include "action_worker.h"
 
 void action_work(char *initial_url, int max_depth)
 {

@@ -2,9 +2,7 @@
 
 void action_waiter(true_action taction)
 {
-    char *path_name = malloc(sizeof(char) * 150);
-    sprintf(path_name, "salut %d", rand() % 150);
-    mkdir(path_name, 0777);
+    
 }
 
 void task_waiter(true_task *ttask)

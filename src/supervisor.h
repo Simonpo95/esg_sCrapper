@@ -106,6 +106,7 @@ typedef struct ContentType ContentType;
 #include "dir_maker.h"
 #include "struct_TabStrTab.h"
 
+#include "action_worker.h"
 #include "params_helper.h"
 #include "string_helper.h"
 #include "curler.h"
