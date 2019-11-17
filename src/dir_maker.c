@@ -2,7 +2,7 @@
 
 char* make_director(char * path, char * root)
 {
-    char * base_path = "../web_site/";
+    char * base_path = root;
     int tge = 0;
     int *ptr_int = &tge;
     struct stat sb = {0};

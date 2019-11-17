@@ -2,10 +2,9 @@
 
 IntTab *create_IntTab(IntWTagType * content_tab) {
     struct IntTab *intTab = (struct IntTab *) malloc(sizeof(struct IntTab));
-    int capacity = 1;
     intTab->size = 0;
-    intTab->capacity = capacity;
-    content_tab = (IntWTagType*) malloc(sizeof(IntWTagType) * capacity);
+    intTab->capacity = 1;
+    content_tab = (IntWTagType*) malloc(sizeof(IntWTagType) * intTab->capacity);
     intTab->content_tab = content_tab;
     return intTab;
 }

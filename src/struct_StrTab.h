@@ -10,7 +10,7 @@ struct StrTab {
     int last_curl;
 };
 
-void printTabStrTab(StrTab *);
+// void printTabStrTab(StrTab *);
 
 StrTab *create_StrTab(char **);
 

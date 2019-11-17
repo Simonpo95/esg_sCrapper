@@ -56,6 +56,10 @@ typedef struct IntTab IntTab;
 
 typedef struct StrTab StrTab;
 
+typedef struct TabStrTab TabStrTab;
+
+typedef struct Controler Controler;
+
 typedef struct ContentType ContentType;
 
 #include "struct_Tag.h"
@@ -67,7 +71,9 @@ typedef struct ContentType ContentType;
 #include "struct_ContentType.h"
 
 #include "curlStrTab.h"
+#include "struct_Controler.h"
 #include "dir_maker.h"
+#include "struct_TabStrTab.h"
 
 #include "params_helper.h"
 #include "string_helper.h"

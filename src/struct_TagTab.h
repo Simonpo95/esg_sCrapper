@@ -11,7 +11,7 @@ struct TagTab {
 
 TagTab *create_TagTab(Tag *);
 
-void prIntTagTab(TagTab);
+void printTagTab(TagTab);
 
 void addToTagTab(TagTab *, Tag *);
 

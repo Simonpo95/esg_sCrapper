@@ -10,7 +10,7 @@ TagTab *create_TagTab(Tag * content_tab) {
     return tagTab;
 }
 
-void prIntTagTab(TagTab tagTab){
+void printTagTab(TagTab tagTab){
     printf("\n");
     for (int i = 0; i < tagTab.size; i++) {
         printf("%d - ",i);
