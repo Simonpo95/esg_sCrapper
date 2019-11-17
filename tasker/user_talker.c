@@ -5,6 +5,43 @@ void smash_hand()
     puts("Merci de répondre en suivant les consignes de réponses");
 }
 
+char *get_scrapper_configuration_file()
+{
+    char *file_name = calloc(200, sizeof(char));
+    strcpy(file_name, "../scrapper_configurations/");
+    struct dirent *lecture;
+    DIR *rep;
+    rep = opendir("../scrapper_configurations");
+    char **names = malloc(sizeof(char *) * 100);
+    int index = 0;
+    char *answer = calloc(1000, sizeof(char));
+    while ((lecture = readdir(rep)))
+    {
+        if (lecture->d_name[0] == '.')
+        {
+            continue;
+        }
+        printf("%d : %s\n", index, lecture->d_name);
+        names[index] = lecture->d_name;
+        index++;
+    }
+
+    printf("Veuillez choisir le numero du fichier dont vous souhaitez lire la configuration\n");
+    fgets(answer, 1000, stdin);
+    closedir(rep);
+    if (names[atoi(answer)] == NULL)
+    {
+        free(answer);
+        hard_error_with_message("La valeur entrée est incorrect. \nPour des raisons de sécurité, nous mettons fin au programme.\n");
+    }
+    strcat(file_name, names[atoi(answer)]);
+    return file_name;
+}
+
+int get_user_file_choice()
+{
+}
+
 int get_user_proper_answer(char *question)
 {
     int yesno = 0;
