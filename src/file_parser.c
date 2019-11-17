@@ -55,8 +55,8 @@ StrTab *write_till_end(IntTab *intTab, char *file_name) {
     int counter;
     for (int i = 0; i < intTab->size; i++) { // processing for all IntWTagType in the intTab given by the first parameter
         int should_break = 0;
-        char *tag_content = malloc(sizeof(char *) * 3000); // creation and memory allocation of string
-        char *tag_content_without_end_tag = malloc(sizeof(char *) * 3000); // creation and memory allocation of string
+        char* tag_content = calloc(sizeof(char) * 3000, sizeof(char)); // creation and memory allocation of string
+        char* tag_content_without_end_tag = calloc(sizeof(char) * 3000, sizeof(char)); // creation and memory allocation of string
         fseek(f, intTab->content_tab[i].cursor - 1, SEEK_SET); // placing the cursor at the the i'th int of the intTab (the beginning of the tag content)
         letter = fgetc(f);
         int counter2 = 0;
@@ -65,8 +65,14 @@ StrTab *write_till_end(IntTab *intTab, char *file_name) {
             while (letter == intTab->content_tab->tag.end[counter]) { // search for the end of the j'th tag contained in the intTab thanks to the IntTagType
                 if (counter == strlen(intTab->content_tab[i].tag.end) - 1) { // if the end is found (-1 because counter start at 0)
                     tag_content_without_end_tag = remove_all_after_character(tag_content, intTab->content_tab[i].tag.end[0]); // remove the end tag from the tag content string
-                    tag_content_without_end_tag = remove_all_after_character(tag_content, '#');
-                    if(tag_content_without_end_tag != "")
+//                    tag_content_without_end_tag = remove_all_after_character(tag_content_without_end_tag, '#');
+                    tag_content_without_end_tag = remove_all_after_character(tag_content_without_end_tag, '?');
+                    if(tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] == '/')
+                    {
+                        tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] = 0; // remove last char / to avoide double
+                    }
+
+                    if(tag_content_without_end_tag != "" && (strcmp(tag_content_without_end_tag,"#") != 0))
                     {
                         should_break = addToStrTab(strTab, tag_content_without_end_tag); // insertion of the tag content string in the strTab
                     }
