@@ -286,6 +286,12 @@ true_parameters *generate_true_params(param_container *params)
     true_action **true_actions = generate_true_actions(params, &action_amount);
     true_task **true_tasks = generate_true_tasks(params, true_actions, action_amount, &(true_params->task_amount));
     print_true_tasks(true_tasks, true_params->task_amount);
+
+    if (true_actions != NULL)
+    {
+        true_params->true_tasks = true_tasks;
+    }
+
     return true_params;
 }
 
@@ -305,6 +311,15 @@ true_action **generate_true_actions(param_container *params, int *amount)
         {
             true_actions[*amount] = new_true_action;
             (*amount)++;
+        }
+    }
+
+    if (*amount == 0)
+    {
+        if (true_actions != NULL)
+        {
+            free(true_actions);
+            return NULL;
         }
     }
 
