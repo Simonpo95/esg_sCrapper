@@ -10,6 +10,8 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <dirent.h>
+#include <sys/types.h>
 
 typedef struct StringCutted scutted;
 typedef struct KeyValue keyvalue;
@@ -62,17 +64,17 @@ struct TrueAction
 
 struct TrueTask
 {
-    char * name;
+    char *name;
     long long respawn_time;
     int action_amount;
-    true_action ** actions;
+    true_action **actions;
 };
 
 struct TrueParameters
 {
     long long timer;
     int task_amount;
-    true_task ** true_tasks;
+    true_task **true_tasks;
 };
 
 #include "params_helper.h"

@@ -12,4 +12,5 @@ int interprete_answer(char * answer);
 int ask_launch_tasks(param_container * params);
 int get_user_proper_answer(char * question);
 void ask_user_if_needed_bug_reported(param_container *params);
+char *get_scrapper_configuration_file();
 #endif
