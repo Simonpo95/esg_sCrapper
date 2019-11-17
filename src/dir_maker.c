@@ -8,7 +8,7 @@ char* make_director(char * path, char * root)
     struct stat sb = {0};
 
     char* a_path = malloc(sizeof(char) * 245);
-    char* final_path = malloc(sizeof(char) * 2100); // changer pour plus de profondeur
+    char* final_path = malloc(sizeof(char) * 5000); // changer pour plus de profondeur
 
     sprintf(a_path, "%s%s", base_path, path);
 

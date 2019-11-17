@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>How to Kill a Process by Name Instead of PID via Command Line  |   OSXDaily</title>
+		<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//ajax.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="OS X Daily &raquo; How to Kill a Process by Name Instead of PID via Command Line Comments Feed" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"wpemoji":"http:\/\/cdn.osxdaily.com\/wp-includes\/js\/wp-emoji.js?ver=5.2.4","twemoji":"http:\/\/cdn.osxdaily.com\/wp-includes\/js\/twemoji.js?ver=5.2.4"}};
+			/**
+ * @output wp-includes/js/wp-emoji-loader.js
+ */
+
+( function( window, document, settings ) {
+	var src, ready, ii, tests;
+
+	// Create a canvas element for testing native browser support of emoji.
+	var canvas = document.createElement( 'canvas' );
+	var context = canvas.getContext && canvas.getContext( '2d' );
+
+	/**
+	 * Checks if two sets of Emoji characters render the same visually.
+	 *
+	 * @since 4.9.0
+	 *
+	 * @private
+	 *
+	 * @param {number[]} set1 Set of Emoji character codes.
+	 * @param {number[]} set2 Set of Emoji character codes.
+	 *
+	 * @return {boolean} True if the two sets render the same.
+	 */
+	function emojiSetsRenderIdentically( set1, set2 ) {
+		var stringFromCharCode = String.fromCharCode;
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+		context.fillText( stringFromCharCode.apply( this, set1 ), 0, 0 );
+		var rendered1 = canvas.toDataURL();
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+		context.fillText( stringFromCharCode.apply( this, set2 ), 0, 0 );
+		var rendered2 = canvas.toDataURL();
+
+		return rendered1 === rendered2;
+	}
+
+	/**
+	 * Detects if the browser supports rendering emoji or flag emoji.
+	 *
+	 * Flag emoji are a single glyph made of two characters, so some browsers
+	 * (notably, Firefox OS X) don't support them.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @private
+	 *
+	 * @param {string} type Whether to test for support of "flag" or "emoji".
+	 *
+	 * @return {boolean} True if the browser can render emoji, false if it cannot.
+	 */
+	function browserSupportsEmoji( type ) {
+		var isIdentical;
+
+		if ( ! context || ! context.fillText ) {
+			return false;
+		}
+
+		/*
+		 * Chrome on OS X added native emoji rendering in M41. Unfortunately,
+		 * it doesn't work when the font is bolder than 500 weight. So, we
+		 * check for bold rendering support to avoid invisible emoji in Chrome.
+		 */
+		context.textBaseline = 'top';
+		context.font = '600 32px Arial';
+
+		switch ( type ) {
+			case 'flag':
+				/*
+				 * Test for UN flag compatibility. This is the least supported of the letter locale flags,
+				 * so gives us an easy test for full support.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly ([U] + [N]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0xD83C, 0xDDFA, 0xD83C, 0xDDF3 ],
+					[ 0xD83C, 0xDDFA, 0x200B, 0xD83C, 0xDDF3 ]
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for English flag compatibility. England is a country in the United Kingdom, it
+				 * does not have a two letter locale code but rather an five letter sub-division code.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (black flag emoji + [G] + [B] + [E] + [N] + [G]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0xD83C, 0xDFF4, 0xDB40, 0xDC67, 0xDB40, 0xDC62, 0xDB40, 0xDC65, 0xDB40, 0xDC6E, 0xDB40, 0xDC67, 0xDB40, 0xDC7F ],
+					[ 0xD83C, 0xDFF4, 0x200B, 0xDB40, 0xDC67, 0x200B, 0xDB40, 0xDC62, 0x200B, 0xDB40, 0xDC65, 0x200B, 0xDB40, 0xDC6E, 0x200B, 0xDB40, 0xDC67, 0x200B, 0xDB40, 0xDC7F ]
+				);
+
+				return ! isIdentical;
+			case 'emoji':
+				/*
+				 * Love is love.
+				 *
+				 * To test for Emoji 12 support, try to render a new emoji: men holding hands, with different skin
+				 * tone modifiers.
+				 *
+				 * When updating this test for future Emoji releases, ensure that individual emoji that make up the
+				 * sequence come from older emoji standards.
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[0xD83D, 0xDC68, 0xD83C, 0xDFFE, 0x200D, 0xD83E, 0xDD1D, 0x200D, 0xD83D, 0xDC68, 0xD83C, 0xDFFC],
+					[0xD83D, 0xDC68, 0xD83C, 0xDFFE, 0x200B, 0xD83E, 0xDD1D, 0x200B, 0xD83D, 0xDC68, 0xD83C, 0xDFFC]
+				);
+
+				return ! isIdentical;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Adds a script to the head of the document.
+	 *
+	 * @ignore
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param {Object} src The url where the script is located.
+	 * @return {void}
+	 */
+	function addScript( src ) {
+		var script = document.createElement( 'script' );
+
+		script.src = src;
+		script.defer = script.type = 'text/javascript';
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}
+
+	tests = Array( 'flag', 'emoji' );
+
+	settings.supports = {
+		everything: true,
+		everythingExceptFlag: true
+	};
+
+	/*
+	 * Tests the browser support for flag emojis and other emojis, and adjusts the
+	 * support settings accordingly.
+	 */
+	for( ii = 0; ii < tests.length; ii++ ) {
+		settings.supports[ tests[ ii ] ] = browserSupportsEmoji( tests[ ii ] );
+
+		settings.supports.everything = settings.supports.everything && settings.supports[ tests[ ii ] ];
+
+		if ( 'flag' !== tests[ ii ] ) {
+			settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && settings.supports[ tests[ ii ] ];
+		}
+	}
+
+	settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && ! settings.supports.flag;
+
+	// Sets DOMReady to false and assigns a ready function to settings.
+	settings.DOMReady = false;
+	settings.readyCallback = function() {
+		settings.DOMReady = true;
+	};
+
+	// When the browser can not render everything we need to load a polyfill.
+	if ( ! settings.supports.everything ) {
+		ready = function() {
+			settings.readyCallback();
+		};
+
+		/*
+		 * Cross-browser version of adding a dom ready event.
+		 */
+		if ( document.addEventListener ) {
+			document.addEventListener( 'DOMContentLoaded', ready, false );
+			window.addEventListener( 'load', ready, false );
+		} else {
+			window.attachEvent( 'onload', ready );
+			document.attachEvent( 'onreadystatechange', function() {
+				if ( 'complete' === document.readyState ) {
+					settings.readyCallback();
+				}
+			} );
+		}
+
+		src = settings.source || {};
+
+		if ( src.concatemoji ) {
+			addScript( src.concatemoji );
+		} else if ( src.wpemoji && src.twemoji ) {
+			addScript( src.twemoji );
+			addScript( src.wpemoji );
+		}
+	}
+
+} )( window, document, window._wpemojiSettings );
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='jetpack_related-posts-css'  href='http://cdn.osxdaily.com/wp-content/plugins/jetpack/modules/related-posts/related-posts.css?ver=20190204' type='text/css' media='all' />
+<link rel='stylesheet' id='foundation-framework-style-css'  href='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/default/style.css?ver=939b77e6da9a9b591dfc5ce10c4767ac' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='http://cdn.osxdaily.com/wp-includes/css/dist/block-library/style.css?ver=5.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-notice-front-css'  href='http://cdn.osxdaily.com/wp-content/plugins/cookie-notice/css/front.css?ver=5.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='http://cdn.osxdaily.com/wp-content/plugins/wp-syntax/css/wp-syntax.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='wptouch-theme-css-css'  href='http://cdn.osxdaily.com/wp-content/uploads/wptouch-data/themes/bauhaus/default/style.css?ver=939b77e6da9a9b591dfc5ce10c4767ac' type='text/css' media='all' />
+<link rel='stylesheet' id='a3a3_lazy_load-css'  href='http://cdn.osxdaily.com/wp-content/uploads/sass/a3_lazy_load.min.css?ver=1571440752' type='text/css' media='all' />
+<link rel='stylesheet' id='sharedaddy-css'  href='http://cdn.osxdaily.com/wp-content/plugins/jetpack/modules/sharedaddy/sharing.css?ver=7.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='social-logos-css'  href='http://cdn.osxdaily.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-includes/js/jquery/jquery-migrate.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/jetpack/modules/related-posts/related-posts.js?ver=20190204'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var cnArgs = {"ajaxurl":"https:\/\/osxdaily.com\/wp-admin\/admin-ajax.php","hideEffect":"fade","onScroll":"yes","onScrollOffset":"100","cookieName":"cookie_notice_accepted","cookieValue":"true","cookieTime":"31536000","cookiePath":"\/","cookieDomain":"","redirection":"","cache":"1","refuse":"no","revoke_cookies":"0","revoke_cookies_opt":"automatic","secure":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/cookie-notice/js/front.js?ver=1.2.43'></script>
+<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js?ver=5.2.4'></script>
+<link rel='https://api.w.org/' href='http://osxdaily.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://osxdaily.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://cdn.osxdaily.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Use Tabs in Maps for Mac' href='http://osxdaily.com/2017/01/11/use-tabs-maps-mac/' />
+<link rel='next' title='Beta 4 of iOS 10.2.1 and MacOS Sierra 10.12.3 Released for Testing' href='http://osxdaily.com/2017/01/12/beta-4-of-ios-10-2-1-and-macos-sierra-10-2-3-released-for-testing/' />
+<link rel='shortlink' href='http://osxdaily.com/?p=62215' />
+<link rel="alternate" type="application/json+oembed" href="http://osxdaily.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://osxdaily.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F&#038;format=xml" />
+<script type='text/javascript'>
+	(function () {
+		var pl_beacon = document.createElement('script');
+		pl_beacon.type = 'text/javascript';
+		pl_beacon.async = true;
+		var host = 'http://osxdaily.com';
+		if ('https:' == document.location.protocol) {
+			host = host.replace('http://', 'https://');
+		}
+		pl_beacon.src = host + '/un6up8Rl5Bi9.js?ts=' + Math.floor((Math.random() * 100000) + 1);
+		var first_script_tag = document.getElementsByTagName('script')[0];
+		first_script_tag.parentNode.insertBefore(pl_beacon, first_script_tag);
+	})();
+</script><style data-context="foundation-flickity-css">/*! Flickity v2.0.2
+http://flickity.metafizzy.co
+---------------------------------------------- */.flickity-enabled{position:relative}.flickity-enabled:focus{outline:0}.flickity-viewport{overflow:hidden;position:relative;height:100%}.flickity-slider{position:absolute;width:100%;height:100%}.flickity-enabled.is-draggable{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.flickity-enabled.is-draggable .flickity-viewport{cursor:move;cursor:-webkit-grab;cursor:grab}.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down{cursor:-webkit-grabbing;cursor:grabbing}.flickity-prev-next-button{position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:#fff;background:hsla(0,0%,100%,.75);cursor:pointer;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.flickity-prev-next-button:hover{background:#fff}.flickity-prev-next-button:focus{outline:0;box-shadow:0 0 0 5px #09f}.flickity-prev-next-button:active{opacity:.6}.flickity-prev-next-button.previous{left:10px}.flickity-prev-next-button.next{right:10px}.flickity-rtl .flickity-prev-next-button.previous{left:auto;right:10px}.flickity-rtl .flickity-prev-next-button.next{right:auto;left:10px}.flickity-prev-next-button:disabled{opacity:.3;cursor:auto}.flickity-prev-next-button svg{position:absolute;left:20%;top:20%;width:60%;height:60%}.flickity-prev-next-button .arrow{fill:#333}.flickity-page-dots{position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1}.flickity-rtl .flickity-page-dots{direction:rtl}.flickity-page-dots .dot{display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:.25;cursor:pointer}.flickity-page-dots .dot.is-selected{opacity:1}</style><style data-context="foundation-slideout-css">.slideout-menu{position:fixed;left:0;top:0;bottom:0;right:auto;z-index:0;width:256px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}.slideout-menu.pushit-right{left:auto;right:0}.slideout-panel{position:relative;z-index:1;will-change:transform}.slideout-open,.slideout-open .slideout-panel,.slideout-open body{overflow:hidden}.slideout-open .slideout-menu{display:block}.pushit{display:none}</style><style type='text/css'>img#wpstats{display:none}</style><style data-context="foundation-wptouch-icons-css">[class*=" icon-"]:before,[class*=" wptouch-icon-"]:before,[class^=icon-]:before,[class^=wptouch-icon-]:before{font-family:wptouch-icons;font-style:normal;font-weight:400;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em}.icon-arrow-left:before,.wptouch-icon-arrow-left:before{content:'\e800'}.icon-caret-down:before,.wptouch-icon-caret-down:before{content:'\e801'}.icon-arrow-combo:before,.wptouch-icon-arrow-combo:before{content:'\e802'}.icon-yelp:before,.wptouch-icon-yelp:before{content:'\e803'}.icon-key:before,.wptouch-icon-key:before{content:'\e804'}.icon-left-open-big:before,.wptouch-icon-left-open-big:before{content:'\e805'}.icon-user:before,.wptouch-icon-user:before{content:'\e806'}.icon-signin:before,.wptouch-icon-signin:before{content:'\e807'}.icon-signout:before,.wptouch-icon-signout:before{content:'\e808'}.icon-search:before,.wptouch-icon-search:before{content:'\e809'}.icon-reorder:before,.wptouch-icon-reorder:before{content:'\e80a'}.icon-basket:before,.wptouch-icon-basket:before{content:'\e80b'}.icon-angle-right:before,.wptouch-icon-angle-right:before{content:'\e80c'}.icon-angle-left:before,.wptouch-icon-angle-left:before{content:'\e80d'}.icon-chevron-up:before,.wptouch-icon-chevron-up:before{content:'\e80e'}.icon-chevron-down:before,.wptouch-icon-chevron-down:before{content:'\e80f'}.icon-chevron-left:before,.wptouch-icon-chevron-left:before{content:'\e810'}.icon-chevron-right:before,.wptouch-icon-chevron-right:before{content:'\e811'}.icon-comment:before,.wptouch-icon-comment:before{content:'\e812'}.icon-comments:before,.wptouch-icon-comments:before{content:'\e813'}.icon-circle-arrow-left:before,.wptouch-icon-circle-arrow-left:before{content:'\e814'}.icon-circle-arrow-right:before,.wptouch-icon-circle-arrow-right:before{content:'\e815'}.icon-pencil:before,.wptouch-icon-pencil:before{content:'\e816'}.icon-reply:before,.wptouch-icon-reply:before{content:'\e817'}.icon-envelope-alt:before,.wptouch-icon-envelope-alt:before{content:'\e818'}.icon-list-ul:before,.wptouch-icon-list-ul:before{content:'\e819'}.icon-tags:before,.wptouch-icon-tags:before{content:'\e81a'}.icon-twitter:before,.wptouch-icon-twitter:before{content:'\e81b'}.icon-google-plus:before,.wptouch-icon-google-plus:before{content:'\e81c'}.icon-google-plus-sign:before,.wptouch-icon-google-plus-sign:before{content:'\e81d'}.icon-facebook:before,.wptouch-icon-facebook:before{content:'\e81e'}.icon-facebook-sign:before,.wptouch-icon-facebook-sign:before{content:'\e81f'}.icon-instagram:before,.wptouch-icon-instagram:before{content:'\e820'}.icon-tumblr:before,.wptouch-icon-tumblr:before{content:'\e821'}.icon-pinterest:before,.wptouch-icon-pinterest:before{content:'\e822'}.icon-pinterest-sign:before,.wptouch-icon-pinterest-sign:before{content:'\e823'}.icon-vine:before,.wptouch-icon-vine:before{content:'\e824'}.icon-book-open:before,.wptouch-icon-book-open:before{content:'\e825'}.icon-youtube:before,.wptouch-icon-youtube:before{content:'\e826'}.icon-linkedin-sign:before,.wptouch-icon-linkedin-sign:before{content:'\e827'}.icon-plus:before,.wptouch-icon-plus:before{content:'\e828'}.icon-rss-sign:before,.wptouch-icon-rss-sign:before{content:'\e829'}.icon-time:before,.wptouch-icon-time:before{content:'\e82a'}.icon-camera-retro:before,.wptouch-icon-camera-retro:before{content:'\e82b'}.icon-play:before,.wptouch-icon-play:before{content:'\e82c'}.icon-filter:before,.wptouch-icon-filter:before{content:'\e82d'}.icon-minus:before,.wptouch-icon-minus:before{content:'\e82e'}.icon-ok-sign:before,.wptouch-icon-ok-sign:before{content:'\e82f'}.icon-layout-tiles:before,.wptouch-icon-layout-tiles:before{content:'\e830'}.icon-layout-list:before,.wptouch-icon-layout-list:before{content:'\e831'}.icon-resize-full:before,.wptouch-icon-resize-full:before{content:'\e832'}.icon-cancel:before,.wptouch-icon-cancel:before{content:'\e833'}.icon-cancel-circled:before,.wptouch-icon-cancel-circled:before{content:'\e834'}.icon-star:before,.wptouch-icon-star:before{content:'\e835'}.icon-remove-sign:before,.wptouch-icon-remove-sign:before{content:'\e836'}.icon-map-marker:before,.wptouch-icon-map-marker:before{content:'\e837'}.icon-cloud:before,.wptouch-icon-cloud:before{content:'\e838'}.icon-cloud-download:before,.wptouch-icon-cloud-download:before{content:'\e839'}.icon-info-sign:before,.wptouch-icon-info-sign:before{content:'\e83a'}.icon-copy:before,.wptouch-icon-copy:before{content:'\e83b'}.icon-download:before,.wptouch-icon-download:before{content:'\e83c'}.icon-external-link:before,.wptouch-icon-external-link:before{content:'\e83d'}.icon-warning-sign:before,.wptouch-icon-warning-sign:before{content:'\e83e'}.icon-compass:before,.wptouch-icon-compass:before{content:'\e83f'}.icon-trash:before,.wptouch-icon-trash:before{content:'\e840'}.icon-th:before,.wptouch-icon-th:before{content:'\e841'}.icon-menu:before,.wptouch-icon-menu:before{content:'\e842'}.icon-double-angle-up:before,.wptouch-icon-double-angle-up:before{content:'\e843'}.icon-arrow-down:before,.wptouch-icon-arrow-down:before{content:'\e844'}.icon-caret-right:before,.wptouch-icon-caret-right:before{content:'\e845'}.icon-caret-left:before,.wptouch-icon-caret-left:before{content:'\e846'}.icon-caret-up:before,.wptouch-icon-caret-up:before{content:'\e847'}.icon-vimeo:before,.wptouch-icon-vimeo:before{content:'\e848'}.icon-phone:before,.wptouch-icon-phone:before{content:'\e849'}.icon-angle-up:before,.wptouch-icon-angle-up:before{content:'\e84a'}.icon-angle-down:before,.wptouch-icon-angle-down:before{content:'\e84b'}.icon-refresh:before,.wptouch-icon-refresh:before{content:'\e84c'}.icon-info:before,.wptouch-icon-info:before{content:'\e84d'}.icon-chat:before,.wptouch-icon-chat:before{content:'\e84e'}.icon-check:before,.wptouch-icon-check:before{content:'\e84f'}</style><link rel="canonical" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to Kill a Process by Name Instead of PID via Command Line" />
+<meta property="og:url" content="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/" />
+<meta property="og:description" content="Command line users rely on the &#8216;kill&#8217; command to terminate a process as defined by the appropriate process identifier (PID). While there&#8217;s nothing wrong with targeting processes b…" />
+<meta property="article:published_time" content="2017-01-12T19:41:57+00:00" />
+<meta property="article:modified_time" content="2017-01-12T19:41:57+00:00" />
+<meta property="og:site_name" content="OS X Daily" />
+<meta property="og:image" content="http://cdn.osxdaily.com/wp-content/uploads/2014/08/terminal-icon-osx.png" />
+<meta property="og:image:width" content="454" />
+<meta property="og:image:height" content="398" />
+<meta property="og:image:alt" content="Terminal in macOS" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@osxdaily" />
+<meta name="twitter:site" content="@osxdaily" />
+<meta name="twitter:text:title" content="How to Kill a Process by Name Instead of PID via Command Line" />
+<meta name="twitter:image" content="http://cdn.osxdaily.com/wp-content/uploads/2014/08/terminal-icon-osx.png?w=640" />
+<meta name="twitter:image:alt" content="Terminal in macOS" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="http://cdn.osxdaily.com/wp-content/uploads/2019/09/cropped-apple-touch-icon-104-32x32.png" sizes="32x32" />
+<link rel="icon" href="http://cdn.osxdaily.com/wp-content/uploads/2019/09/cropped-apple-touch-icon-104-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="http://cdn.osxdaily.com/wp-content/uploads/2019/09/cropped-apple-touch-icon-104-180x180.png" />
+<meta name="msapplication-TileImage" content="http://cdn.osxdaily.com/wp-content/uploads/2019/09/cropped-apple-touch-icon-104-270x270.png" />
+<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(255,255,255,.88);}</style><meta name="viewport" content="initial-scale=1.0, maximum-scale=3.0, user-scalable=no, width=device-width" /><link rel="apple-touch-icon-precomposed" href="http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/admin/images/default-bookmark.png" />
+
+<!-- Foundation Styles -->
+<style type='text/css'>
+.wptouch-menu .menu-tree a,.wptouch-menu .menu-tree span{color:rgba(0,0,0,.65);text-shadow:rgba(255,255,255,.3) 0 1px 0}.wptouch-menu .menu-tree>li{border-bottom:1px solid rgba(0,0,0,.08);border-top:1px solid rgba(255,255,255,.1)}.menu-tree li{clear:both;position:relative;line-height:100%}.wptouch-menu ul ul{display:none}.menu-tree li span{-webkit-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s;display:block;-webkit-box-shadow:inset rgba(0,0,0,.15) 1px 0 0;box-shadow:inset rgba(0,0,0,.15) 1px 0 0;border-left:1px solid rgba(255,255,255,.1);padding:15px;float:right}.menu-tree li span.toggle{-webkit-box-shadow:inset rgba(0,0,0,.2) 0 4px 4px;box-shadow:inset rgba(0,0,0,.2) 0 4px 4px;border:none}.menu-tree li span:before{font-family:wptouch-icons;content:"\e80f"}.menu-tree li span.toggle:before{content:"\e80e";font-weight:400;font-style:normal}ul.menu-tree ul span,ul.menu-tree.no-parent-links span{border:none;-webkit-box-shadow:none;box-shadow:none}.menu-tree li a{display:block;-o-text-overflow:ellipsis;-ms-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding-top:15px;padding-bottom:15px;padding-right:32px}.menu-tree li img{width:26px;height:26px;position:relative;float:left;padding-right:6px;top:8px;padding-left:6px}.menu-tree>.open-tree{background:rgba(0,0,0,.03);-webkit-box-shadow:inset rgba(0,0,0,.25) 0 0 4px;box-shadow:inset rgba(0,0,0,.25) 0 0 4px;border-top-color:rgba(0,0,0,.2);margin-top:-1px;padding-top:1px}.menu-tree li.no-icon{padding-left:10px}.menu-tree ul li{border-style:none!important;clear:both;padding-left:15px}.rtl .menu-tree li span{-webkit-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s;float:left;-webkit-box-shadow:inset rgba(0,0,0,.15) -1px 0 0;box-shadow:inset rgba(0,0,0,.15) -1px 0 0;border-right:1px solid rgba(255,255,255,.1);border-left:none}.rtl .menu-tree li span.toggle{-webkit-box-shadow:inset rgba(0,0,0,.2) 0 4px 4px;box-shadow:inset rgba(0,0,0,.2) 0 4px 4px;border:none}.rtl .menu-tree li.menu-item img{float:right}.rtl .menu-tree li.menu-item a{padding-left:32px;padding-right:0}.rtl .menu-tree li.no-icon{padding-right:10px}.rtl .menu-tree ul li{padding-left:0;padding-right:15px}.dark-header .wptouch-menu .menu-tree a,.dark-header .wptouch-menu .menu-tree span{color:rgba(255,255,255,.9);text-shadow:rgba(0,0,0,.3) 0 -1px 0}.dark-header .wptouch-menu .menu-tree span:before{color:rgba(255,255,255,.9);text-shadow:rgba(0,0,0,.5) 0 -1px 0}.dark-header .wptouch-menu .menu-tree>li.menu-item{border-bottom:1px solid rgba(0,0,0,.12);border-top:1px solid rgba(255,255,255,.06)}</style>
+<meta name="theme-color" content="#ffffff"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-7321635426958037',
+    enable_page_level_ads: true,
+    overlays: {google_ad_channel: '4432130065'}
+  });
+</script>			</head>
+
+	<body class="post-template-default single single-post postid-62215 single-format-standard light-body light-header light-post-head body-font android ios7 theme-bauhaus circles off-canvas list-view wptouch-multiads cookies-not-set">
+
+		
+		
+			<div class="pushit pushit-left">
+		<div id="menu" class="wptouch-menu show-hide-menu">
+			<ul class="menu-tree parent-links"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent"><img src="http://cdn.osxdaily.com/wp-content/plugins//wptouch-pro//resources/icons/elegant/Config.png" alt="menu-icon" /><a href="http://osxdaily.com/category/tips-tricks/" class="title">Tips & Tricks</a></li><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent"><img src="http://cdn.osxdaily.com/wp-content/plugins//wptouch-pro//resources/icons/elegant/Screen.png" alt="menu-icon" /><a href="http://osxdaily.com/category/mac-os-x/" class="title">Mac OS X</a></li><li class="menu-item menu-item-type-taxonomy menu-item-object-category"><img src="http://cdn.osxdaily.com/wp-content/plugins//wptouch-pro//resources/icons/elegant/Photo.png" alt="menu-icon" /><a href="http://osxdaily.com/category/iphone/" class="title">iPhone</a></li><li class="menu-item menu-item-type-taxonomy menu-item-object-category"><img src="http://cdn.osxdaily.com/wp-content/plugins//wptouch-pro//resources/icons/elegant/List.png" alt="menu-icon" /><a href="http://osxdaily.com/category/ipad/" class="title">iPad</a></li><li class="menu-item menu-item-type-taxonomy menu-item-object-category"><img src="http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/resources/icons/elegant/Paper.png" alt="menu-icon" /><a href="http://osxdaily.com/category/news/" class="title">News</a></li><li class="menu-item menu-item-type-taxonomy menu-item-object-category"><img src="http://cdn.osxdaily.com/wp-content/plugins//wptouch-pro//resources/icons/elegant/Screen.png" alt="menu-icon" /><a href="http://osxdaily.com/category/mac-setups/" class="title">Mac Setups</a></li></ul>
+					</div>
+	</div>
+
+<div class="page-wrapper">
+
+	<!-- Back Button for Web-App Mode -->
+	<div class="wptouch-icon-arrow-left back-button tappable"><!-- css-button --></div>
+
+	<header id="header-title-logo">
+					<div id="search-toggle" class="search-toggle tappable search-right" role="button"><!--icon-search--></div>
+				<a href="http://osxdaily.com" class="header-center tappable">
+							<img id="header-logo" src="http://cdn.osxdaily.com/wp-content/uploads/2019/09/osxdaily-logo-a-104.png" alt="logo image" />
+					</a>
+		<div id="menu-toggle" class="menu-btn tappable show-hide-toggle menu-left" data-effect-target="menu" data-menu-target="menu" role="button"><!--icon-reorder--></div>
+	</header>
+
+		<div id="search-dropper">
+		<div id="wptouch-search-inner">
+			<form method="get" id="searchform" action="http://osxdaily.com/">
+				<input type="text" name="s" id="search-text" placeholder="Search this website&hellip;" />
+				<input name="submit" type="submit" id="search-submit" value="Search" class="button-dark" />
+			</form>
+		</div>
+	</div>
+	
+	<div class="content-wrap">
+
+		
+	
+		
+	<div id="content">
+		
+			
+			<div class="post section post-62215 post-name-kill-process-by-name-command-line post-author-7 single not-page has-thumbnail show-thumbs">
+				<div class="post-page-head-area bauhaus">
+					<span class="post-date-comments">
+													January 12, 2017																			&bull;							1 comment											</span>
+					<h1 class="post-title heading-font">How to Kill a Process by Name Instead of PID via Command Line</h1>
+											<span class="post-author">Paul Horowitz</span>
+														</div>
+
+				<div class="post-page-content">
+					<div class="wptouch-showcase showcase-location-pre_content"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ATF Mobile Head -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:50px"
+     data-ad-client="ca-pub-7321635426958037"
+     data-ad-slot="2206913673"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div><p><img src="http://cdn.osxdaily.com/wp-content/uploads/2017/01/kill-process-by-name-610x172.jpg" alt="How to kill a process by name" width="610" height="172" class="aligncenter size-large wp-image-62216" srcset="http://cdn.osxdaily.com/wp-content/uploads/2017/01/kill-process-by-name-610x172.jpg 610w, http://cdn.osxdaily.com/wp-content/uploads/2017/01/kill-process-by-name-300x84.jpg 300w, http://cdn.osxdaily.com/wp-content/uploads/2017/01/kill-process-by-name-768x216.jpg 768w, http://cdn.osxdaily.com/wp-content/uploads/2017/01/kill-process-by-name-900x253.jpg 900w, http://cdn.osxdaily.com/wp-content/uploads/2017/01/kill-process-by-name.jpg 1358w" sizes="(max-width: 610px) 100vw, 610px" /></p>
+<p>Command line users rely on the &#8216;kill&#8217; command to terminate a process as defined by the appropriate process identifier (PID). While there&#8217;s nothing wrong with targeting processes by their PID, another approach which is often easier is to target a process by name, rather than its unique identifier. </p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: left; margin: 10px 10px 10px 0;">
+<div style="padding:5px 20px 10px 0;" ><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 336x280 in page article -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-7321635426958037"
+     data-ad-slot="4239339108"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div>
+
+<p>There are a few ways to kill a process by process name, we&#8217;ll review two primary methods using killall and pkill. These will work the same in Mac OS / X and linux, and they can be used to target GUI apps and processes as well as those running in the background or exclusively at the command line. Either command can be prefixed with sudo to terminate root level tasks or those owned by another user.</p>
+<p><span id="more-62215"></span></p>
+<h3>Killing a Process by Name with killall</h3>
+<p>The killall command is the most commonly used way to kill a process by its name:</p>
+<ol>
+<li>From the Terminal, type the following command (in this example using task &#8220;ExampleTask&#8221; as the targetted process to kill)</li>
+<p><code>killall ExampleTask</code></p>
+<li>Hit return to instantly kill the &#8216;ExampleTask&#8217; process (replace ExampleTask with any other process name to kill it)</li>
+</ol>
+<p>Remember, killing a process is instantaneous and unforgiving, it immediately terminates the process without saving any data. This can result in data loss and other irregularities if you&#8217;re not sure what you&#8217;re doing. </p>
+<h3>Kill a Process by Name with pkill</h3>
+<p>The pkill command also offers an approach to terminate processes by name rather than targeting a PID. One of the perks of pkill is that it makes it easier to target processes with spaces in their names since you only need to use quotes around the task name to kill.</p>
+<ol>
+<li>From the Terminal, type the following command:</li>
+<p><code>pkill "Example Process name agent"</code></p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<!--- gads -->
+<div style="padding:5px 20px 10px 0;" id="lower_content_ad_box">
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-7321635426958037";
+/* 336x280, created 8/6/09 */
+google_ad_slot = "3803516584";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+
+<li>Hit Return to immediately terminate the named process</li>
+</ol>
+<p>Like killall, pkill will immediately terminate the process that has been targeted with no confirmations, dialogs, saves, or anything else. The process just instantly ends, much like <a href="http://osxdaily.com/2012/03/02/force-quit-mac-apps/">using force quit on apps</a> from the task manager or Activity Monitor.</p>
+<p>pkill is a powerful tool with many capabilities, if interested you can learn about <a href="http://osxdaily.com/2012/10/18/kill-process-wildcards-pkill-mac-os-x/">using pkill with wildcards</a> and using <a href="http://osxdaily.com/2013/02/18/kill-all-processes-belonging-to-user/">pkill to kill all processes belonging to a specific user</a>.</p>
+<p>Know of another way to target a process by name to kill it from the command line? Let us know in the comments below!</p>
+
+<div style="font-size: 0px; height: 0px; line-height: 0px; margin: 0; padding: 0; clear: both;"></div><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-62215" class="share-facebook sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-62215" class="share-twitter sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li><a href="#" class="sharing-anchor sd-button share-more"><span>More</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-62215" class="share-linkedin sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span>LinkedIn</span></a></li><li class="share-print"><a rel="nofollow noopener noreferrer" data-shared="" class="share-print sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/#print" target="_blank" title="Click to print"><span>Print</span></a></li><li class="share-end"></li><li class="share-tumblr"><a rel="nofollow noopener noreferrer" data-shared="" class="share-tumblr sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=tumblr" target="_blank" title="Click to share on Tumblr"><span>Tumblr</span></a></li><li class="share-pinterest"><a rel="nofollow noopener noreferrer" data-shared="sharing-pinterest-62215" class="share-pinterest sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=pinterest" target="_blank" title="Click to share on Pinterest"><span>Pinterest</span></a></li><li class="share-end"></li><li class="share-pocket"><a rel="nofollow noopener noreferrer" data-shared="" class="share-pocket sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=pocket" target="_blank" title="Click to share on Pocket"><span>Pocket</span></a></li><li class="share-reddit"><a rel="nofollow noopener noreferrer" data-shared="" class="share-reddit sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=reddit" target="_blank" title="Click to share on Reddit"><span>Reddit</span></a></li><li class="share-end"></li><li class="share-telegram"><a rel="nofollow noopener noreferrer" data-shared="" class="share-telegram sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=telegram" target="_blank" title="Click to share on Telegram"><span>Telegram</span></a></li><li class="share-jetpack-whatsapp"><a rel="nofollow noopener noreferrer" data-shared="" class="share-jetpack-whatsapp sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=jetpack-whatsapp" target="_blank" title="Click to share on WhatsApp"><span>WhatsApp</span></a></li><li class="share-end"></li><li class="share-skype"><a rel="nofollow noopener noreferrer" data-shared="sharing-skype-62215" class="share-skype sd-button share-icon" href="http://osxdaily.com/2017/01/12/kill-process-by-name-command-line/?share=skype" target="_blank" title="Click to share on Skype"><span>Skype</span></a></li><li class="share-end"></li></ul></div></div></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div><div class="sharing-options share-bottom style-default">
+	<a class="facebook-btn no-ajax" href="//www.facebook.com/sharer.php?u=http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F" target="_blank">Share</a>
+	<a class="twitter-btn no-ajax" href="//twitter.com/intent/tweet?source=wptouchpro3&text=How+to+Kill+a+Process+by+Name+Instead+of+PID+via+Command+Line+-+&url=http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F" target="_blank">Tweet</a>
+	<a class="pinterest-btn no-ajax" href="//pinterest.com/pin/create/button/?url=http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F&media=http://cdn.osxdaily.com/wp-content/uploads/2014/08/terminal-icon-osx.png" target="_blank">Pin</a>
+	<a class="email-btn no-ajax" href="mailto:?subject=How%20to%20Kill%20a%20Process%20by%20Name%20Instead%20of%20PID%20via%20Command%20Line&body=http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F">Mail</a>
+	<a class="sms-btn no-ajax" href="sms:&body=How to Kill a Process by Name Instead of PID via Command Line: http%3A%2F%2Fosxdaily.com%2F2017%2F01%2F12%2Fkill-process-by-name-command-line%2F"><span>SMS</span></a>
+</div>									</div>
+			</div>
+
+			</div> <!-- content -->
+
+				<div class="related-posts">
+			<h3>Related</h3>
+			<ul class="related">
+													<li class="has-thumb no-excerpt">
+													<img width="144" height="144" src="http://cdn.osxdaily.com/wp-content/uploads/2019/10/fix-copy-of-macos-cant-be-used-install-macos-144x144.jpg" class="attachment-wptouch-new-thumbnail size-wptouch-new-thumbnail wp-post-image" alt="Fix copy of Install MacOS damaged and cant be used to install macOS" srcset="http://cdn.osxdaily.com/wp-content/uploads/2019/10/fix-copy-of-macos-cant-be-used-install-macos-144x144.jpg 144w, http://cdn.osxdaily.com/wp-content/uploads/2019/10/fix-copy-of-macos-cant-be-used-install-macos-150x150.jpg 150w, http://cdn.osxdaily.com/wp-content/uploads/2019/10/fix-copy-of-macos-cant-be-used-install-macos-300x300.jpg 300w" sizes="(max-width: 144px) 100vw, 144px" />												<strong>
+							<a href="http://osxdaily.com/2019/10/24/fix-install-macos-application-damaged-cant-be-used-error-mac/">How to Fix &#8220;application is damaged, can&#8217;t be used to install macOS&#8221; Errors</a>
+						</strong>
+						<p></p>
+					</li>
+									<li class="has-thumb no-excerpt">
+													<img width="144" height="144" src="http://cdn.osxdaily.com/wp-content/uploads/2019/10/airpods-pro-connect-screenshot.jpeg-144x144.png" class="attachment-wptouch-new-thumbnail size-wptouch-new-thumbnail wp-post-image" alt="AirPods Pro connection screen" srcset="http://cdn.osxdaily.com/wp-content/uploads/2019/10/airpods-pro-connect-screenshot.jpeg-144x144.png 144w, http://cdn.osxdaily.com/wp-content/uploads/2019/10/airpods-pro-connect-screenshot.jpeg-150x150.png 150w, http://cdn.osxdaily.com/wp-content/uploads/2019/10/airpods-pro-connect-screenshot.jpeg-300x300.png 300w" sizes="(max-width: 144px) 100vw, 144px" />												<strong>
+							<a href="http://osxdaily.com/2019/11/03/how-pair-airpods-pro-with-iphone-ipad/">How to Pair AirPods Pro with iPhone or iPad</a>
+						</strong>
+						<p></p>
+					</li>
+									<li class="has-thumb no-excerpt">
+													<img width="144" height="144" src="http://cdn.osxdaily.com/wp-content/uploads/2019/10/install-macos-catalina-unsupported-macs-dosdude-patcher-tool-144x144.jpg" class="attachment-wptouch-new-thumbnail size-wptouch-new-thumbnail wp-post-image" alt="How to install MacOS Catalina on unsupported Macs with DosDude tool" srcset="http://cdn.osxdaily.com/wp-content/uploads/2019/10/install-macos-catalina-unsupported-macs-dosdude-patcher-tool-144x144.jpg 144w, http://cdn.osxdaily.com/wp-content/uploads/2019/10/install-macos-catalina-unsupported-macs-dosdude-patcher-tool-150x150.jpg 150w, http://cdn.osxdaily.com/wp-content/uploads/2019/10/install-macos-catalina-unsupported-macs-dosdude-patcher-tool-300x300.jpg 300w" sizes="(max-width: 144px) 100vw, 144px" />												<strong>
+							<a href="http://osxdaily.com/2019/11/08/howto-install-macos-catalina-unsupported-mac-dosdude/">How to Install MacOS Catalina on Unsupported Macs</a>
+						</strong>
+						<p></p>
+					</li>
+							</ul>
+		</div>
+	
+		<div class="nav-controls clearfix">
+		
+					<div class="previous">
+				previous post				<a class="prev-post" href="http://osxdaily.com/2017/01/11/use-tabs-maps-mac/">Use Tabs in Maps for Mac</a>			</div>
+					
+					<div class="next">
+			next post			<a class="next-post" href="http://osxdaily.com/2017/01/12/beta-4-of-ios-10-2-1-and-macos-sierra-10-2-3-released-for-testing/">Beta 4 of iOS 10.2.1 and MacOS Sierra 10.12.3 Released for Testing</a>			</div>
+			</div>
+			<div id="comments">
+			
+
+
+	<h3 id="responses" class="heading-font">
+		1 response	</h3>
+
+	<ol class="commentlist">
+		<li class="comment clearfix" id="comment-3196906">
+	<div class="comment-top">
+		<div class="comment-avatar">
+					</div>
+		<div class="meta">
+			<div class="comment-author">Fred</div>
+			<div class="comment-time">January 12, 2017</div>
+		</div>
+	</div>
+
+	<div class="comment-body">
+				<p>I have never used pkill. Killall is the same as UNIX/Linux.</p>
+<p>I created an alias called &#8220;unrun&#8221;. I like that better because I am a pacifist.</p>
+					<p><a href="/2017/01/12/kill-process-by-name-command-line/?replytocom=3196906#respond">Reply</a></p>
+			</div></li><!-- #comment-## -->
+
+			</ol>
+
+
+<!--  End of dealing with the comments, now the comment form -->
+
+
+	<div id="respond">
+
+			<div id="respond" class="comment-respond">
+		<h2 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2017/01/12/kill-process-by-name-command-line/#respond" style="display:none;">Cancel reply</a></small></h2>			<form action="http://osxdaily.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200" /></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='62215' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7e09ff2f68" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="95"/></p>			</form>
+			</div><!-- #respond -->
+			
+	</div><!-- #respond // end dealing with the comment form -->
+
+		</div>
+	
+		
+		
+<!-- Add custom html / content here to be placed above the switch link -->		
+		<div class="footer">
+			<p>All content Copyright OSXDaily.com</p>		<ul class="social-links-wrap">
+		<li><a href="https://twitter.com/osxdaily" class="social-footer-badges no-ajax wptouch-icon-twitter" role="button" title="Twitter" target="_blank"></a></li><li><a href="https://www.facebook.com/osxdaily" class="social-footer-badges no-ajax wptouch-icon-facebook-sign" role="button" title="Facebook" target="_blank"></a></li><li><a href="mailto:osxdailycom@gmail.com" class="social-footer-badges no-ajax wptouch-icon-envelope-alt" role="button" title="Mail" target="_blank"></a></li><li><a href="http://osxdaily.com/rss/" class="social-footer-badges no-ajax wptouch-icon-rss-sign" role="button" title="RSS" target="_blank"></a></li>		</ul>
+		
+					<script>
+						!function(W,P,t,o,u,c,h){W.GoogleAnalyticsObject=t;W[t]||(W[t]=function(){
+						(W[t].q=W[t].q||[]).push(arguments)});W[t].l=+new Date;c=P.createElement(o);
+						h=P.getElementsByTagName(o)[0];c.src=u;h.parentNode.insertBefore(c,h)}
+						(window,document,'ga','script','//www.google-analytics.com/analytics.js');
+						ga('create','UA-428992-6', 'auto');
+						ga('send', 'pageview');
+					</script>
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"http:\/\/osxdaily.com\/2017\/01\/12\/kill-process-by-name-command-line\/":62215};
+	</script>
+						<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/uploads/wptouch-data/themes/bauhaus/default/bauhaus.min.js?ver=2.2.5'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/spinjs/spin.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/spinjs/spin-jquery.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/menu/menu.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wptouchFdn = {"ajaxLoading":"Loading\u2026","isRTL":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/base/base.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/base/base-public.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/load-more/load-more.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/flickity/flickity.pkgd.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/flickity/flickity-wptouch.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/tappable/tappable.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/tappable/wptouch.tappable.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/fastclick/wptouch.fastclick.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/fastclick/fastclick.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/slideout/slideout.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/themes/foundation/modules/slideout/slideout-helper.min.js?ver=07078a97d66756f213dbca3e379bf084'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wptouchMain = {"ajaxurl":"http:\/\/osxdaily.com\/wp-admin\/admin-ajax.php","siteurl":"\/","security_nonce":"bff5d5c8fa","current_shortcode_url":"\/2017\/01\/12\/kill-process-by-name-command-line\/?wptouch_shortcode=1","query_vars":"[]"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wptouch-pro/include/js/wptouch.min.js?ver=939b77e6da9a9b591dfc5ce10c4767ac'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201946'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/wp-syntax/js/wp-syntax.js?ver=1.1'></script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-includes/js/wp-embed.js?ver=5.2.4'></script>
+<script async="async" type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/akismet/_inc/form.js?ver=4.1.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cdn.osxdaily.com/wp-content/plugins/jetpack/modules/sharedaddy/sharing.js?ver=7.7.1'></script>
+<script type='text/javascript'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-tumblr', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-pocket', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcompocket', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-telegram', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtelegram', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-skype', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomskype', 'menubar=1,resizable=1,width=305,height=665' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-201946.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.7.1',blog:'6690815',post:'62215',tz:'-7',srv:'osxdaily.com'} ]);
+	_stq.push([ 'clickTrackerInit', '6690815', '62215' ]);
+</script>
+
+			<div id="cookie-notice" role="banner" class="cn-bottom wp-default" style="color: #fff; background-color: #000;"><div class="cookie-notice-container"><span id="cn-notice-text">This website and third-party tools use cookies for functional, analytical, and advertising purposes. By continuing to browse the site, closing this banner, scrolling this webpage, or clicking a link, you agree to these cookies. You can review our privacy policy for additional information.</span><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie cn-button wp-default button">I Accept</a><a href="http://osxdaily.com/osxdailycom-privacy-policy/" target="_blank" id="cn-more-info" class="cn-more-info cn-button wp-default button">Privacy Policy</a>
+				</div>
+				
+			</div><style>.page-wrapper { background-color: #ffffff; }
+body, header, .wptouch-menu, .pushit, #search-dropper, .date-circle, .list-view .list-carousel { background-color: #ffffff; }
+.content-wrap a, #slider a p:after { color: #2266bb; }
+.dots li.active, #switch .active { background-color: #2266bb; }
+.bauhaus, form#commentform button#submit, form#commentform input#submit { background-color: #fcfcfc; }
+</style><style>.post-page-head-area.bauhaus {
+padding-top:15px; padding-bottom:15px;}</style><!--Bauhaus v2.2.5-->		</div>
+		
+					<a href="#" class="back-to-top">Back to top</a>
+		
+		
+		<div class="wptouch-mobile-switch">
+
+	
+			<div id="switch">
+			<div>
+				<span class="on active" role="button">mobile</span>
+				<a class="off tappable" role="button" href="?wptouch_switch=desktop" rel="nofollow">desktop</a>
+			</div>
+		</div>
+	
+	
+</div>	</dv><!-- content wrap -->
+	</div><!-- page wrapper -->
+</body>
+</html>
