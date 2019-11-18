@@ -1,6 +1,6 @@
 ==
 {name -> bonjour  }  
-{second -> 5}
+{minute -> 20}
 +
 (bonjour, chat)
 
@@ -22,7 +22,7 @@
 
 ==
 {name -> taskboy}
-{second -> 7} 
+{minute -> 20}
 +
 (chiot)
 
