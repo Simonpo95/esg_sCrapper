@@ -18,12 +18,6 @@ int is_inside(char *string, StrTab *strTab)
 
 IntTab *seek_start_Tag(TagTab *tagTab, char *file_name)
 {
-//    if (strcmp("html", get_extension(file_name)))
-//    {
-//        printf("%s\n", get_extension(file_name));
-//        return NULL;
-//    }
-
     char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
 
     strcpy(principal_directory_path, DIR_ROOT);
