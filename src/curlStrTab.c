@@ -67,6 +67,10 @@ StrTab *curlStrTab(StrTab *url_strTab)
     for (int i = 0; i < url_strTab->size; i++)
     {
         char *file_name_from_url = url_to_filable(url_strTab->content_tab[i]); // retourne le nom du fichier correspondant a un url
+        if (strlen(file_name_from_url) > 253)
+        {
+            file_name_from_url[253] = '\0';
+        }
         char *principal_directory_path = calloc(strlen(DIR_ROOT) + 5, sizeof(char));
 
         strcpy(principal_directory_path, DIR_ROOT);
@@ -79,6 +83,7 @@ StrTab *curlStrTab(StrTab *url_strTab)
 
         if (!(addToStrTab(filename_strTab, file_name_from_url)))
         {
+
             fprintf(stderr, "path = %s\n", principal_directory_path_with_file_name);
             fprintf(stderr, "url = %s\n\n", url_strTab->content_tab[i]);
             curlit(principal_directory_path_with_file_name, url_strTab->content_tab[i]);
