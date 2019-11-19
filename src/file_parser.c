@@ -34,8 +34,8 @@ IntTab *seek_start_Tag(TagTab *tagTab, char *file_name)
 
     if (strcmp("html", get_extension(principal_directory_path_with_file_name)))
     {
-        printf("%s\n", get_extension(principal_directory_path_with_file_name));
-        printf(" non parsable\n");
+        printf(" --- principal_directory_path_with_file_name = %s\n", principal_directory_path_with_file_name);
+        printf(" --- non parsable\n");
         return NULL;
     }
 
