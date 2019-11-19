@@ -2,6 +2,10 @@
 
 #define SUPERVISOR
 
+//// declaration d'une constante
+#define DIR_ROOT "../web_site/"
+//// declaration d'une constante
+
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>
@@ -21,8 +25,6 @@ typedef struct Param_container param_container;
 typedef struct TrueTask true_task;
 typedef struct TrueAction true_action;
 typedef struct TrueParameters true_parameters;
-
-
 
 struct KeyValue{
     char * name;

@@ -2,6 +2,11 @@
 
 void action_work(char *initial_url, int max_depth)
 {
+
+    char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
+
+    strcpy(principal_directory_path, DIR_ROOT);
+
     ////    curler part
 
     //    char* dir_path = "../web_site/"
@@ -18,13 +23,11 @@ void action_work(char *initial_url, int max_depth)
     char *first_url = initial_url;
     int max_generation = max_depth;
     //    int max_generation = 5;
-    char *start_path = "../web_site/";
+//    char *start_path = "../web_site/";
 
     Controler *controler = create_Controler(max_generation, first_url);
-
-    //
-    ////    printControler(*controler);
-    //
+    StrTab * Url_Banned_List = create_StrTab(1);
+    addToStrTab(Url_Banned_List, first_url); // va contenir tous les urls qui on été déja curlé
     ////    start part
 
     //
@@ -36,33 +39,74 @@ void action_work(char *initial_url, int max_depth)
 
     addToTagTab(tagTab, href);
 
-
     for (int i = 0; i < controler->max_generation; i++)
     {
+        printf("\n\n controler n°%d \n\n", i);
+//        printStrTab(*(controler->url_strTab_controler[i]));
 
-        StrTab *new_url_tab = curlStrTab(controler->url_strTab_controler[i], controler->url_strTab_controler[0]->content_tab[0]);
-        controler->file_name_strTab_controler[i] = new_url_tab;
+        printf("\n\n ---- avant phase de curl \n\n");
+
+        StrTab *new_file_name_tab = curlStrTab(controler->url_strTab_controler[i]);
+        printf("--- print de new_file_name_tab\n");
+        printStrTab(*new_file_name_tab);
+
+        printf("\n\n ---- après phase de curl \n\n");
+
+        printf("\n\n ---- avant ajout des file name dans le controler \n\n");
+
+        controler->file_name_strTab_controler[i] = new_file_name_tab;
+        printf("--- print de controler->file_name_strTab_controler[i]\n");
+        printStrTab(*(controler->file_name_strTab_controler[i]));
+        printf("\n\n ---- après ajout des file name dans le controler \n\n");
 
         if (i + 1 < controler->max_generation)
         {
-            StrTab *next_generation_url_tab = create_StrTab(1);
+            printf("\n ---- i = %d\n",i);
+
+            printf("\n ---- create de next_generation_url_tab \n");
+            StrTab *next_generation_url_tab = create_StrTab(700);
+
+            printf("\n\n ---- avant boucle pour chaque ajout des file name dans le controler \n\n");
+
             for (int j = 0; j < controler->file_name_strTab_controler[i]->size; j++)
             {
-                char *file_full_path = calloc(255, sizeof(char));
-                sprintf(file_full_path, "%s%s/%s", "../web_site/", controler->file_name_strTab_controler[0]->content_tab[0], controler->file_name_strTab_controler[i]->content_tab[j]);
-                IntTab *cursor_tab = seek_start_Tag(tagTab, file_full_path);
+                printf("\n ---- i = %d - j = %d\n",i,j);
+
+                printf("\n ---- avant seek_start_Tag d'un file name du file_name_strTab_controler\n");
+                IntTab *cursor_tab = seek_start_Tag(tagTab, controler->file_name_strTab_controler[i]->content_tab[j]);
+                printf("\n ---- après seek_start_Tag d'un file name du file_name_strTab_controler\n");
                 if (cursor_tab != NULL)
                 {
-                    StrTab *url_tab = write_till_end(cursor_tab, file_full_path);
+                    printf("\n ---- avant write_till_end d'un file name du file_name_strTab_controler\n");
+                    StrTab *url_tab = write_till_end(cursor_tab, controler->file_name_strTab_controler[i]->content_tab[j]);
+                    printf("--- print de url_tab\n");
+                    printStrTab(*url_tab);
+                    printf("\n ---- après write_till_end d'un file name du file_name_strTab_controler\n");
+
+                    printf("\n ---- avant boucle pour chaque url trouver dans le file name \n");
                     for (int k = 0; k < url_tab->size; k++)
                     {
-                        fprintf(stderr, "%d %d %d", i, j, k);
-                        addToStrTab(next_generation_url_tab, url_tab->content_tab[k]);
+                        printf("\n ---- i = %d - j = %d - k = %d\n",i,j,k);
+
+                        printf("\n ---- avant test url_banned_list \n");
+                        if(!(addToStrTab(Url_Banned_List, url_tab->content_tab[k])))
+                        {
+                            printf("\n ---- avant ajout d'un des url dans next_generation_url_tab \n");
+                            addToStrTab(next_generation_url_tab, url_tab->content_tab[k]);
+                            printf("\n ---- après ajout d'un des url dans next_generation_url_tab \n");
+                        }
                     }
+                    printf("--- print de next_generation_url_tab\n");
+                    printStrTab(*next_generation_url_tab);
+                    printf("\n ---- après boucle pour chaque url trouver dans le file name \n");
                 }
             }
+            printf("\n\n ---- après boucle pour chaque ajout des file name dans le controler \n\n");
+            printf("\n\n ---- avant ajout de next_generation_url_tab dans controler->url_strTab_controler[i + 1]\n\n");
             controler->url_strTab_controler[i + 1] = next_generation_url_tab;
+            printf("--- print de controler->url_strTab_controler[i + 1]\n");
             printStrTab(*(controler->url_strTab_controler[i + 1]));
+            printf("\n\n ---- après ajout de next_generation_url_tab dans controler->url_strTab_controler[i + 1]\n\n");
         }
         else
         {

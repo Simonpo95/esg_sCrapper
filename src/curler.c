@@ -43,8 +43,3 @@ char * typecheck(char * url){
     }
     return "dada";
 }
-
-//void first_curl(char* file_path, char* url)
-//{
-//
-//}

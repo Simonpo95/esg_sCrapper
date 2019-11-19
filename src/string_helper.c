@@ -264,7 +264,9 @@ char *get_extensions_from_types(char *type)
         "video/3gpp2",
         "audio/3gpp2",
         "application/x-7z-compressed",
-        "application/rss+xml"};
+        "application/rss+xml",
+        "text/plain",
+        "text/xml"};
 
     char *possible_extension[] = {
         ".aac",
@@ -331,17 +333,26 @@ char *get_extensions_from_types(char *type)
         ".3g2",
         ".3g2",
         ".7z",
-        "xml"};
+        ".xml",
+        ".html",
+        ".xml"};
 
-    for (int i = 0; i < 64; i++)
+    if(sizeof(possible_content_type) == sizeof(possible_extension))
     {
-        if (!strcmp(type, possible_content_type[i]))
+        for (int i = 0; i < sizeof(possible_content_type) / 8; i++)
         {
-            char * returned = malloc(sizeof(char) * 30);
-            strcpy(returned, possible_extension[i]);
-            return returned;
+            if (!strcmp(type, possible_content_type[i]))
+            {
+                char * returned = malloc(sizeof(char) * 30);
+                strcpy(returned, possible_extension[i]);
+                return returned;
+            }
         }
     }
+    else
+    {
+        printf("\nLes tableaux de types ne sont pas de la même taille !!! \n\n");
+    }
 
-    return NULL;
+    return "null";
 }

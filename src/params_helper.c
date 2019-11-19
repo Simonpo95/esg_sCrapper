@@ -425,7 +425,7 @@ void print_true_actions(true_action **true_actions, int amount)
 {
     for (int i = 0; i < amount; i++)
     {
-        printf("True action %d :\n");
+        printf("True action %d :\n",i);
         print_taction(true_actions[i]);
     }
 }
@@ -580,7 +580,7 @@ void print_true_tasks(true_task **true_tasks, int tasks_amount)
 void print_ttask(true_task *ttask)
 {
     printf("name : %s\n", ttask->name);
-    printf("time : %ld\n", ttask->respawn_time);
+    printf("time : %lld\n", ttask->respawn_time);
     printf("action_amount : %d\n\n", ttask->action_amount);
     print_true_actions(ttask->actions, ttask->action_amount);
 }

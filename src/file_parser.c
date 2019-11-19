@@ -1,13 +1,14 @@
 #include "file_parser.h"
 
-int is_inside(char *content_tag, StrTab *strTab)
+int is_inside(char *string, StrTab *strTab)
 {
 
     for (int i = 0; i < strTab->size; i++)
     {
-        if (strcmp(content_tag, strTab->content_tab[i]) == 0)
+        if (strcmp(string, strTab->content_tab[i]) == 0)
         {
-            printf("~~ chaine deja présente dans le tableau\n\n");
+            printf("~~ %s\n",string);
+            printf("~~ chaine deja présente dans le tableau\n");
             return 1;
         }
     }
@@ -22,13 +23,22 @@ IntTab *seek_start_Tag(TagTab *tagTab, char *file_name)
         printf("%s", get_extension(file_name));
         return NULL;
     }
+
+    char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
+
+    strcpy(principal_directory_path, DIR_ROOT);
+
+    char *principal_directory_path_with_file_name = calloc(sizeof(char) * (strlen(file_name) + strlen(principal_directory_path)), sizeof(char));      // creation d'un char pour nom fichier ou dossier
+
+    sprintf(principal_directory_path_with_file_name, "%s%s", principal_directory_path, file_name);
+
     int cursor;
     int counter; // this counter will help us to track the start string
     char letter;
     IntWTagType *tabCursor;                    // creation of an IntTabType type array named tabCursor
     IntTab *intTab = create_IntTab(tabCursor); // creation of an IntTab type array named intTab that contain tabCursor
 
-    FILE *f = fopen(file_name, "r"); // opening of a file using the string given by the second parameter of this function, in read mode
+    FILE *f = fopen(principal_directory_path_with_file_name, "r"); // opening of a file using the string given by the second parameter of this function, in read mode
     letter = fgetc(f);               // giving of the first character in the file to letter
 
     while (letter != EOF)
@@ -57,7 +67,15 @@ IntTab *seek_start_Tag(TagTab *tagTab, char *file_name)
 
 StrTab *write_till_end(IntTab *intTab, char *file_name)
 {
-    FILE *f = fopen(file_name, "r");              // opening of a file using the string given by the third parameter of this function, in read mode
+    char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
+
+    strcpy(principal_directory_path, DIR_ROOT);
+
+    char *principal_directory_path_with_file_name = calloc(sizeof(char) * (strlen(file_name) + strlen(principal_directory_path)), sizeof(char));      // creation d'un char pour nom fichier ou dossier
+
+    sprintf(principal_directory_path_with_file_name, "%s%s", principal_directory_path, file_name);
+
+    FILE *f = fopen(principal_directory_path_with_file_name, "r");              // opening of a file using the string given by the third parameter of this function, in read mode
     StrTab *strTab = create_StrTab(intTab->size); // creation of an StrTab type array named strTab that contain str_tab
     char letter;
     int counter;
@@ -79,10 +97,10 @@ StrTab *write_till_end(IntTab *intTab, char *file_name)
                     tag_content_without_end_tag = remove_all_after_character(tag_content, intTab->content_tab[i].tag.end[0]); // remove the end tag from the tag content string
                                                                                                                               //                    tag_content_without_end_tag = remove_all_after_character(tag_content_without_end_tag, '#');
                     tag_content_without_end_tag = remove_all_after_character(tag_content_without_end_tag, '?');
-                    if (tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] == '/')
-                    {
-                        tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] = 0; // remove last char / to avoide double
-                    }
+//                    if (tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] == '/')
+//                    {
+//                        tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] = 0; // remove last char / to avoide double
+//                    }
 
                     if (tag_content_without_end_tag != "" && (strcmp(tag_content_without_end_tag, "#") != 0))
                     {

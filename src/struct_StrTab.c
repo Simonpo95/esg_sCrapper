@@ -8,7 +8,7 @@ StrTab *create_StrTab(int capacity) {
     strTab->size = 0;
     strTab->capacity = capacity;
 
-    char **str_tab = malloc(sizeof(char *) * strTab->capacity);
+    char **str_tab = (char**) malloc(sizeof(char *) * strTab->capacity);
     for (int o = 0; o < strTab->capacity; o++) {
         str_tab[o] = calloc(3000, sizeof(char));
     }
@@ -36,18 +36,21 @@ void printStrTab(StrTab strTab) {
 int addToStrTab(StrTab *strTab, char *string) {
     if(is_inside(string, strTab))
     {
+//        printf("string = %s\n",string);
         return 1;
     }
     else
     {
         strTab->content_tab[strTab->size] = string;
-        //    printf("ité = %d - content = %s | act size = %d | capa = %d\n",strTab->size, strTab->content_tab[strTab->size], strTab->size, strTab->capacity);
+
+        printf("ité = %d - content = %s\n",strTab->size, strTab->content_tab[strTab->size]);
+
         strTab->size++;
         if (strTab->size >= strTab->capacity) {
             strTab->capacity *= 2;
             strTab->content_tab = realloc(strTab->content_tab, sizeof(char**) * strTab->capacity);
         }
-        printf("-- fin add in StrTab\n\n");
+        printf("-- fin add in StrTab\n");
         return 0;
     }
 }

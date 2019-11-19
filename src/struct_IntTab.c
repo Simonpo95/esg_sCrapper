@@ -36,5 +36,5 @@ void addToIntTab(IntTab *intTab, IntWTagType *intWTagType) {
         intTab->capacity *= 2;
         intTab->content_tab = realloc(intTab->content_tab, sizeof(IntWTagType) * intTab->capacity);
     }
-    printf("-- fin add in IntTab\n\n");
+//    printf("-- fin add in IntTab\n\n");
 }

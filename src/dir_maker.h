@@ -3,6 +3,6 @@
 
 #include "supervisor.h"
 
-char* make_director(char * path, char * root);
+void make_director(char * directory_name);
 
 #endif
