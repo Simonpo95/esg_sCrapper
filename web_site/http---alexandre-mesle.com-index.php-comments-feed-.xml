@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+
+	>
+<channel>
+	<title>
+	Commentaires pour Alexandre Meslé	</title>
+	<atom:link href="http://alexandre-mesle.com/index.php/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>http://alexandre-mesle.com</link>
+	<description>Ma Page Perso</description>
+	<lastBuildDate>Tue, 21 Aug 2018 09:19:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+			<item>
+				<title>
+				Commentaires sur Sauvegardes avec rsync par Alexandre				</title>
+				<link>http://alexandre-mesle.com/index.php/2016/02/09/sauvegardes-avec-rsync/#comment-12</link>
+		<dc:creator><![CDATA[Alexandre]]></dc:creator>
+		<pubDate>Tue, 21 Aug 2018 09:19:00 +0000</pubDate>
+		<guid isPermaLink="false">http://wp.alexandre-mesle.com/?p=153#comment-12</guid>
+					<description><![CDATA[Bonjour Wilson, 
+
+Excusez mon temps de réponse. 
+
+Sauvegarder un serveur complet est très délicat, si vous avez un vps cloud, une option de sauvegarde, déjà fournie, est indiscutablement la meilleure solution. 
+
+Je ne vous conseille pas d&#039;utiliser rsync pour sauvegarder une arborescence complète, encore moins sur un serveur allumé. Vous pouvez éventuellement effectuer la sauvegarde depuis le mode rescue mais honnêtement je ne sais pas si c&#039;est un super calcul, sans oublier que le serveur sera indisponible pendant plusieurs heures si vous faites ça. 
+
+Si vous y tenez vraiment, vous pouvez utiliser rsync &quot;dans l&#039;autre sens&quot; en permutant les deux paramètres : rsync ... root@hote:/ repertoirecible/, mais je vous conseille de vérifier que les options vont bien préserver les liens symboliques, les droits, etc. Bref, pour sauver un système complet, cette solution me parait risquée.
+
+Si vous souhaitez faire une sauvegarde, il vaut mieux faire un rsync sur les applications et les fichiers téléversés, exporter les base de données, récupérer les fichiers de configuration (généralement depuis /etc/), et bien vérifier que vous avez tout ce qu&#039;il faut pour tout restaurer. Si vous avez tout ça, réinstaller le VPS après un crash et le reconfigurer ira assez vite.
+
+Si je puis me permettre, un hébergement mutualisé vous préserve de ce type de problématique, je vous conseille de n&#039;utiliser un dédié que si vous ne pouvez pas faire autrement (et que vous connaissez super bien Linux ça va de soi).
+
+Tenez-moi au courant,
+Alexandre.]]></description>
+		<content:encoded><![CDATA[<p>Bonjour Wilson, </p>
+<p>Excusez mon temps de réponse. </p>
+<p>Sauvegarder un serveur complet est très délicat, si vous avez un vps cloud, une option de sauvegarde, déjà fournie, est indiscutablement la meilleure solution. </p>
+<p>Je ne vous conseille pas d&rsquo;utiliser rsync pour sauvegarder une arborescence complète, encore moins sur un serveur allumé. Vous pouvez éventuellement effectuer la sauvegarde depuis le mode rescue mais honnêtement je ne sais pas si c&rsquo;est un super calcul, sans oublier que le serveur sera indisponible pendant plusieurs heures si vous faites ça. </p>
+<p>Si vous y tenez vraiment, vous pouvez utiliser rsync « dans l&rsquo;autre sens » en permutant les deux paramètres : rsync &#8230; root@hote:/ repertoirecible/, mais je vous conseille de vérifier que les options vont bien préserver les liens symboliques, les droits, etc. Bref, pour sauver un système complet, cette solution me parait risquée.</p>
+<p>Si vous souhaitez faire une sauvegarde, il vaut mieux faire un rsync sur les applications et les fichiers téléversés, exporter les base de données, récupérer les fichiers de configuration (généralement depuis /etc/), et bien vérifier que vous avez tout ce qu&rsquo;il faut pour tout restaurer. Si vous avez tout ça, réinstaller le VPS après un crash et le reconfigurer ira assez vite.</p>
+<p>Si je puis me permettre, un hébergement mutualisé vous préserve de ce type de problématique, je vous conseille de n&rsquo;utiliser un dédié que si vous ne pouvez pas faire autrement (et que vous connaissez super bien Linux ça va de soi).</p>
+<p>Tenez-moi au courant,<br />
+Alexandre.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				Commentaires sur Sauvegardes avec rsync par Wilson				</title>
+				<link>http://alexandre-mesle.com/index.php/2016/02/09/sauvegardes-avec-rsync/#comment-11</link>
+		<dc:creator><![CDATA[Wilson]]></dc:creator>
+		<pubDate>Thu, 05 Jul 2018 16:42:26 +0000</pubDate>
+		<guid isPermaLink="false">http://wp.alexandre-mesle.com/?p=153#comment-11</guid>
+					<description><![CDATA[Bonjour,
+
+Merci beaucoup pour ce tuto très explicite.
+
+J&#039;ai deux questions à propos de la ligne &quot;rsync --progress -avz repertoiresource/* login@hote:repertoirecible/&quot;
+
+1 : par quoi dois-je remplacer &quot;repertoiresource&quot; pour effectuer une sauvegarde totale du serveur ?
+
+2 : par quoi dois-je remplacer &quot;login@hote:repertoirecible/&quot; lorsque j&#039;ai généré un couple de clés ?
+
+En vous remerciant d&#039;avance,
+Bien cordialement,
+Wilson]]></description>
+		<content:encoded><![CDATA[<p>Bonjour,</p>
+<p>Merci beaucoup pour ce tuto très explicite.</p>
+<p>J&rsquo;ai deux questions à propos de la ligne « rsync &#8211;progress -avz repertoiresource/* login@hote:repertoirecible/ »</p>
+<p>1 : par quoi dois-je remplacer « repertoiresource » pour effectuer une sauvegarde totale du serveur ?</p>
+<p>2 : par quoi dois-je remplacer « login@hote:repertoirecible/ » lorsque j&rsquo;ai généré un couple de clés ?</p>
+<p>En vous remerciant d&rsquo;avance,<br />
+Bien cordialement,<br />
+Wilson</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				Commentaires sur Clonage de disque dur par Alexandre				</title>
+				<link>http://alexandre-mesle.com/index.php/2016/02/16/clonage-de-disque-dur/#comment-4</link>
+		<dc:creator><![CDATA[Alexandre]]></dc:creator>
+		<pubDate>Mon, 11 Jul 2016 21:19:22 +0000</pubDate>
+		<guid isPermaLink="false">http://alexandre-mesle.com/?p=239#comment-4</guid>
+					<description><![CDATA[Bonjour et merci pour les compliments, 
+
+1) Oui elle fonctionne sur les dual boot et c&#039;est même tout l&#039;intérêt. Ca évite d&#039;avoir à reconfigurer le boot manager. N&#039;oubliez pas qu&#039;il ne faut pas booter sur le linux du disque dur pour faire la copie, vous devez utiliser un système bootable.
+
+2) Vous pouvez vous passer de dd et effectuer les mêmes manipulation avec le gparted de la clé de boot, mais c&#039;est plus long et il faut bien faire attention à ne pas se planter dans les manipulations. Il n&#039;est pas garanti que gparted pourra accéder au MBR, vous aurez peut-être besoin de reconfigurer le boot manager sur le disque cible avec grub. L&#039;intérêt de dd dans ce contexte est qu&#039;il va vous éviter de gérer le MBR. Pour répondre à votre question ce n&#039;est donc pas une mauvaise idée, mais ça va prendre plus de temps et nécessiter beaucoup d&#039;attention. 
+
+Bonne &quot;suite&quot; et tenez-moi au courant, 
+Alexandre.]]></description>
+		<content:encoded><![CDATA[<p>Bonjour et merci pour les compliments, </p>
+<p>1) Oui elle fonctionne sur les dual boot et c&rsquo;est même tout l&rsquo;intérêt. Ca évite d&rsquo;avoir à reconfigurer le boot manager. N&rsquo;oubliez pas qu&rsquo;il ne faut pas booter sur le linux du disque dur pour faire la copie, vous devez utiliser un système bootable.</p>
+<p>2) Vous pouvez vous passer de dd et effectuer les mêmes manipulation avec le gparted de la clé de boot, mais c&rsquo;est plus long et il faut bien faire attention à ne pas se planter dans les manipulations. Il n&rsquo;est pas garanti que gparted pourra accéder au MBR, vous aurez peut-être besoin de reconfigurer le boot manager sur le disque cible avec grub. L&rsquo;intérêt de dd dans ce contexte est qu&rsquo;il va vous éviter de gérer le MBR. Pour répondre à votre question ce n&rsquo;est donc pas une mauvaise idée, mais ça va prendre plus de temps et nécessiter beaucoup d&rsquo;attention. </p>
+<p>Bonne « suite » et tenez-moi au courant,<br />
+Alexandre.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				Commentaires sur Clonage de disque dur par varuna				</title>
+				<link>http://alexandre-mesle.com/index.php/2016/02/16/clonage-de-disque-dur/#comment-3</link>
+		<dc:creator><![CDATA[varuna]]></dc:creator>
+		<pubDate>Mon, 11 Jul 2016 10:16:04 +0000</pubDate>
+		<guid isPermaLink="false">http://alexandre-mesle.com/?p=239#comment-3</guid>
+					<description><![CDATA[hello 
+sympa la manip !! 
+1) fonctionne t elle pour un dual boot OSX/eOS : mac + linux.  ? 
+2) EN principe on peut tout faire ( troP ?) avec g-parted sur la clef de boot . 
+Est ce une bonne idée ? 
+merci 
+a suivre 
+V.]]></description>
+		<content:encoded><![CDATA[<p>hello<br />
+sympa la manip !!<br />
+1) fonctionne t elle pour un dual boot OSX/eOS : mac + linux.  ?<br />
+2) EN principe on peut tout faire ( troP ?) avec g-parted sur la clef de boot .<br />
+Est ce une bonne idée ?<br />
+merci<br />
+a suivre<br />
+V.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

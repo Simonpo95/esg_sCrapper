@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+
+	>
+<channel>
+	<title>
+	Commentaires sur : Accueil	</title>
+	<atom:link href="http://alexandre-mesle.com/index.php/sample-page/feed/" rel="self" type="application/rss+xml" />
+	<link>http://alexandre-mesle.com</link>
+	<description>Ma Page Perso</description>
+	<lastBuildDate>Fri, 29 Jan 2016 14:09:56 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+</channel>
+</rss>
+x.php/category/deboires/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/alexandre-mesle.com\/wp-includes\/js\/wp-emoji-release.min.js"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='validate-engine-css-css'  href='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/css/validationEngine.jquery.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='http://alexandre-mesle.com/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='scfp-form-repeater-css-css'  href='http://alexandre-mesle.com/wp-content/plugins/wcp-contact-form/agp-core/assets/repeater/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='scfp-css-css'  href='http://alexandre-mesle.com/wp-content/plugins/wcp-contact-form/assets/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='http://alexandre-mesle.com/wp-content/plugins/jetpack/css/jetpack.css' type='text/css' media='all' />
+<link rel='stylesheet' id='baskerville_googleFonts-css'  href='//fonts.googleapis.com/css?family=Roboto+Slab%3A400%2C700%7CRoboto%3A400%2C400italic%2C700%2C700italic%2C300%7CPacifico%3A400&#038;ver=1' type='text/css' media='all' />
+<link rel='stylesheet' id='baskerville_style-css'  href='http://alexandre-mesle.com/wp-content/themes/baskerville/style.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wcp-contact-form/agp-core/assets/repeater/js/main.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/themes/baskerville/js/imagesloaded.pkgd.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/themes/baskerville/js/flexslider.min.js'></script>
+<link rel='https://api.w.org/' href='http://alexandre-mesle.com/index.php/wp-json/' />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<link rel='dns-prefetch' href='//i0.wp.com'/>
+<link rel='dns-prefetch' href='//i1.wp.com'/>
+<link rel='dns-prefetch' href='//i2.wp.com'/>
+<style type='text/css'>img#wpstats{display:none}</style><style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style><link rel="icon" href="https://i1.wp.com/alexandre-mesle.com/wp-content/uploads/2016/03/music3-glow-icon.png?fit=32%2C32" sizes="32x32" />
+<link rel="icon" href="https://i1.wp.com/alexandre-mesle.com/wp-content/uploads/2016/03/music3-glow-icon.png?fit=128%2C128" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i1.wp.com/alexandre-mesle.com/wp-content/uploads/2016/03/music3-glow-icon.png?fit=128%2C128" />
+<meta name="msapplication-TileImage" content="https://i1.wp.com/alexandre-mesle.com/wp-content/uploads/2016/03/music3-glow-icon.png?fit=128%2C128" />
+	
+	</head>
+	
+	<body class="archive category category-deboires category-17 no-featured-image">
+
+		
+			
+		<div class="header section small-padding bg-dark bg-image" style="background-image: url( http://alexandre-mesle.com/wp-content/uploads/2016/01/cropped-Piano-Keyboard.jpg );">
+		
+			<div class="cover"></div>
+			
+			<div class="header-search-block bg-graphite hidden">
+			
+				<form method="get" class="searchform" action="http://alexandre-mesle.com/">
+	<input type="search" value="" placeholder="Search form" name="s" class="s" /> 
+	<input type="submit" class="searchsubmit" value="Search">
+</form>			
+			</div><!-- .header-search-block -->
+					
+			<div class="header-inner section-inner">
+			
+												
+					<h1 class="blog-title">
+						<a href="http://alexandre-mesle.com" title="Alexandre Meslé &mdash; Ma Page Perso" rel="home">Alexandre Meslé</a>
+					</h1>
+					
+										
+						<h3 class="blog-description">Ma Page Perso</h3>
+						
+															
+											
+			</div><!-- .header-inner -->
+						
+		</div><!-- .header -->
+		
+		<div class="navigation section no-padding bg-dark">
+		
+			<div class="navigation-inner section-inner">
+			
+				<div class="nav-toggle fleft hidden">
+					
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+					
+					<div class="clear"></div>
+					
+				</div>
+						
+				<ul class="main-menu">
+				
+					<li id="menu-item-216" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-216"><a href="http://alexandre-mesle.com/">Accueil</a></li>
+<li id="menu-item-231" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-231"><a href="http://alexandre-mesle.com/index.php/musique/">Musique</a>
+<ul class="sub-menu">
+	<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232"><a href="http://alexandre-mesle.com/index.php/uo;intérêt de dd dans ce contexte est qu&rsquo;il va vous éviter de gérer le MBR. Pour répondre à votre question ce n&rsquo;est donc pas une mauvaise idée, mais ça va prendre plus de temps et nécessiter beaucoup d&rsquo;attention. </p>
+<p>Bonne « suite » et tenez-moi au courant,<br />
+Alexandre.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				Commentaires sur Clonage de disque dur par varuna				</title>
+				<link>http://alexandre-mesle.com/index.php/2016/02/16/clonage-de-disque-dur/#comment-3</link>
+		<dc:creator><![CDATA[varuna]]></dc:creator>
+		<pubDate>Mon, 11 Jul 2016 10:16:04 +0000</pubDate>
+		<guid isPermaLink="false">http://alexandre-mesle.com/?p=239#comment-3</guid>
+					<description><![CDATA[hello 
+sympa la manip !! 
+1) fonctionne t elle pour un dual boot OSX/eOS : mac + linux.  ? 
+2) EN principe on peut tout faire ( troP ?) avec g-parted sur la clef de boot . 
+Est ce une bonne idée ? 
+merci 
+a suivre 
+V.]]></description>
+		<content:encoded><![CDATA[<p>hello<br />
+sympa la manip !!<br />
+1) fonctionne t elle pour un dual boot OSX/eOS : mac + linux.  ?<br />
+2) EN principe on peut tout faire ( troP ?) avec g-parted sur la clef de boot .<br />
+Est ce une bonne idée ?<br />
+merci<br />
+a suivre<br />
+V.</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>
+page menu-item-226"><a href="http://alexandre-mesle.com/index.php/enseignement/mathematiques/">Mathématiques</a></li>
+	<li id="menu-item-227" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-227"><a href="http://alexandre-mesle.com/index.php/enseignement/programmation/">Programmation</a></li>
+</ul>
+</li>
+<li id="menu-item-228" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children has-children menu-item-228"><a href="http://alexandre-mesle.com/index.php/informatique/">Informatique</a>
+<ul class="sub-menu">
+	<li id="menu-item-237" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-237"><a href="http://alexandre-mesle.com/index.php/category/kitdesurvie/">Kit de survie</a></li>
+	<li id="menu-item-238" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-238"><a href="http://alexandre-mesle.com/index.php/category/deboires/" aria-current="page">Déboires</a></li>
+</ul>
+</li>
+<li id="menu-item-217" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-217"><a href="http://alexandre-mesle.com/index.php/conneries/">Conneries</a>
+<ul class="sub-menu">
+	<li id="menu-item-218" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-218"><a href="http://alexandre-mesle.com/index.php/conneries/kaamelott/">Kaamelott</a></li>
+	<li id="menu-item-219" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-219"><a href="http://alexandre-mesle.com/index.php/conneries/les-abysses-du-web/">Les abysses du Web</a></li>
+</ul>
+</li>
+<li id="menu-item-220" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-220"><a href="http://alexandre-mesle.com/index.php/contact/">Contact</a>
+<ul class="sub-menu">
+	<li id="menu-item-221" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-221"><a href="http://alexandre-mesle.com/index.php/contact/sabonner-a-la-liste-de-diffusion/">Liste de diffusion</a></li>
+	<li id="menu-item-222" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-222"><a href="http://alexandre-mesle.com/index.php/contact/me-contacter/">M&rsquo;envoyer un message</a></li>
+</ul>
+</li>
+											
+				 </ul><!-- .main-menu -->
+				 
+				 <a class="search-toggle fright" href="#"></a>
+				 
+				 <div class="clear"></div>
+				 
+			</div><!-- .navigation-inner -->
+			
+		</div><!-- .navigation -->
+		
+		<div class="mobile-navigation section bg-graphite no-padding hidden">
+					
+			<ul class="mobile-menu">
+			
+				<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-216"><a href="http://alexandre-mesle.com/">Accueil</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-231"><a href="http://alexandre-mesle.com/index.php/musique/">Musique</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232"><a href="http://alexandre-mesle.com/index.php/musique/concerts/">Concerts</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-233"><a href="http://alexandre-mesle.com/index.php/musique/mp3/">Mp3</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-234"><a href="http://alexandre-mesle.com/index.php/musique/transcriptions/">Transcriptions</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-235"><a href="http://alexandre-mesle.com/index.php/musique/tutos/">Tutos</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-223"><a href="http://alexandre-mesle.com/index.php/enseignement/">Enseignement</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224"><a href="http://alexandre-mesle.com/index.php/enseignement/algorithmique/">Algorithmique</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-225"><a href="http://alexandre-mesle.com/index.php/enseignement/bases-de-donnees/">Bases de données</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-226"><a href="http://alexandre-mesle.com/index.php/enseignement/mathematiques/">Mathématiques</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-227"><a href="http://alexandre-mesle.com/index.php/enseignement/programmation/">Programmation</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children has-children menu-item-228"><a href="http://alexandre-mesle.com/index.php/informatique/">Informatique</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-237"><a href="http://alexandre-mesle.com/index.php/category/kitdesurvie/">Kit de survie</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-238"><a href="http://alexandre-mesle.com/index.php/category/deboires/" aria-current="page">Déboires</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-217"><a href="http://alexandre-mesle.com/index.php/conneries/">Conneries</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-218"><a href="http://alexandre-mesle.com/index.php/conneries/kaamelott/">Kaamelott</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-219"><a href="http://alexandre-mesle.com/index.php/conneries/les-abysses-du-web/">Les abysses du Web</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has-children menu-item-220"><a href="http://alexandre-mesle.com/index.php/contact/">Contact</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-221"><a href="http://alexandre-mesle.com/index.php/contact/sabonner-a-la-liste-de-diffusion/">Liste de diffusion</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-222"><a href="http://alexandre-mesle.com/index.php/contact/me-contacter/">M&rsquo;envoyer un message</a></li>
+</ul>
+</li>
+										
+			 </ul><!-- .main-menu -->
+		
+		</div><!-- .mobile-navigation -->
+<div class="wrapper section medium-padding">
+
+	<div class="page-title section-inner">
+		
+					<h5>Category</h5> <h3>Déboires</h3>
+
+		<div class="tag-archive-meta"><p>Je suis passé sous Linux en 2002, découvrant à la fois la toute puissance de ce système, et les déboires qui y sont liés si ont veut profiter de toute sa souplesse. Il m&rsquo;est fréquement arrivé d&rsquo;y passer des journées, des week-ends, ou des nuits, tentant quelques fois sans succès d&rsquo;installer ou de faire fonctionner un logiciel. Nombreux furent les moments où j&rsquo;ai dû bidouiller des fichiers de configurations auxquels je ne comprennais rien, suivant aveuglément les conseils d&rsquo;inconnus sur des forums.</p>
+<p>Cette époque n&rsquo;étant hélas pas révolue, j&rsquo;ai décidé d&rsquo;ouvrir cette rubrique pour trois raisons :</p>
+<p>	J&rsquo;espère premièrement que les articles que vous y lirez vous distrairont, et que vous consulterez mes déboires avec amusement.<br />
+	J&rsquo;espère ensuite que des visiteurs, passant sur ma page pour chercher une réponse que j&rsquo;ai trouvée &#8211; ou non &#8211; après maints efforts, mettront moins de temps que moi pour trouver leurs réponses (ou abandonner&#8230;).<br />
+	Si un jour, j&rsquo;oublie comment j&rsquo;ai résolu un problème, je n&rsquo;aurais qu&rsquo;à aller sur mon propre site.</p>
+</div>		
+	</div><!-- .page-title -->
+	
+	<div class="content section-inner">
+	
+			
+			<div class="posts">
+			
+								
+					<div class="post-container">
+				
+						<div id="post-260" class="post-260 post type-post status-publish format-standard hentry category-deboires">
+				
+							<div class="post-header">
+
+			
+		<h2 class="post-title"><a href="http://alexandre-mesle.com/index.php/2016/02/19/grub-error-15/" rel="bookmark" title="Grub, error 15">Grub, error 15</a></h2>
+
+	    
+        
+</div><!-- .post-header -->
+
+									                                    	    
+<div class="post-excerpt">
+
+	<p>Voilà ce qu&rsquo;il se passe lorsque l&rsquo;on bidouille trop son système, il vient un moment où des choses étranges se produisent. Il y a peu de temps de cela, après un redémarrage mahleureux, toutes les touches alphabétiques et numériques de&#8230; <a class="more-link" href="http://alexandre-mesle.com/index.php/2016/02/19/grub-error-15/">Continue Reading &rarr;</a></p>
+
+</div><!-- .post-excerpt -->
+
+
+		<div class="post-meta">
+		
+			<a class="post-date" href="http://alexandre-mesle.com/index.php/2016/02/19/grub-error-15/" title="Grub, error 15">2016/02/19</a>
+			
+			<a href="http://alexandre-mesle.com/index.php/2016/02/19/grub-error-15/#respond" class="post-comments" >0</a>			
+			<div class="clear"></div>
+		
+		</div><!-- .post-meta -->
+		
+	            
+<div class="clear"></div>							
+							<div class="clear"></div>
+							
+						</div><!-- .post -->
+					
+					</div>
+					
+								
+					<div class="post-container">
+				
+						<div id="post-258" class="post-258 post type-post status-publish format-standard hentry category-deboires">
+				
+							<div class="post-header">
+
+			
+		<h2 class="post-title"><a href="http://alexandre-mesle.com/index.php/2016/02/19/latex2html/" rel="bookmark" title="Latex2html">Latex2html</a></h2>
+
+	    
+        
+</div><!-- .post-header -->
+
+									                                    	    
+<div class="post-excerpt">
+
+	<p>Latex est un logiciel de publication très puissant, essentiellement pour les textes scientifiques. Il permet de générer des documents dans plusieurs formats portables (ps, pdf, dvi, etc) et d&rsquo;y inclure des formules mathématiques. Latex2html est un script en Perl permettant&#8230; <a class="more-link" href="http://alexandre-mesle.com/index.php/2016/02/19/latex2html/">Continue Reading &rarr;</a></p>
+
+</div><!-- .post-excerpt -->
+
+
+		<div class="post-meta">
+		
+			<a class="post-date" href="http://alexandre-mesle.com/index.php/2016/02/19/latex2html/" title="Latex2html">2016/02/19</a>
+			
+			<a href="http://alexandre-mesle.com/index.php/2016/02/19/latex2html/#respond" class="post-comments" >0</a>			
+			<div class="clear"></div>
+		
+		</div><!-- .post-meta -->
+		
+	            
+<div class="clear"></div>							
+							<div class="clear"></div>
+							
+						</div><!-- .post -->
+					
+					</div>
+					
+								
+					<div class="post-container">
+				
+						<div id="post-256" class="post-256 post type-post status-publish format-standard hentry category-deboires">
+				
+							<div class="post-header">
+
+			
+		<h2 class="post-title"><a href="http://alexandre-mesle.com/index.php/2016/02/19/oracle-sous-linux/" rel="bookmark" title="Oracle sous Linux">Oracle sous Linux</a></h2>
+
+	    
+        
+</div><!-- .post-header -->
+
+									                                    	    
+<div class="post-excerpt">
+
+	<p>L&rsquo;absence de documentation et le non-respect des normes sont souvent la source d&rsquo;une inutile perte de temps. L&rsquo;installation d&rsquo;Oracle sous Linux (Mandriva en particulier), une fois que l&rsquo;on connait la procédure à suivre est un jeu d&rsquo;enfant (si tout se&#8230; <a class="more-link" href="http://alexandre-mesle.com/index.php/2016/02/19/oracle-sous-linux/">Continue Reading &rarr;</a></p>
+
+</div><!-- .post-excerpt -->
+
+
+		<div class="post-meta">
+		
+			<a class="post-date" href="http://alexandre-mesle.com/index.php/2016/02/19/oracle-sous-linux/" title="Oracle sous Linux">2016/02/19</a>
+			
+			<a href="http://alexandre-mesle.com/index.php/2016/02/19/oracle-sous-linux/#respond" class="post-comments" >0</a>			
+			<div class="clear"></div>
+		
+		</div><!-- .post-meta -->
+		
+	            
+<div class="clear"></div>							
+							<div class="clear"></div>
+							
+						</div><!-- .post -->
+					
+					</div>
+					
+								
+					<div class="post-container">
+				
+						<div id="post-252" class="post-252 post type-post status-publish format-standard hentry category-deboires">
+				
+							<div class="post-header">
+
+			
+		<h2 class="post-title"><a href="http://alexandre-mesle.com/index.php/2016/02/19/vi-ou-la-mort/" rel="bookmark" title="Vi ou la Mort">Vi ou la Mort</a></h2>
+
+	    
+        
+</div><!-- .post-header -->
+
+									                                    	    
+<div class="post-excerpt">
+
+	<p>Alors que je venais d&rsquo;installer Mandriva, et de comprendre comment modifier /boot/grub/menu.lst, je devais reporter ces modifications le plus vite possible, du moins avant de les oublier. Pas le temps de mettre à jour la liste des serveurs et d&rsquo;installer&#8230; <a class="more-link" href="http://alexandre-mesle.com/index.php/2016/02/19/vi-ou-la-mort/">Continue Reading &rarr;</a></p>
+
+</div><!-- .post-excerpt -->
+
+
+		<div class="post-meta">
+		
+			<a class="post-date" href="http://alexandre-mesle.com/index.php/2016/02/19/vi-ou-la-mort/" title="Vi ou la Mort">2016/02/19</a>
+			
+			<a href="http://alexandre-mesle.com/index.php/2016/02/19/vi-ou-la-mort/#respond" class="post-comments" >0</a>			
+			<div class="clear"></div>
+		
+		</div><!-- .post-meta -->
+		
+	            
+<div class="clear"></div>							
+							<div class="clear"></div>
+							
+						</div><!-- .post -->
+					
+					</div>
+					
+											
+			</div><!-- .posts -->
+						
+								
+			
+	</div><!-- .content -->
+
+</div><!-- .wrapper -->
+
+<div class="footer section medium-padding bg-graphite">
+
+		
+		<div class="section-inner row">
+		
+						
+				<div class="column column-1 one-third">
+				
+					<div class="widgets">
+			
+						<div class="widget widget_search"><div class="widget-content"><h3 class="widget-title">Rechercher</h3><form method="get" class="searchform" action="http://alexandre-mesle.com/">
+	<input type="search" value="" placeholder="Search form" name="s" class="s" /> 
+	<input type="submit" class="searchsubmit" value="Search">
+</form></div><div class="clear"></div></div>											
+					</div>
+					
+				</div><!-- .column-1 -->
+				
+							
+						
+				<div class="column column-2 one-third">
+				
+					<div class="widgets">
+			
+						<div class="widget widget_calendar"><div class="widget-content"><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+	<caption>novembre 2019</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="lundi">L</th>
+		<th scope="col" title="mardi">M</th>
+		<th scope="col" title="mercredi">M</th>
+		<th scope="col" title="jeudi">J</th>
+		<th scope="col" title="vendredi">V</th>ent">		<h3 class="widget-title">Derniers articles</h3>		<ul>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/grub-error-15/">Grub, error 15</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/latex2html/">Latex2html</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/oracle-sous-linux/">Oracle sous Linux</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/vi-ou-la-mort/">Vi ou la Mort</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/17/rpm-build/">RPM Build</a>
+											<span class="post-date">17 février 2016</span>
+									</li>
+					</ul>
+		</div><div class="clear"></div></div>											
+					</div><!-- .widgets -->
+					
+				</div>
+				
+			<!-- .footer-c -->
+			
+			<div class="clear"></div>
+		
+		</div><!-- .section-inner -->
+
+	
+</div><!-- .footer -->
+
+<div class="credits section bg-dark small-padding">
+
+	<div class="credits-inner section-inner">
+
+		<p class="credits-left fleft">
+		
+			&copy; 2019 <a href="http://alexandre-mesle.com" title="Alexandre Meslé">Alexandre Meslé</a><span> &mdash; Powered by <a href="http://www.wordpress.org">WordPress</a></span>
+		
+		</p>
+		
+		<p class="credits-right fright">
+			
+			<span>Theme by <a href="https://www.andersnoren.se">Anders Noren</a> &mdash; </span><a class="tothetop" title="To the top" href="#">Up &uarr;</a>
+			
+		</p>
+		
+		<div class="clear"></div>
+	
+	</div><!-- .credits-inner -->
+	
+</div><!-- .credits -->
+
+	<div style="display:none">
+	</div>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/imagesloaded.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/masonry.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/themes/baskerville/js/global.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/comment-reply.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/wp-embed.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/alexandre-mesle.com\/wp-admin\/admin-ajax.php","loadingTrans":"Chargement...","is_rtl":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/front-subscribers.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'2',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '2' ]);
+</script>
+
+</body>
+</html>ascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'0',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '0' ]);
+</script>
+
+</body>
+</html>                                                                         t_recent_entries"><div class="widget-content">		<h3 class="widget-title">Derniers articles</h3>		<ul>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/grub-error-15/">Grub, error 15</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/latex2html/">Latex2html</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/oracle-sous-linux/">Oracle sous Linux</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/19/vi-ou-la-mort/">Vi ou la Mort</a>
+											<span class="post-date">19 février 2016</span>
+									</li>
+											<li>
+					<a href="http://alexandre-mesle.com/index.php/2016/02/17/rpm-build/">RPM Build</a>
+											<span class="post-date">17 février 2016</span>
+									</li>
+					</ul>
+		</div><div class="clear"></div></div>											
+					</div><!-- .widgets -->
+					
+				</div>
+				
+			<!-- .footer-c -->
+			
+			<div class="clear"></div>
+		
+		</div><!-- .section-inner -->
+
+	
+</div><!-- .footer -->
+
+<div class="credits section bg-dark small-padding">
+
+	<div class="credits-inner section-inner">
+
+		<p class="credits-left fleft">
+		
+			&copy; 2019 <a href="http://alexandre-mesle.com" title="Alexandre Meslé">Alexandre Meslé</a><span> &mdash; Powered by <a href="http://www.wordpress.org">WordPress</a></span>
+		
+		</p>
+		
+		<p class="credits-right fright">
+			
+			<span>Theme by <a href="https://www.andersnoren.se">Anders Noren</a> &mdash; </span><a class="tothetop" title="To the top" href="#">Up &uarr;</a>
+			
+		</p>
+		
+		<div class="clear"></div>
+	
+	</div><!-- .credits-inner -->
+	
+</div><!-- .credits -->
+
+	<div style="display:none">
+	</div>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/imagesloaded.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/masonry.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/themes/baskerville/js/global.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/comment-reply.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/wp-embed.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/alexandre-mesle.com\/wp-admin\/admin-ajax.php","loadingTrans":"Chargement...","is_rtl":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/front-subscribers.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'87',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '87' ]);
+</script>
+
+</body>
+</html>                                                                                                                                                                                                                                                                                                                                                                       s/js/validate/jquery.validationEngine.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/alexandre-mesle.com\/wp-admin\/admin-ajax.php","loadingTrans":"Chargement...","is_rtl":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/front-subscribers.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'38',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '38' ]);
+</script>
+
+</body>
+</html>tent/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/alexandre-mesle.com\/wp-admin\/admin-ajax.php","loadingTrans":"Chargement...","is_rtl":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/front-subscribers.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'82',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '82' ]);
+</script>
+
+</body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        t/javascript' src='http://alexandre-mesle.com/wp-content/themes/baskerville/js/global.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/comment-reply.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-includes/js/wp-embed.min.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/validate/languages/jquery.validationEngine-fr.js'></script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/validate/jquery.validationEngine.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wysijaAJAX = {"action":"wysija_ajax","controller":"subscribers","ajaxurl":"http:\/\/alexandre-mesle.com\/wp-admin\/admin-ajax.php","loadingTrans":"Chargement...","is_rtl":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://alexandre-mesle.com/wp-content/plugins/wysija-newsletters/js/front-subscribers.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'22',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '22' ]);
+</script>
+
+</body>
+</html>ers/js/front-subscribers.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201947.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.6',blog:'122536382',post:'73',tz:'2',srv:'alexandre-mesle.com'} ]);
+	_stq.push([ 'clickTrackerInit', '122536382', '73' ]);
+</script>
+
+</body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  un mot de passe vous est demandé. Le caractère fastidieux de cette saisie peut, à la longue, s&rsquo;avérer fort pénible. La solution qui a mes yeux semble la plus élégante est d&rsquo;utiliser la cryptographie asymétrique.</p>
+<p>Avant de lire la suite, vous devez accepter l&rsquo;idée qu&rsquo;il est impossible de passer le mot de passe en argument à rsync, il vous enverra promener systématiquement et je vous avoue qu&rsquo;au niveau sécurité ça laisserait franchement à désirer.</p>
+<p>Pour commencer vous devez créer un couple de clés RSA, l&rsquo;une des clés est la clé publique et l&rsquo;autre la clé privée. La clé privée va vous servir à signer électroniquement un document, et la clé publique servira à vérifier que la signature est correcte. Vous devez donc mettre sur le serveur distant votre clé publique et conserver sur votre disque dur votre clé privée. A chaque tentative de connexion, le serveur va vous envoyer une donnée qui sera automatiquement signée à l&rsquo;aide de votre clé privée, puis retournée au serveur. Le serveur va ensuite utiliser votre clé publique pour s&rsquo;assurer que la signature est correcte. Si c&rsquo;est le cas, la demande de connexion sera acceptée, sinon elle sera refusée.</p>
+<p>Cela signifie que vous n&rsquo;aurez plus jamais besoin de saisir de votre mot de passe lorsque, depuis une machine disposant de votre clé publique, vous vous connecterez en ssh (ou avec une commande utilisant ssh, par exemple scp et rsync).</p>
+<p>Vous devrez donc :</p>
+<ul>
+<li>Générer un couple de clés RSA</li>
+<li>Recopier votre clé publique sur le serveur</li>
+</ul>
+<p>Je me suis librement inspiré <a href="http://www.linuxhorizon.ro/ssh-wo-passw.html">cette page</A>.</p>
+<h4>Génération d&rsquo;un couple de clés</h4>
+<p>On génère un couple de clés avec la commande ssh-keygen :</p>
+<pre>ssh-keygen -t rsa</pre>
+<p>Vous pouvez conserver toutes les options par défaut. Une fois l&rsquo;exécution de cette commande terminée, deux fichiers id_rsa et id_rsa.pub sont crées dans le repértoire $HOME/.ssh/. id_rsa.pub est votre clé publique et id_rsa est votre clé privée.</p>
+<h4>Envoi de la clé publique sur le serveur</h4>
+<p>Il suffit d&rsquo;utiliser la commande scp pour envoyer id_rsa.pub sur le serveur ssh. On procède de la façon suivante :</p>
+<pre>scp $HOME/.ssh/id_rsa.pub login@hote:.ssh/authorized_keys</pre>
+<p>login est votre login sur la machine distante, et hote est le hostname de la machine distante. Et pour la dernière fois, vous devrez saisir votre mot de passe !Il ne faudra pas oublier de gérer les droits du fichier $HOME/.ssh/authorized_keys en le mettant en 700 :</p>
+<pre>ssh login@hote "chmod 700 .ssh/authorized_keys"</pre>
+</div>
+</div>
+]]></content:encoded>
+							<wfw:commentRss>http://alexandre-mesle.com/index.php/2016/02/09/sauvegardes-avec-rsync/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">153</post-id>	</item>
+	</channel>
+</rss>
