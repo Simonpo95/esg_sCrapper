@@ -6,13 +6,13 @@ char *url_to_filable(char *url)
     char *dada_str = "dada";
 
     char *file_name = calloc((strlen(url)) + 100, sizeof(char));
-    char *copy_url = calloc(strlen(url)  + 5, sizeof(char));
+    char *copy_url = calloc(strlen(url) + 5, sizeof(char));
     char *result;
 
     char *extension = calloc(50, sizeof(char));
 
     result = typecheck(url);
-    fprintf(stderr,"type check = a%sa\n", result);
+    fprintf(stderr, "type check = a%sa\n", result);
     if (result == NULL)
     {
         result = "dada";
@@ -44,11 +44,24 @@ char *url_to_filable(char *url)
         y++;
     }
 
+    fprintf(stderr, " copyurl : extension : %s %s\n", copy_url, extension);
+
     sprintf(file_name, "%s%s", copy_url, extension);
 
-    free(copy_url);
-    free(extension);
-    free(result);
+    if (copy_url != NULL)
+    {
+        free(copy_url);
+    }
+
+    if (extension != NULL)
+    {
+        free(extension);
+    }
+
+    if (result != NULL)
+    {
+        free(result);
+    }
 
     return file_name;
 }
@@ -64,8 +77,8 @@ StrTab *curlStrTab(StrTab *url_strTab)
         char *file_name_from_url = url_to_filable(url_strTab->content_tab[i]); // retourne le nom du fichier correspondant a un url
         char *principal_directory_path = calloc(strlen(DIR_ROOT) + 5, sizeof(char));
 
-
         strcpy(principal_directory_path, DIR_ROOT);
+        fprintf(stderr, "directory path :%s\n", principal_directory_path);
 
         char *principal_directory_path_with_file_name = calloc(sizeof(char) * (strlen(file_name_from_url) + strlen(principal_directory_path)), sizeof(char)); // creation d'un char pour nom fichier ou dossier
 
