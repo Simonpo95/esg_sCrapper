@@ -1,12 +1,18 @@
 #include "action_worker.h"
 
-void action_work(char *initial_url, int max_depth)
+void action_work(char *initial_url, int max_depth, char * directory_name)
 {
-    char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
+    char * principal_directory_path = calloc(strlen(DIR_ROOT) + strlen(directory_name) + 5, sizeof(char));
 
     strcpy(principal_directory_path, DIR_ROOT);
 
     make_director(principal_directory_path);
+
+    sprintf(principal_directory_path, "%s%s/", principal_directory_path, directory_name);
+
+    make_director(principal_directory_path);
+
+
 
     ////    start part
 
@@ -33,7 +39,7 @@ void action_work(char *initial_url, int max_depth)
 
         printf("\n\n ---- avant phase de curl \n\n");
 
-        StrTab *new_file_name_tab = curlStrTab(controler->url_strTab_controler[i]);
+        StrTab *new_file_name_tab = curlStrTab(controler->url_strTab_controler[i], directory_name);
         printf("--- print de new_file_name_tab\n");
         printStrTab(*new_file_name_tab);
 

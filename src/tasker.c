@@ -2,7 +2,7 @@
 
 void action_waiter(true_action * taction)
 {
-    action_work(taction->url, taction->maximum_depth);
+    action_work(taction->url, taction->maximum_depth, taction->name);
 }
 
 void task_waiter(true_task *ttask)
