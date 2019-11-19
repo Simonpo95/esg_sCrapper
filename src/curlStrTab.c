@@ -12,7 +12,7 @@ char *url_to_filable(char *url, char * principal_directory_path)
     char *extension = calloc(50, sizeof(char));
 
     result = typecheck(url);
-    fprintf(stderr, "type check = a%sa\n", result);
+    fprintf(stderr, "type check = %s \n", result);
     if (result == NULL)
     {
         result = "dada";
@@ -81,8 +81,6 @@ StrTab *curlStrTab(StrTab *url_strTab, char *directory_name)
             fprintf(stderr, "path = %s\n", principal_directory_path_with_file_name);
             fprintf(stderr, "url = %s\n\n", url_strTab->content_tab[i]);
             curlit(principal_directory_path_with_file_name, url_strTab->content_tab[i]);
-            fprintf(stderr, "\ncoucou\n");
-            //            fprintf(stderr,"\n");
         }
     }
 

@@ -2,17 +2,17 @@
 
 int main()
 {
-    // char *principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
+     char *principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
 
-    // strcpy(principal_directory_path, DIR_ROOT);
+     strcpy(principal_directory_path, DIR_ROOT);
     // //
-    // char * url = "http://alexandre-mesle.com/";
+     char * url = "http://alexandre-mesle.com/";
     ////    char * url = "http://benoit-valle.fr/";
     ////    char * url = "http://mocodo.wingi.net/";
     ////    char * url = "http://www.lyc-ferry-conflans.ac-versailles.fr/";
     ////    char * principal_directory_path = "../web_site/test5/";
     // char *url = "http://www.makeplayingcards.com/";
-    // make_director(principal_directory_path);
+     make_director(principal_directory_path);
     ////
     //
     //////// url type testing part
@@ -52,7 +52,7 @@ int main()
     // //
     // //////// url type testing part
     //
-//    action_work(url, 5); ////pour lancer le programme
+    action_work(url, 5, hello); ////pour lancer le programme
                          //
                          //
                          //
