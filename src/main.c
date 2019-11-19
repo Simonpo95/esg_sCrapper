@@ -18,36 +18,36 @@ int main()
     //////// url type testing part
     //
 
-//         Tag *href = create_Tag("href=\"", "\"");
-//
-//         Tag *tab_of_tag;
-//         TagTab *tagTab = create_TagTab(tab_of_tag);
-//
-//         addToTagTab(tagTab, href);
-//
-//         StrTab * test_strTab = create_StrTab(12);
-//
-//         addToStrTab(test_strTab, "http://alexandre-mesle.com/index.php/conneries/kaamelott/");
-//         addToStrTab(test_strTab, "http://alexandre-mesle.com/index.php/conneries/");
-//         addToStrTab(test_strTab, "http://instagram.com/embed/");
-//         addToStrTab(test_strTab, "http://www.makeplayingcards.com/environmentally-friendly.aspx");
-//
-//         printStrTab(*test_strTab);
-//
-//         StrTab * file_name_srtTab = curlStrTab(test_strTab);
-//
-//         printStrTab(*file_name_srtTab);
-//
-//         for (int i = 0; i < file_name_srtTab->size; ++i) {
-//             IntTab *cursor_tab = seek_start_Tag(tagTab, file_name_srtTab->content_tab[i]);
-//
-//             if (cursor_tab != NULL)
-//             {
-//                 StrTab *url_tab = write_till_end(cursor_tab, file_name_srtTab->content_tab[i]);
-//                 printf("i = %d",i);
-//                 printStrTab(*url_tab);
-//             }
-//         }
+         Tag *href = create_Tag("href=\"", "\"");
+
+         Tag *tab_of_tag;
+         TagTab *tagTab = create_TagTab(tab_of_tag);
+
+         addToTagTab(tagTab, href);
+
+         StrTab * test_strTab = create_StrTab(12);
+
+         addToStrTab(test_strTab, "http://alexandre-mesle.com/index.php/conneries/kaamelott/");
+         addToStrTab(test_strTab, "http://alexandre-mesle.com/index.php/conneries/");
+         addToStrTab(test_strTab, "http://instagram.com/embed/");
+         addToStrTab(test_strTab, "http://www.makeplayingcards.com/environmentally-friendly.aspx");
+
+         printStrTab(*test_strTab);
+
+         StrTab * file_name_srtTab = curlStrTab(test_strTab);
+
+         printStrTab(*file_name_srtTab);
+
+         for (int i = 0; i < file_name_srtTab->size; ++i) {
+             IntTab *cursor_tab = seek_start_Tag(tagTab, file_name_srtTab->content_tab[i]);
+
+             if (cursor_tab != NULL)
+             {
+                 StrTab *url_tab = write_till_end(cursor_tab, file_name_srtTab->content_tab[i]);
+                 printf("i = %d",i);
+                 printStrTab(*url_tab);
+             }
+         }
 
     // //
     // //////// url type testing part

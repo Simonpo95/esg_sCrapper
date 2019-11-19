@@ -50,9 +50,11 @@ char *url_to_filable(char *url)
 
     fprintf(stderr, " copyurl : extension : %s %s\n", copy_url, extension);
 
-    make_director()
+    char * principal_directory_path_and_directory_name = calloc(strlen(principal_directory_path) + strlen(copy_url), sizeof(char));
+    sprintf(principal_directory_path_and_directory_name, "%s%s", principal_directory_path, copy_url);
+    make_director(principal_directory_path_and_directory_name);
 
-    sprintf(file_name, "%s%s", copy_url, extension);
+    sprintf(file_name, "%s/%s%s", copy_url, copy_url, extension);
     return file_name;
 }
 
