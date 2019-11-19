@@ -1,6 +1,6 @@
 #include "curlStrTab.h"
 
-char *url_to_filable(char *url, char * principal_directory_path)
+char *url_to_filable(char *url, char *principal_directory_path)
 {
 
     char *dada_str = "dada";
@@ -55,21 +55,19 @@ StrTab *curlStrTab(StrTab *url_strTab, char *directory_name)
 
     StrTab *filename_strTab = create_StrTab(url_strTab->size);
 
-    char * principal_directory_path = calloc(400, sizeof(char));
+    char *principal_directory_path = calloc(400, sizeof(char));
 
-    sprintf(principal_directory_path, "%s%s/",  "../web_site/", directory_name);
+    sprintf(principal_directory_path, "%s%s/", "../web_site/", directory_name);
 
     for (int i = 0; i < url_strTab->size; i++)
     {
         char *file_name_from_url = url_to_filable(url_strTab->content_tab[i], principal_directory_path); // retourne le nom du fichier correspondant a un url
-        
 
         fprintf(stderr, "directory path :%s\n", principal_directory_path);
 
         char *principal_directory_path_with_file_name = calloc(sizeof(char) * (strlen(file_name_from_url) + strlen(principal_directory_path)), sizeof(char)); // creation d'un char pour nom fichier ou dossier
 
         sprintf(principal_directory_path_with_file_name, "%s%s", principal_directory_path, file_name_from_url);
-        free(principal_directory_path);
         if (strlen(principal_directory_path_with_file_name) > 253)
         {
             principal_directory_path_with_file_name[253] = '\0';
@@ -82,9 +80,9 @@ StrTab *curlStrTab(StrTab *url_strTab, char *directory_name)
             fprintf(stderr, "url = %s\n\n", url_strTab->content_tab[i]);
             curlit(principal_directory_path_with_file_name, url_strTab->content_tab[i]);
             fprintf(stderr, "\ncoucou\n");
-            //            fprintf(stderr,"\n");
         }
     }
 
+    free(principal_directory_path);
     return filename_strTab;
 }
