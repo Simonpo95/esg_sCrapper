@@ -5,8 +5,8 @@ char* url_to_filable(char * url)
 
     char *dada_str = "dada";
 
-    char *final_path = calloc(sizeof(char) * (strlen(url)), sizeof(char));
-    char *cpy_destination = calloc(sizeof(char) * (strlen(url)), sizeof(char));
+    char *file_name = calloc(sizeof(char) * (strlen(url)), sizeof(char));
+    char *copy_url = calloc(sizeof(char) * (strlen(url)), sizeof(char));
     char *result = calloc(sizeof(char) * 200, sizeof(char));
 
     char *extension = calloc(sizeof(char) * 50, sizeof(char));
@@ -25,31 +25,23 @@ char* url_to_filable(char * url)
         extension = get_extensions_from_types(result);
     }
 
-    strcpy(cpy_destination, url);
+    strcpy(copy_url, url);
 
     int y = 0;
-    while (cpy_destination[y] != 0)
+    while (copy_url[y] != 0)
     {
-        if (cpy_destination[y] == 34 || cpy_destination[y] == 38 || cpy_destination[y] == 47 ||
-            cpy_destination[y] == 58 || cpy_destination[y] == 60 || cpy_destination[y] == 62 ||
-            cpy_destination[y] == 63 || cpy_destination[y] == 92 || cpy_destination[y] == 124)
+        if (copy_url[y] == 34 || copy_url[y] == 38 || copy_url[y] == 47 ||
+            copy_url[y] == 58 || copy_url[y] == 60 || copy_url[y] == 62 ||
+            copy_url[y] == 63 || copy_url[y] == 92 || copy_url[y] == 124)
         {
-            cpy_destination[y] = 45;
+            copy_url[y] = 45;
         }
         y++;
     }
 
-    sprintf(final_path, "%s%s", cpy_destination, extension);
+    sprintf(file_name, "%s%s", copy_url, extension);
 
-    char **tab = calloc(sizeof(char *) * 2, sizeof(char *));
-    for (int o = 0; o < 2; o++)
-    {
-        tab[o] = calloc(600, sizeof(char));
-    }
-
-    tab[1] = url;
-
-    return final_path;
+    return file_name;
 }
 
 

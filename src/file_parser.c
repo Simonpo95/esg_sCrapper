@@ -18,11 +18,11 @@ int is_inside(char *string, StrTab *strTab)
 
 IntTab *seek_start_Tag(TagTab *tagTab, char *file_name)
 {
-    if (strcmp("html", get_extension(file_name)))
-    {
-        printf("%s", get_extension(file_name));
-        return NULL;
-    }
+//    if (strcmp("html", get_extension(file_name)))
+//    {
+//        printf("%s\n", get_extension(file_name));
+//        return NULL;
+//    }
 
     char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
 
@@ -31,6 +31,13 @@ IntTab *seek_start_Tag(TagTab *tagTab, char *file_name)
     char *principal_directory_path_with_file_name = calloc(sizeof(char) * (strlen(file_name) + strlen(principal_directory_path)), sizeof(char));      // creation d'un char pour nom fichier ou dossier
 
     sprintf(principal_directory_path_with_file_name, "%s%s", principal_directory_path, file_name);
+
+    if (strcmp("html", get_extension(principal_directory_path_with_file_name)))
+    {
+        printf("%s\n", get_extension(principal_directory_path_with_file_name));
+        printf(" non parsable\n");
+        return NULL;
+    }
 
     int cursor;
     int counter; // this counter will help us to track the start string

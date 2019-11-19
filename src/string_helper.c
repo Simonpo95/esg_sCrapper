@@ -334,7 +334,7 @@ char *get_extensions_from_types(char *type)
         ".3g2",
         ".7z",
         ".xml",
-        ".html",
+        ".plain",
         ".xml"};
 
     if(sizeof(possible_content_type) == sizeof(possible_extension))
