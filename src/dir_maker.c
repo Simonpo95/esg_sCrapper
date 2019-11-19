@@ -18,6 +18,7 @@ void make_director( char * directory_name)
 
         if((stat(temp_path, &sb) == -1) && (strcmp(temp_path, "../") != 0))
         {
+            printf("\n create directory = %s\n", temp_path);
             mkdir(temp_path, 0777);
         }
 
