@@ -5,11 +5,11 @@ char *url_to_filable(char *url)
 
     char *dada_str = "dada";
 
-    char *file_name = calloc(sizeof(char) * (strlen(url)), sizeof(char));
-    char *copy_url = calloc(sizeof(char) * (strlen(url)), sizeof(char));
-    char *result = calloc(sizeof(char) * 200, sizeof(char));
+    char *file_name = calloc((strlen(url)) + 100, sizeof(char));
+    char *copy_url = calloc(strlen(url)  + 5, sizeof(char));
+    char *result;
 
-    char *extension = calloc(sizeof(char) * 50, sizeof(char));
+    char *extension = calloc(50, sizeof(char));
 
     result = typecheck(url);
     fprintf(stderr,"type check = a%sa\n", result);
@@ -46,6 +46,10 @@ char *url_to_filable(char *url)
 
     sprintf(file_name, "%s%s", copy_url, extension);
 
+    free(copy_url);
+    free(extension);
+    free(result);
+
     return file_name;
 }
 
@@ -58,19 +62,22 @@ StrTab *curlStrTab(StrTab *url_strTab)
     for (int i = 0; i < url_strTab->size; i++)
     {
         char *file_name_from_url = url_to_filable(url_strTab->content_tab[i]); // retourne le nom du fichier correspondant a un url
-        char *principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
+        char *principal_directory_path = calloc(strlen(DIR_ROOT) + 5, sizeof(char));
+
 
         strcpy(principal_directory_path, DIR_ROOT);
 
         char *principal_directory_path_with_file_name = calloc(sizeof(char) * (strlen(file_name_from_url) + strlen(principal_directory_path)), sizeof(char)); // creation d'un char pour nom fichier ou dossier
 
         sprintf(principal_directory_path_with_file_name, "%s%s", principal_directory_path, file_name_from_url);
+        free(principal_directory_path);
 
         if (!(addToStrTab(filename_strTab, file_name_from_url)))
         {
             fprintf(stderr, "path = %s\n", principal_directory_path_with_file_name);
             fprintf(stderr, "url = %s\n\n", url_strTab->content_tab[i]);
             curlit(principal_directory_path_with_file_name, url_strTab->content_tab[i]);
+            fprintf(stderr, "\ncoucou\n");
             //            fprintf(stderr,"\n");
         }
     }

@@ -8,21 +8,26 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream)
 
 int curlit(char *filepath, char *url)
 {
-    CURL *curl;
+    CURL *curl = NULL;
     FILE *f;
     CURLcode res;
     int size = 0;
+    fprintf(stderr, "DANs le curl : %s\n", filepath);
+
     curl = curl_easy_init();
+    fprintf(stderr, "DANs le curl apres curl easy init : %s\n", filepath);
+
     if (curl)
     {
+
         f = fopen(filepath, "w+");
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, f);
         res = curl_easy_perform(curl);
         fclose(f);
+        curl_easy_cleanup(curl);
     }
-    curl_easy_cleanup(curl);
 }
 
 char *typecheck(char *url)
