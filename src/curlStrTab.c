@@ -74,13 +74,15 @@ StrTab *curlStrTab(StrTab *url_strTab, char *directory_name)
             principal_directory_path_with_file_name[253] = '\0';
         }
 
-        if (!(addToStrTab(filename_strTab, file_name_from_url)))
+        if (!(addToStrTab(filename_strTab, principal_directory_path_with_file_name)))
         {
             fprintf(stderr, "filename = %s\n", file_name_from_url);
             fprintf(stderr, "path = %s\n", principal_directory_path_with_file_name);
             fprintf(stderr, "url = %s\n\n", url_strTab->content_tab[i]);
             curlit(principal_directory_path_with_file_name, url_strTab->content_tab[i]);
         }
+
+        
     }
 
     free(principal_directory_path);
