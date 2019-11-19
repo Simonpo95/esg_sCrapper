@@ -2,10 +2,11 @@
 
 void action_work(char *initial_url, int max_depth)
 {
-
     char * principal_directory_path = calloc(sizeof(char) * strlen(DIR_ROOT), sizeof(char));
 
     strcpy(principal_directory_path, DIR_ROOT);
+
+    make_director(principal_directory_path);
 
     ////    start part
 
