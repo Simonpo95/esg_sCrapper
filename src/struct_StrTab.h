@@ -9,8 +9,6 @@ struct StrTab {
     int capacity;
 };
 
-// void printTabStrTab(StrTab *);
-
 StrTab *create_StrTab(int size);
 
 void printStrTab(StrTab);

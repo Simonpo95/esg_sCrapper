@@ -11,8 +11,6 @@ struct IntTab {
 
 IntTab *create_IntTab(IntWTagType *);
 
-void printTabIntTab(IntTab *);
-
 void printIntTab(IntTab);
 
 void addToIntTab(IntTab *, IntWTagType *);

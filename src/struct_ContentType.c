@@ -15,10 +15,3 @@ void printContentType(ContentType contentType) {
     printf("fin printf ContentType\n");
 
 }
-
-//void printTabContentType(ContentType *tabcontentType) {
-//    int i = 0;
-//    for (i; i < 2; i++) {
-//        printTag(tabcontentType[i]);
-//    }
-//}

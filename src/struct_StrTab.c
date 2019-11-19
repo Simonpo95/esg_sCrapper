@@ -27,16 +27,9 @@ void printStrTab(StrTab strTab) {
     printf("\n");
 }
 
-// void printTabStrTab(StrTab *tabstrTab) {
-//     int i = 0;
-//     printStrTab(tabstrTab[i]);
-//     printf("fin printf TabstrTab\n");
-// }
-
 int addToStrTab(StrTab *strTab, char *string) {
     if(is_inside(string, strTab))
     {
-//        printf("string = %s\n",string);
         return 1;
     }
     else
