@@ -98,11 +98,6 @@ StrTab *write_till_end(IntTab *intTab, char *file_name)
                     tag_content_without_end_tag = remove_all_after_character(tag_content, intTab->content_tab[i].tag.end[0]); // remove the end tag from the tag content string
                                                                                                                               //                    tag_content_without_end_tag = remove_all_after_character(tag_content_without_end_tag, '#');
                     tag_content_without_end_tag = remove_all_after_character(tag_content_without_end_tag, '?');
-//                    if (tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] == '/')
-//                    {
-//                        tag_content_without_end_tag[strlen(tag_content_without_end_tag) - 1] = 0; // remove last char / to avoide double
-//                    }
-
                     if (tag_content_without_end_tag != "" && (strcmp(tag_content_without_end_tag, "#") != 0))
                     {
                         should_break = addToStrTab(strTab, tag_content_without_end_tag); // insertion of the tag content string in the strTab

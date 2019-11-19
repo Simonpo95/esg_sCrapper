@@ -21,7 +21,6 @@ void printTabStrTab(TabStrTab tabStrTab){
 
 void addToTabStrTab(TabStrTab *tabStrTab, StrTab *strTab) {
     tabStrTab->content_tab[tabStrTab->size] = *strTab;
-    //    printf("ité = %d - content = %d | act size = %d | capa = %d\n",tagTab->size, intTab->content_tab[intTab->size], intTab->size, intTab->capacity);
     tabStrTab->size++;
     if (tabStrTab->size >= tabStrTab->capacity) {
         tabStrTab->capacity *= 2;

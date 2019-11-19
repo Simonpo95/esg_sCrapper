@@ -8,19 +8,11 @@ Controler *create_Controler(int max_generation, char* first_url) {
     StrTab ** url_strTab_controler = (StrTab**) malloc(sizeof(StrTab*) * controler->max_generation);
     StrTab * first_gen_url_strTab = create_StrTab(12);
     addToStrTab(first_gen_url_strTab, first_url);
-//    printStrTab(*first_gen_url_strTab);
-    url_strTab_controler[0] = first_gen_url_strTab; // peut etre remplacer 0 par generation ?
+    url_strTab_controler[0] = first_gen_url_strTab;
     controler->url_strTab_controler = url_strTab_controler;
-
-//    curlStrTab = controler->url_strTab_controler
-
 
 
     StrTab ** file_name_strTab_controler = (StrTab**) malloc(sizeof(StrTab*) * controler->max_generation);
-//    StrTab * first_gen_filename_strTab = create_StrTab(0);
-
-//    StrTab * first_gen_filename_strTab = curlStrTab(controler->url_strTab_controler[0]);
-//    file_name_strTab_controler[0] = first_gen_filename_strTab;
 
     controler->file_name_strTab_controler = file_name_strTab_controler;
     return controler;
@@ -29,16 +21,6 @@ Controler *create_Controler(int max_generation, char* first_url) {
 void printControler(Controler controler){
     printf("\n");
     for (int i = 0; i <= controler.generation; i++) {
-//        for(int j = 0; j < controler.url_strTab_controler[i]->size; j++)
-//        {
-//            fprintf(stderr,"i = %d - j = %d -- printof url tab\n",i,j);
-//            printStrTab(controler.url_strTab_controler[j][0]);
-//        }
-//        for(int j = 0; j < controler.file_name_strTab_controler[i]->size; j++)
-//        {
-//            fprintf(stderr,"i = %d - j = %d -- printof filename tab \n",i,j);
-//            printStrTab(controler.file_name_strTab_controler[j][0]);
-//        }
 
             fprintf(stderr,"i = %d -- printof url tab\n",i);
             printStrTab(controler.url_strTab_controler[i][0]);
@@ -49,21 +31,3 @@ void printControler(Controler controler){
     }
     printf("\nfin printf Controler\n");
 }
-
-
-//void addGenerationtoControler(Controler * controler, url_size)
-//{
-//    controler->generation ++;
-//
-//}
-//
-//void addToIntTab(IntTab *intTab, IntWTagType *intWTagType) {
-//    intTab->content_tab[intTab->size] = *intWTagType;
-////    printf("ité = %d - content = %d\n",intTab->size, intTab->content_tab[intTab->size]);
-//    intTab->size++;
-//    if (intTab->size >= intTab->capacity) {
-//        intTab->capacity *= 2;
-//        intTab->content_tab = realloc(intTab->content_tab, sizeof(IntWTagType) * intTab->capacity);
-//    }
-//    printf("-- fin add in IntTab\n\n");
-//}

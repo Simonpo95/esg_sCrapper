@@ -12,10 +12,3 @@ void printTag(Tag tag) {
     printf("fin printf Tag\n");
 
 }
-
-//void printTabTag(Tag *tabtag) {
-//    int i = 0;
-//    for (i; i < 2; i++) {
-//        printTag(tabtag[i]);
-//    }
-//}
