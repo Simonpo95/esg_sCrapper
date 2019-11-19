@@ -21,7 +21,6 @@ void printTagTab(TagTab tagTab){
 
 void addToTagTab(TagTab *tagTab, Tag *tag) {
     tagTab->content_tab[tagTab->size] = *tag;
-    //    printf("ité = %d - content = %d | act size = %d | capa = %d\n",tagTab->size, intTab->content_tab[intTab->size], intTab->size, intTab->capacity);
     tagTab->size++;
     if (tagTab->size >= tagTab->capacity) {
         tagTab->capacity *= 2;

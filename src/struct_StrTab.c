@@ -4,7 +4,6 @@
 
 StrTab *create_StrTab(int capacity) {
     struct StrTab *strTab = (struct StrTab *) malloc(sizeof(struct StrTab));
-//    int capacity = 5;
     strTab->size = 0;
     strTab->capacity = capacity;
 
